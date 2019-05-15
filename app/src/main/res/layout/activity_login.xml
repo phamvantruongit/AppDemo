@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        tools:context=".view.activity.LoginActivity">
+    <EditText
+            android:maxLines="1"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="70dp"
+            android:id="@+id/edEmail"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:hint="Email"
+            android:padding="8dp"
+            android:background="@drawable/boder_ed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <EditText
+            android:maxLines="1"
+            android:inputType="textPassword"
+            android:layout_marginTop="20dp"
+            android:id="@+id/edPass"
+            app:layout_constraintTop_toBottomOf="@id/edEmail"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:hint="Mat khau"
+            android:padding="8dp"
+            android:background="@drawable/boder_ed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_marginTop="15dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edPass"
+            android:text="Ban quen mat khau?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <Button
+            android:textAllCaps="false"
+            android:id="@+id/btnLogin"
+            android:layout_marginTop="50dp"
+            android:text="Dang nhap"
+            app:layout_constraintTop_toBottomOf="@id/edPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:id="@+id/tvRegister"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Dang ki tai khoan"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</android.support.constraint.ConstraintLayout>
