@@ -13,9 +13,9 @@ class RegisterInteractor {
 
         var param = HashMap<String, String>()
         param.put("email", user.email)
-        param.put("name_shop", user.name_shop)
+        param.put("nameshop", user.name_shop)
         param.put("name", user.name)
-        param.put("phone", user.phone)
+        //param.put("phone", user.phone)
         param.put("password", user.password)
 
         val call: Call<LoginBaseResponse> = apiClient.registerUser(param);

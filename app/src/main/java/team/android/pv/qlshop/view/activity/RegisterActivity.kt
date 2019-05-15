@@ -2,6 +2,7 @@ package team.android.pv.qlshop.view.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_register.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
@@ -43,10 +44,10 @@ class RegisterActivity : AppCompatActivity() ,ViewRegister {
     }
 
     override fun setData(user: User) {
-
+        Toast.makeText(this,"Ok",Toast.LENGTH_SHORT).show()
     }
 
     override fun setDataError(error: String) {
-
+          Toast.makeText(this,error,Toast.LENGTH_SHORT).show()
     }
 }
