@@ -6,22 +6,22 @@ import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.MyApplication.Companion.apiClient
 import team.android.pv.qlshop.model.BaseResponse
 import team.android.pv.qlshop.model.ProductResponse
-import team.android.pv.qlshop.presenter.Inteface.OnFinishedListener
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
-import javax.security.auth.callback.Callback
 
 class ProductInteractor {
 
     fun addProduct(onFinishedListener: OnFinishedListeners, product: Product){
+        
         var param=HashMap<String,String>()
         param.put("name",product.name)
         param.put("desciption",product.description)
+        param.put("barcode",product.barcode)
         param.put("price_outs", product.price_outs.toString())
         param.put("price_out", product.price_out.toString())
         param.put("price_in",product.price_in.toString())
         param.put("number", product.number.toString())
         param.put("id_shop",product.id_shop.toString())
-        param.put("barcode",product.barcode)
+
 
         var call:Call<BaseResponse> = apiClient.addProduct(param)
 
