@@ -41,7 +41,6 @@ class AddProductActivity : AppCompatActivity() {
 
         if (requestCode == 100 && data != null) {
             val barcode = data.getParcelableExtra<Barcode>(BarcodeReaderActivity.KEY_CAPTURED_BARCODE)
-            Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show()
         }
     }
 

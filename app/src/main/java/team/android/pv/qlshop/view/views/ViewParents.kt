@@ -1,6 +1,6 @@
 package team.android.pv.qlshop.view.views
 
-interface ViewParent {
+interface ViewParents {
     fun showProgress()
     fun hideProgress()
     fun setDataError(error: String)

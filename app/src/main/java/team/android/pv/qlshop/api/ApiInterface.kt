@@ -4,6 +4,7 @@ import retrofit2.http.*
 import team.android.pv.qlshop.model.BaseResponse
 import team.android.pv.qlshop.model.CategoryResponse
 import team.android.pv.qlshop.model.LoginBaseResponse
+import team.android.pv.qlshop.model.ProductResponse
 
 interface ApiInterface {
 
@@ -26,6 +27,10 @@ interface ApiInterface {
     @POST("add/brand.php")
     fun  addBrand (@FieldMap user:Map<String,String>) :Call<BaseResponse>
 
+    @FormUrlEncoded
+    @POST("add/product.php")
+    fun  addProduct (@FieldMap user:Map<String,String>) :Call<BaseResponse>
+
 
     @GET("get/brand.php")
     fun getBrand(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
@@ -33,6 +38,13 @@ interface ApiInterface {
 
     @GET("get/category.php")
     fun getCategory(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
+
+
+    @GET("get/product.php")
+    fun getProduct(@Query("id_shop") id_shop:Int) :Call<ProductResponse>
+
+
+
 
 
 

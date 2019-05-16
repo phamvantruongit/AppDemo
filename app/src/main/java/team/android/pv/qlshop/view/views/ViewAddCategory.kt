@@ -2,7 +2,6 @@ package team.android.pv.qlshop.view.views
 
 import team.android.pv.qlshop.model.Category
 
-interface ViewAddCategory :ViewParent{
-    fun setSuccess(success: String)
+interface ViewAddCategory :ViewParents{
     fun getListCategory(listCategory: ArrayList<Category>)
 }
