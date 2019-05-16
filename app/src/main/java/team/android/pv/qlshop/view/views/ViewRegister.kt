@@ -2,9 +2,6 @@ package team.android.pv.qlshop.view.views
 
 import team.android.pv.qlshop.model.User
 
-interface ViewRegister {
-    fun showProgress()
-    fun hideProgress()
+interface ViewRegister :ViewParent{
     fun setData(user: User)
-    fun setDataError(error: String)
 }

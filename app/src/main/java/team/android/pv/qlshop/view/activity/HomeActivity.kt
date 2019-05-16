@@ -4,18 +4,17 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 
-class MoreActivity :BaseActivity() {
+class HomeActivity :BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        tvTitle.text=this.resources.getText(R.string.title_more)
+        tvTitle.text=this.resources.getText(R.string.title_home)
     }
-
     override fun getContentView(): Int {
-        return R.layout.activity_more
+        return R.layout.activity_home
     }
 
     override fun getNavigationMenuItemId(): Int {
-        return R.id.navigation_more
+         return R.id.navigation_home
     }
 }

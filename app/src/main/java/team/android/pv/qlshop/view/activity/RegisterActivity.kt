@@ -33,6 +33,10 @@ class RegisterActivity : AppCompatActivity() ,ViewRegister {
             user!!.password=password
             register.registerUser(user!!)
         })
+
+        toolbar.setOnClickListener({
+            finish()
+        })
     }
 
     override fun showProgress() {

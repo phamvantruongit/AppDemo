@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.presenter.login.LoginInteractor
@@ -19,6 +20,7 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
         login = LoginPresenter(this, LoginInteractor())
 
 
@@ -27,7 +29,7 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
         }
 
         btnLogin.setOnClickListener({
-            val email = edEmail.text.toString()
+            /*val email = edEmail.text.toString()
             val password = edPass.text.toString()
             if (TextUtils.isEmpty(email)) {
                 return@setOnClickListener
@@ -39,6 +41,8 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
             user!!.email = email
             user!!.password = password
             login.login(user!!)
+            */
+            startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
         })
     }
 

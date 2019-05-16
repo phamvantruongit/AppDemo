@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".view.activity.ShowCaBrActivity">
+    <include layout="@layout/toolbar"/>
+    <RelativeLayout
+            android:background="@color/white"
+            android:padding="8dp"
+            android:id="@+id/fl_category"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+        <LinearLayout
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:id="@+id/ln_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/edCategory"
+                    android:textSize="@dimen/_15_sp"
+                    android:hint="Danh muc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/tvCategory"
+                    android:textSize="@dimen/_13sp"
+                    android:hint="Quan ao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <TextView
+                android:layout_alignParentRight="true"
+                android:textStyle="bold"
+                android:layout_marginRight="20dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+        />
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:background="@color/white"
+            android:layout_marginTop="2dp"
+            android:padding="8dp"
+            android:id="@+id/fl_brand"
+            app:layout_constraintTop_toBottomOf="@+id/fl_category"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+        <LinearLayout
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:id="@+id/ln_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/edBrand"
+                    android:textSize="@dimen/_15_sp"
+                    android:hint="Nhan hieu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/tvBrand"
+                    android:textSize="@dimen/_13sp"
+                    android:hint="Android"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+                android:textStyle="bold"
+                android:layout_marginRight="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+        />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

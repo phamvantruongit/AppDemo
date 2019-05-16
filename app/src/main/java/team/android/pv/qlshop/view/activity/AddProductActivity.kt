@@ -1,48 +1,48 @@
 package team.android.pv.qlshop.view.activity
 
 import android.content.Intent
-import android.content.pm.PackageManager
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.vision.barcode.Barcode
 import com.notbytes.barcode_reader.BarcodeReaderActivity
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.activity_add_product.*
 import team.android.pv.qlshop.R
 
-class SellProductActivity :BaseActivity() {
-   val BARCODE_READER_ACTIVITY_REQUEST :Int=1
+class AddProductActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        tvTitle.text=this.resources.getText(R.string.title_sell)
-        imgBarcode.visibility=View.VISIBLE
+        setContentView(R.layout.activity_add_product)
         imgBarcode.setOnClickListener({
             launchBarCodeActivity()
         })
+
+        rlfeature.setOnClickListener({
+
+        })
+
+        rlCategory.setOnClickListener({
+
+            var intent=Intent(this,ShowCaBrActivity::class.java)
+            startActivity(intent)
+
+        })
     }
-
-
-
-    override fun getContentView(): Int {
-        return R.layout.activity_sell_product
-    }
-
-    override fun getNavigationMenuItemId(): Int {
-        return R.id.navigation_sell
-    }
-
     private fun launchBarCodeActivity(){
-        var intent=BarcodeReaderActivity.getLaunchIntent(this,true,false)
-        startActivityForResult(intent,BARCODE_READER_ACTIVITY_REQUEST)
+        var intent= BarcodeReaderActivity.getLaunchIntent(this,true,false)
+        startActivityForResult(intent,100)
     }
 
-      override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
 
-        if (requestCode == BARCODE_READER_ACTIVITY_REQUEST && data != null) {
+        if (requestCode == 100 && data != null) {
             val barcode = data.getParcelableExtra<Barcode>(BarcodeReaderActivity.KEY_CAPTURED_BARCODE)
             Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show()
         }
     }
+
 }
