@@ -18,12 +18,12 @@
                 android:name=".view.activity.LoginActivity"
                 android:theme="@style/AppThemeNoActionBar">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN"/> -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
-            <!-- </intent-filter> -->
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name=".view.activity.RegisterActivity"
@@ -43,11 +43,6 @@
                 android:name=".view.activity.SellProductActivity"
                 android:theme="@style/AppThemeNoActionBar"/>
         <activity android:name=".view.activity.AddProductActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".view.activity.ShowCaBrActivity"
                   android:theme="@style/AppThemeNoActionBar"

@@ -16,7 +16,7 @@ class CategoryInteractor {
         param.put("name",name)
         param.put("id_shop", id_shop.toString())
 
-        var call:Call<BaseResponse>?=null
+        var call:Call<BaseResponse>?
         if(check){
            call =apiClient.addCategory(param)
         }else{
@@ -40,7 +40,7 @@ class CategoryInteractor {
     }
 
     fun getCategoryToAPI(onFinishedListenersCategory: OnFinishedListenersCategory,id_shop: Int,check:Boolean){
-        var call:Call<CategoryResponse>?=null
+        var call:Call<CategoryResponse>?
 
         if(check){
             call= apiClient.getCategory(id_shop)
