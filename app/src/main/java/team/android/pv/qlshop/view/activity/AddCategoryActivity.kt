@@ -26,7 +26,7 @@ import team.android.pv.qlshop.view.views.ViewAddCategory
 
 class AddCategoryActivity : AppCompatActivity() ,ViewAddCategory, AdapterCategory.IOnClickItem {
     private lateinit var categoryPresenter: CategoryPresenter
-    private lateinit var rv_category:RecyclerView
+    private  var rv_category:RecyclerView?=null
     private  var check=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ class AddCategoryActivity : AppCompatActivity() ,ViewAddCategory, AdapterCategor
 
         categoryPresenter= CategoryPresenter(this, CategoryInteractor())
 
-        rv_category.layoutManager=LinearLayoutManager(this)
+        rv_category!!.layoutManager=LinearLayoutManager(this)
 
 
 
@@ -95,7 +95,7 @@ class AddCategoryActivity : AppCompatActivity() ,ViewAddCategory, AdapterCategor
 
 
     override fun getListCategory(listCategory: ArrayList<Category>) {
-         rv_category.adapter=AdapterCategory(listCategory,this)
+         rv_category!!.adapter=AdapterCategory(listCategory,this)
     }
 
 

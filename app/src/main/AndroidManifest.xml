@@ -17,10 +17,8 @@
         <activity
                 android:name=".view.activity.LoginActivity"
                 android:theme="@style/AppThemeNoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
@@ -44,13 +42,17 @@
                 android:theme="@style/AppThemeNoActionBar"/>
         <activity android:name=".view.activity.AddProductActivity">
         </activity>
-        <activity android:name=".view.activity.ShowCaBrActivity"
-                  android:theme="@style/AppThemeNoActionBar"
-        >
+        <activity
+                android:name=".view.activity.ShowCaBrActivity"
+                android:theme="@style/AppThemeNoActionBar">
         </activity>
-        <activity android:name=".view.activity.AddCategoryActivity"
-                  android:theme="@style/AppThemeNoActionBar"
-        >
+        <activity
+                android:name=".view.activity.AddCategoryActivity"
+                android:theme="@style/AppThemeNoActionBar">
+        </activity>
+        <activity android:name=".view.activity.CustomerActivity">
+        </activity>
+        <activity android:name=".view.activity.UserActivity">
         </activity>
     </application>
 

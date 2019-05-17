@@ -20,4 +20,9 @@
         <item name="colorControlNormal">@color/white</item>
     </style>
 
+
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
 </resources>

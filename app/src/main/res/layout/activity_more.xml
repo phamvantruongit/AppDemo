@@ -1,23 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:id="@+id/container"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:orientation="vertical">
     <include layout="@layout/toolbar"/>
     <FrameLayout
-       android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+        >
+
+
+            <RelativeLayout
+                    android:padding="@dimen/_8dp"
+                    android:id="@+id/rl_user"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp">
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/imgUser"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:layout_width="@dimen/_40dp"
+                        android:layout_height="@dimen/_40dp"/>
+                <TextView
+                        android:textColor="@color/black"
+                        android:id="@+id/tvNameUser"
+                        android:textSize="@dimen/_18sp"
+                        android:layout_toRightOf="@id/imgUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pham Van Truong"
+                        android:layout_marginTop="@dimen/_8dp"
+                        android:layout_marginLeft="@dimen/_5dp"
+                />
+                <TextView
+                        android:text="phamvantruongit@gmail.com"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/imgUser"
+                        android:layout_below="@id/tvNameUser"
+                />
+                <TextView android:layout_width="wrap_content"
+                          android:text=">"
+                          android:textColor="@color/black"
+                          android:textStyle="bold"
+                          android:layout_marginRight="20dp"
+                          android:layout_alignParentRight="true"
+                          android:layout_centerVertical="true"
+                          android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:padding="@dimen/_8dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/rl_customer"
+                    android:id="@+id/rl_customer"
+                    android:layout_height="@dimen/_50dp">
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/imgCustomer"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"/>
+                <TextView
+                        android:textColor="@color/black"
+                        android:id="@+id/tvNameCustomer"
+                        android:textSize="@dimen/_13sp"
+                        android:layout_toRightOf="@id/imgCustomer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Khach hang"
+                        android:layout_marginTop="@dimen/_8dp"
+                        android:layout_marginLeft="@dimen/_5dp"
+                />
+                <TextView android:layout_width="wrap_content"
+                          android:text=">"
+                          android:textColor="@color/black"
+                          android:textStyle="bold"
+                          android:layout_marginRight="20dp"
+                          android:layout_alignParentRight="true"
+                          android:layout_centerVertical="true"
+                          android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                    android:padding="@dimen/_8dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_2dp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/rl_customer"
+                    android:id="@+id/rl_product"
+                    android:layout_height="@dimen/_50dp">
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/imgProduct"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"/>
+                <TextView
+                        android:textColor="@color/black"
+                        android:id="@+id/tvProduct"
+                        android:textSize="@dimen/_13sp"
+                        android:layout_toRightOf="@id/imgProduct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="San pham"
+                        android:layout_marginTop="@dimen/_8dp"
+                        android:layout_marginLeft="@dimen/_5dp"
+                />
+                <TextView android:layout_width="wrap_content"
+                          android:text=">"
+                          android:textColor="@color/black"
+                          android:textStyle="bold"
+                          android:layout_marginRight="20dp"
+                          android:layout_alignParentRight="true"
+                          android:layout_centerVertical="true"
+                          android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                    android:padding="@dimen/_8dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_2dp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/rl_customer"
+                    android:id="@+id/rl_category"
+                    android:layout_height="@dimen/_50dp">
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/imgCategory"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"/>
+                <TextView
+                        android:textColor="@color/black"
+                        android:id="@+id/tvCategory"
+                        android:textSize="@dimen/_13sp"
+                        android:layout_toRightOf="@id/imgCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Danh muc"
+                        android:layout_marginTop="@dimen/_8dp"
+                        android:layout_marginLeft="@dimen/_5dp"
+                />
+                <TextView android:layout_width="wrap_content"
+                          android:text=">"
+                          android:textColor="@color/black"
+                          android:textStyle="bold"
+                          android:layout_marginRight="20dp"
+                          android:layout_alignParentRight="true"
+                          android:layout_centerVertical="true"
+                          android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                    android:padding="@dimen/_8dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_2dp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/rl_customer"
+                    android:id="@+id/rl_brand"
+                    android:layout_height="@dimen/_50dp">
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/imgBrand"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"/>
+                <TextView
+                        android:textColor="@color/black"
+                        android:id="@+id/tvBrand"
+                        android:textSize="@dimen/_13sp"
+                        android:layout_toRightOf="@id/imgBrand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Nhan hieu"
+                        android:layout_marginTop="@dimen/_8dp"
+                        android:layout_marginLeft="@dimen/_5dp"
+                />
+                <TextView android:layout_width="wrap_content"
+                          android:text=">"
+                          android:textColor="@color/black"
+                          android:textStyle="bold"
+                          android:layout_marginRight="20dp"
+                          android:layout_alignParentRight="true"
+                          android:layout_centerVertical="true"
+                          android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+        </LinearLayout>
 
         <include
-            android:id="@+id/navigation"
-            layout="@layout/element_bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom" />
+                android:id="@+id/navigation"
+                layout="@layout/element_bottom_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"/>
     </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

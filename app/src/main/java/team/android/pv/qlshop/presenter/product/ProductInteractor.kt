@@ -11,7 +11,7 @@ import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 class ProductInteractor {
 
     fun addProduct(onFinishedListener: OnFinishedListeners, product: Product){
-        
+
         var param=HashMap<String,String>()
         param.put("name",product.name)
         param.put("desciption",product.description)
