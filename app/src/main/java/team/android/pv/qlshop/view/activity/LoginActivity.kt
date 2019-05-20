@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
@@ -29,7 +30,7 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
         }
 
         btnLogin.setOnClickListener({
-            /*val email = edEmail.text.toString()
+            val email = edEmail.text.toString()
             val password = edPass.text.toString()
             if (TextUtils.isEmpty(email)) {
                 return@setOnClickListener
@@ -41,8 +42,7 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
             user!!.email = email
             user!!.password = password
             login.login(user!!)
-            */
-            startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
+
         })
     }
 
@@ -53,6 +53,8 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
     }
 
     override fun setData(user: User) {
+        Log.d("User",user.email + user.id_shop)
+        startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
     }
 
     override fun setDataError(error: String) {

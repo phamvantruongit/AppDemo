@@ -10,11 +10,11 @@ interface ApiInterface {
 
 
     @FormUrlEncoded
-    @POST("login/login.php")
+    @POST("login.php")
     fun loginUser(@FieldMap user:Map<String,String>) :Call<LoginBaseResponse>
 
     @FormUrlEncoded
-    @POST("login/register.php")
+    @POST("register.php")
     fun  registerUser (@FieldMap user:Map<String,String>) :Call<LoginBaseResponse>
 
 

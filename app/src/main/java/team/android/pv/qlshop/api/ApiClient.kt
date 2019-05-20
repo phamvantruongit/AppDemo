@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiClient {
     companion object {
-        val BASE_URL="http://192.168.1.22/myshop/"
+        val BASE_URL="http://192.168.64.2/android_login_api/"
         fun getInstance(): Retrofit? {
             var retrofit: Retrofit? = null
             if (retrofit == null) {
