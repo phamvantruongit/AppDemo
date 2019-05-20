@@ -3,7 +3,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import team.android.pv.qlshop.MyApplication.Companion.apiClient
-import team.android.pv.qlshop.model.LoginBaseResponse
+import team.android.pv.qlshop.model.response.LoginBaseResponse
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListener
 

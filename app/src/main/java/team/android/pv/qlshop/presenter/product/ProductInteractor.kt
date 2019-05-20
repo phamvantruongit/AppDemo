@@ -4,8 +4,8 @@ import retrofit2.Call
 import retrofit2.Response
 import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.MyApplication.Companion.apiClient
-import team.android.pv.qlshop.model.BaseResponse
-import team.android.pv.qlshop.model.ProductResponse
+import team.android.pv.qlshop.model.response.BaseResponse
+import team.android.pv.qlshop.model.response.ProductResponse
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 
 class ProductInteractor {

@@ -1,10 +1,10 @@
 package team.android.pv.qlshop.api
 import retrofit2.Call
 import retrofit2.http.*
-import team.android.pv.qlshop.model.BaseResponse
-import team.android.pv.qlshop.model.CategoryResponse
-import team.android.pv.qlshop.model.LoginBaseResponse
-import team.android.pv.qlshop.model.ProductResponse
+import team.android.pv.qlshop.model.response.BaseResponse
+import team.android.pv.qlshop.model.response.CategoryResponse
+import team.android.pv.qlshop.model.response.LoginBaseResponse
+import team.android.pv.qlshop.model.response.ProductResponse
 
 interface ApiInterface {
 

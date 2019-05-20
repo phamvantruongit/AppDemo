@@ -1,4 +1,4 @@
-package team.android.pv.qlshop.model
+package team.android.pv.qlshop.model.response
 
 open class BaseResponse {
      var code:Int=0

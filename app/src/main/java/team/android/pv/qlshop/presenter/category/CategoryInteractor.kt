@@ -4,9 +4,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import team.android.pv.qlshop.MyApplication.Companion.apiClient
-import team.android.pv.qlshop.model.BaseResponse
+import team.android.pv.qlshop.model.response.BaseResponse
 import team.android.pv.qlshop.model.Category
-import team.android.pv.qlshop.model.CategoryResponse
+import team.android.pv.qlshop.model.response.CategoryResponse
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 
 class CategoryInteractor {
