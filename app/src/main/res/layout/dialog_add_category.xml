@@ -4,7 +4,7 @@
         android:layout_width="250dp"
         android:background="@drawable/border_layout"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_height="130dp">
+        android:layout_height="150dp">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -47,10 +47,19 @@
     <EditText
             android:id="@+id/edCategory"
             android:textColorHint="@color/black"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_below="@+id/view"
             android:padding="8dp"
             android:background="@color/white"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    <Button
+            android:text="Add"
+            android:id="@+id/btnAddCategory"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"/>
 </RelativeLayout>

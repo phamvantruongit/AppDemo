@@ -32,6 +32,7 @@
             <FrameLayout android:layout_width="match_parent"
                          android:layout_height="wrap_content">
             <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edBarcode"
                     android:maxLines="1"
                     android:textSize="@dimen/_15_sp"
                     android:padding="@dimen/_8dp"
@@ -91,6 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edPrice_out"
                     android:maxLines="1"
                     android:inputType="numberDecimal"
                     android:layout_weight="1"
@@ -105,6 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edPrice_outs"
                     android:maxLines="1"
                     android:textSize="@dimen/_15_sp"
                     android:padding="@dimen/_8dp"
@@ -182,11 +185,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <Button android:text="Them Moi"
+                android:id="@+id/btnAddProduct"
                 android:textAllCaps="false"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <Button android:text="Huy"
+                android:id="@+id/btnCancel"
                 android:textAllCaps="false"
                 android:layout_weight="1"
                 android:layout_width="match_parent"

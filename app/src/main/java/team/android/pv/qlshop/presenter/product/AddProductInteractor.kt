@@ -8,7 +8,7 @@ import team.android.pv.qlshop.model.response.BaseResponse
 import team.android.pv.qlshop.model.response.ProductResponse
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 
-class ProductInteractor {
+class AddProductInteractor {
 
     fun addProduct(onFinishedListener: OnFinishedListeners, product: Product){
 
@@ -19,7 +19,7 @@ class ProductInteractor {
         param.put("price_outs", product.price_outs.toString())
         param.put("price_out", product.price_out.toString())
         param.put("price_in",product.price_in.toString())
-        param.put("number", product.number.toString())
+        param.put("amount", product.amount.toString())
         param.put("id_shop",product.id_shop.toString())
 
 
@@ -32,7 +32,6 @@ class ProductInteractor {
                 if(response.body()!!.code==200){
                     onFinishedListener.onResultSuccess(response.body()!!.message)
                 }
-
             }
 
             override fun onFailure(call: Call<BaseResponse>, t: Throwable) {

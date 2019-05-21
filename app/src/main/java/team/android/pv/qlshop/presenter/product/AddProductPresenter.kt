@@ -4,7 +4,7 @@ import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 import team.android.pv.qlshop.view.views.ViewProduct
 
-class ProductPresenter(var viewProduct: ViewProduct, var productInteractor: ProductInteractor) : OnFinishedListeners,ProductInteractor.OnFinishedListener {
+class AddProductPresenter(var viewProduct: ViewProduct, var productInteractor: AddProductInteractor) : OnFinishedListeners {
 
 
     fun addProduct(product: Product) {
@@ -12,15 +12,15 @@ class ProductPresenter(var viewProduct: ViewProduct, var productInteractor: Prod
         productInteractor.addProduct(this, product)
     }
 
-    fun getListProducts(id_shop:Int){
-        viewProduct.showProgress()
-        productInteractor.getListProducts(this,id_shop)
-    }
+//    fun getListProducts(id_shop:Int){
+//        viewProduct.showProgress()
+//        productInteractor.getListProducts(this,id_shop)
+//    }
 
-    override fun onResultListProducts(listProduct: ArrayList<Product>) {
-        viewProduct.hideProgress()
-        viewProduct.getListProducts(listProduct)
-    }
+//    override fun onResultListProducts(listProduct: ArrayList<Product>) {
+//        viewProduct.hideProgress()
+//        viewProduct.getListProducts(listProduct)
+//    }
 
 
     override fun onResultSuccess(success: String) {
@@ -31,5 +31,6 @@ class ProductPresenter(var viewProduct: ViewProduct, var productInteractor: Prod
 
     override fun onResultFail(strError: String) {
         viewProduct.hideProgress()
+        viewProduct.setDataError(strError)
     }
 }

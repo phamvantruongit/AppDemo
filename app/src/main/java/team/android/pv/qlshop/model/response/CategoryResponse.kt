@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 import team.android.pv.qlshop.model.Category
 
 class CategoryResponse : BaseResponse() {
-    @SerializedName("list")
+    @SerializedName("data")
     lateinit var listCategory:ArrayList<Category>
 }

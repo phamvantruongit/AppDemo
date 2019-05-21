@@ -6,9 +6,9 @@ import team.android.pv.qlshop.view.views.ViewRegister
 
 class ResgisterPresenter(val viewRegister: ViewRegister?,val registerInteractor: RegisterInteractor): OnFinishedListener {
 
-    fun registerUser(user: User){
+    fun registerUser(user: User,check_admin:Int){
         viewRegister!!.showProgress()
-        registerInteractor.registerUserAPI(this,user)
+        registerInteractor.registerUserAPI(this,user,check_admin)
     }
     override fun onResultSuccess(user: User) {
          viewRegister!!.setData(user)

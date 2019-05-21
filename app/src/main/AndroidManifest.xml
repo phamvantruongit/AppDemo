@@ -12,22 +12,24 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.MainActivity">
-        </activity>
-        <activity
-                android:name=".view.activity.LoginActivity"
-                android:theme="@style/AppThemeNoActionBar">
+        <activity android:name=".view.activity.SplashActivity"
+        android:theme="@style/AppThemeNoActionBar"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".view.activity.MainActivity">
+        </activity>
         <activity
                 android:name=".view.activity.RegisterActivity"
                 android:label=""
                 android:theme="@style/AppThemeNoActionBar">
         </activity>
+        <activity android:name=".view.activity.LoginActivity"
+                  android:theme="@style/AppThemeNoActionBar"/>
         <activity
                 android:name=".view.activity.ProductActivity"
                 android:theme="@style/AppThemeNoActionBar"/>
@@ -36,7 +38,13 @@
                 android:theme="@style/AppThemeNoActionBar"/>
         <activity
                 android:name=".view.activity.HomeActivity"
-                android:theme="@style/AppThemeNoActionBar"/>
+                android:theme="@style/AppThemeNoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
                 android:name=".view.activity.SellProductActivity"
                 android:theme="@style/AppThemeNoActionBar"/>

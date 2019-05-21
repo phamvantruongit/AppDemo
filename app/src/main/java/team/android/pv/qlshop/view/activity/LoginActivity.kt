@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
+import team.android.pv.qlshop.model.data.SharedPreferencesManager
 import team.android.pv.qlshop.presenter.login.LoginInteractor
 import team.android.pv.qlshop.presenter.login.LoginPresenter
 import team.android.pv.qlshop.view.views.ViewLogin
@@ -23,13 +24,23 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
 
 
         login = LoginPresenter(this, LoginInteractor())
+        SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
+        val user:User? =  SharedPreferencesManager.getUser()
+
+        if(user!!.email!=null || user!!.email!=""){
+            edEmail.setHint(user.email)
+        }else{
+            edEmail.hint="Email"
+        }
 
 
         tvRegister.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            var intent=Intent(this,RegisterActivity::class.java)
+            intent.putExtra("check_admin",1)
+            startActivity(intent)
         }
 
-        btnLogin.setOnClickListener({
+        btnLogin.setOnClickListener{
             val email = edEmail.text.toString()
             val password = edPass.text.toString()
             if (TextUtils.isEmpty(email)) {
@@ -43,7 +54,7 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
             user!!.password = password
             login.login(user!!)
 
-        })
+        }
     }
 
     override fun showProgress() {

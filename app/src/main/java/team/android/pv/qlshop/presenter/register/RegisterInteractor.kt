@@ -9,14 +9,15 @@ import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListener
 
 class RegisterInteractor {
-    fun registerUserAPI(onFinishedListener: OnFinishedListener, user: User) {
+    fun registerUserAPI(onFinishedListener: OnFinishedListener, user: User ,check_admin:Int) {
 
         var param = HashMap<String, String>()
         param.put("email", user.email)
         param.put("name_shop", user.name_shop)
         param.put("name", user.name)
-        //param.put("phone", user.phone)
+        param.put("check_admin", check_admin.toString())
         param.put("password", user.password)
+        param.put("id_shop", user.id_shop.toString())
 
 
         val call: Call<LoginBaseResponse> = apiClient.registerUser(param)

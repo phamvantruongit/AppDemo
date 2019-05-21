@@ -3,7 +3,9 @@ package team.android.pv.qlshop.view.activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import kotlinx.android.synthetic.main.activity_show_ca_br.*
+import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 
 class ShowCaBrActivity : AppCompatActivity() {
@@ -15,15 +17,17 @@ class ShowCaBrActivity : AppCompatActivity() {
         fl_category.setOnClickListener({
             var intent=Intent(this,AddCategoryActivity::class.java)
             intent.putExtra("check",true)
-            startActivity(intent)
+            startActivityForResult(intent,100)
         })
 
 
         fl_brand.setOnClickListener({
             var intent=Intent(this,AddCategoryActivity::class.java)
             intent.putExtra("check",false)
-            startActivity(intent)
+            startActivityForResult(intent,101)
         })
+
+
 
     }
 }

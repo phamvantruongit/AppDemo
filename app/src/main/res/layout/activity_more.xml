@@ -204,6 +204,71 @@
                           android:layout_height="wrap_content"/>
             </RelativeLayout>
 
+            <RelativeLayout
+                    android:padding="@dimen/_8dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_2dp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/rl_customer"
+                    android:id="@+id/rl_memmber"
+                    android:layout_height="@dimen/_50dp">
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/img_memmber"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"/>
+                <TextView
+                        android:textColor="@color/black"
+                        android:id="@+id/tv_memmber"
+                        android:textSize="@dimen/_13sp"
+                        android:layout_toRightOf="@id/img_memmber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Them nhan vien"
+                        android:layout_marginTop="@dimen/_8dp"
+                        android:layout_marginLeft="@dimen/_5dp"
+                />
+                <TextView android:layout_width="wrap_content"
+                          android:text=">"
+                          android:textColor="@color/black"
+                          android:textStyle="bold"
+                          android:layout_marginRight="20dp"
+                          android:layout_alignParentRight="true"
+                          android:layout_centerVertical="true"
+                          android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:padding="@dimen/_8dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_2dp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/rl_customer"
+                    android:id="@+id/rlLogout"
+                    android:layout_height="@dimen/_50dp">
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/imgLogout"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"/>
+                <TextView
+                        android:textColor="@color/black"
+                        android:id="@+id/ttLogout"
+                        android:textSize="@dimen/_13sp"
+                        android:layout_toRightOf="@id/imgLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Dang xuat"
+                        android:layout_marginTop="@dimen/_8dp"
+                        android:layout_marginLeft="@dimen/_5dp"
+                />
+
+            </RelativeLayout>
+
         </LinearLayout>
 
         <include
