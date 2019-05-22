@@ -12,9 +12,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.SplashActivity"
-        android:theme="@style/AppThemeNoActionBar"
-        >
+        <activity
+                android:name=".view.activity.SplashActivity"
+                android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -28,8 +28,9 @@
                 android:label=""
                 android:theme="@style/AppThemeNoActionBar">
         </activity>
-        <activity android:name=".view.activity.LoginActivity"
-                  android:theme="@style/AppThemeNoActionBar"/>
+        <activity
+                android:name=".view.activity.LoginActivity"
+                android:theme="@style/AppThemeNoActionBar"/>
         <activity
                 android:name=".view.activity.ProductActivity"
                 android:theme="@style/AppThemeNoActionBar"/>
@@ -39,11 +40,6 @@
         <activity
                 android:name=".view.activity.HomeActivity"
                 android:theme="@style/AppThemeNoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
                 android:name=".view.activity.SellProductActivity"
@@ -61,6 +57,8 @@
         <activity android:name=".view.activity.CustomerActivity">
         </activity>
         <activity android:name=".view.activity.UserActivity">
+        </activity>
+        <activity android:name=".view.activity.MemmbersActivity">
         </activity>
     </application>
 

@@ -15,4 +15,14 @@
     <string name="dang_ki">Dang ki</string>
     <string name="them_brand">Them nhan hieu</string>
     <string name="them_category">Them danh muc</string>
+
+    <array name="list_more">
+        <item>Khach hang</item>
+        <item>San pham</item>
+        <item>Danh muc</item>
+        <item>Nhan hieu</item>
+        <item>Them nhan vien</item>
+        <item>Danh sach nhan vien</item>
+        <item>Dang xuat</item>
+    </array>
 </resources>

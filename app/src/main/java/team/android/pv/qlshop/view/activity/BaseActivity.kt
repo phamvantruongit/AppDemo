@@ -1,8 +1,10 @@
 package team.android.pv.qlshop.view.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -23,21 +25,29 @@ abstract class BaseActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
         updateNavigationBarState()
     }
 
+    public override fun onPause() {
+        super.onPause()
+        overridePendingTransition(0, 0)
+    }
+
+
     private fun updateNavigationBarState() {
         val actionId = getNavigationMenuItemId()
         selectBottomNavigationBarItem(actionId)
-
     }
 
-    private fun selectBottomNavigationBarItem(actionId: Int) {
-        var menu: Menu = navigation.menu
-        for (i in 0..menu.size()) {
-            var item: MenuItem = menu.getItem(i)
-            var shouldBeChecked: Boolean = item.itemId == actionId
+    internal fun selectBottomNavigationBarItem(itemId: Int) {
+        val menu = navigation.getMenu()
+        var i = 0
+        val size = menu.size()
+        while (i < size) {
+            val item = menu.getItem(i)
+            val shouldBeChecked = item.getItemId() == itemId
             if (shouldBeChecked) {
-                item.setCheckable(true)
+                item.setChecked(true)
                 break
             }
+            i++
         }
     }
 
@@ -66,5 +76,21 @@ abstract class BaseActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
 
     protected abstract fun getContentView(): Int
     abstract fun getNavigationMenuItemId(): Int
+
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Do you want to exit ?")
+        builder.setPositiveButton("Yes") { dialog, which ->
+            overridePendingTransition(
+                R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left
+            )
+            finish()
+        }
+        builder.setNegativeButton(
+            "No"
+        ) { dialog, which -> dialog.dismiss() }
+        builder.create().show()
+    }
 
 }

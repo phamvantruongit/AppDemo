@@ -23,12 +23,15 @@ class SplashActivity : AppCompatActivity() {
         if(user!=null && user.email!=null && !TextUtils.isEmpty(user.email) || SharedPreferencesManager.checkLogin()){
             if(!SharedPreferencesManager.checkLogin()){
                 startActivity(Intent(this,LoginActivity::class.java))
+                finish()
                 return
             }
             startActivity(Intent(this,HomeActivity::class.java))
+            finish()
         }
         else {
             startActivity(Intent(this,LoginActivity::class.java))
+            finish()
         }
 
     }

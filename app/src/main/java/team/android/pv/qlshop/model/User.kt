@@ -7,4 +7,5 @@ package team.android.pv.qlshop.model
     var phone:String=""
     var password:String=""
     var id_shop=0
+    var check_admin=""
 }

@@ -3,9 +3,8 @@ package team.android.pv.qlshop.view.activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import io.realm.Realm
-import io.realm.kotlin.createObject
 import kotlinx.android.synthetic.main.activity_register.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
@@ -39,10 +38,11 @@ class RegisterActivity : AppCompatActivity() ,ViewRegister {
             user!!.password=password
             if(check_admin==0){
                 SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
-                val user=SharedPreferencesManager.getUser()
-                user!!.id_shop=user.id_shop
+                val users=SharedPreferencesManager.getUser()
+                Log.d("User",users!!.id_shop.toString() + "&&&&&&&")
+                user!!.id_shop=users!!.id_shop
             }
-            register.registerUser(user!!,check_admin)
+            register.registerUsers(user!!,check_admin)
         }
 
         toolbar.setOnClickListener{
@@ -59,9 +59,10 @@ class RegisterActivity : AppCompatActivity() ,ViewRegister {
     }
 
     override fun setData(user: User) {
-        SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
-        SharedPreferencesManager.saveUser(user)
-        startActivity(Intent(this,HomeActivity::class.java))
+        var intent=Intent(this,LoginActivity::class.java)
+        intent.putExtra("email",user.email)
+        startActivity(intent)
+        finish()
     }
 
     override fun setDataError(error: String) {

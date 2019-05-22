@@ -1,5 +1,4 @@
 package team.android.pv.qlshop.presenter.register
-
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,31 +16,45 @@ class RegisterInteractor {
         param.put("name", user.name)
         param.put("check_admin", check_admin.toString())
         param.put("password", user.password)
-        param.put("id_shop", user.id_shop.toString())
+        var call: Call<LoginBaseResponse> ?=null
+        if(check_admin==0){
+          param.put("id_shop", user.id_shop.toString())
+          param.put("name_type","NV")
+          param.put("check_admin","memmber")
+          call  = apiClient.registerMemmber(param)
+        }else{
+            param.put("name_type","QL")
+            param.put("check_admin","admin")
+            call  = apiClient.registerAdmin(param)
+        }
 
 
-        val call: Call<LoginBaseResponse> = apiClient.registerUser(param)
 
-        call.enqueue(object : Callback<LoginBaseResponse> {
-            override fun onResponse(call: Call<LoginBaseResponse>, response: Response<LoginBaseResponse>) {
-                if (response.body()!!.code == 200) {
-                    onFinishedListener.onResultSuccess(user)
-                }
+      call!!.enqueue(object  :Callback<LoginBaseResponse>{
 
-                if (response.body()!!.code == 400) {
-                    onFinishedListener.onResultFail(response.body()!!.message)
-                }
 
-                if (response.body()!!.code == 401) {
-                    onFinishedListener.onResultFail(response.body()!!.message)
-                }
-            }
+          override fun onResponse(call: Call<LoginBaseResponse>, response: Response<LoginBaseResponse>) {
+               if(response.code()==200){
+                  onFinishedListener.onResultSuccess(response.body()!!.user)
+               }
 
-            override fun onFailure(call: Call<LoginBaseResponse>, t: Throwable) {
-                onFinishedListener.onResultFail(t.message.toString())
-            }
+              if(response.code()==401){
+                  onFinishedListener.onResultFail(response.body()!!.message)
+              }
 
-        })
+              if(response.code()==400){
+                  onFinishedListener.onResultFail(response.body()!!.message)
+
+              }
+          }
+
+
+          override fun onFailure(call: Call<LoginBaseResponse>, t: Throwable) {
+              onFinishedListener.onResultFail(t.message.toString())
+          }
+
+      })
+
 
     }
 }

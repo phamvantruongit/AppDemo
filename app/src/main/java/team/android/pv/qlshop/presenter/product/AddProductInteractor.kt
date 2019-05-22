@@ -44,7 +44,7 @@ class AddProductInteractor {
 
 
     fun getListProducts(onFinishedListener: OnFinishedListener,id_shop:Int){
-        var call:Call<ProductResponse> = apiClient.getProduct(id_shop)
+        var call:Call<ProductResponse> = apiClient.getProducts(id_shop)
         call.enqueue(object :retrofit2.Callback<ProductResponse>{
             override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
 

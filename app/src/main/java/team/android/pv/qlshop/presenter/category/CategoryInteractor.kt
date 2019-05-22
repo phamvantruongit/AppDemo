@@ -43,10 +43,10 @@ class CategoryInteractor {
         var call:Call<CategoryResponse>?
 
         if(check){
-            call= apiClient.getCategory(id_shop)
+            call= apiClient.getCategorys(id_shop)
         }
         else{
-            call= apiClient.getBrand(id_shop)
+            call= apiClient.getBrands(id_shop)
         }
 
         call!!.enqueue(object : Callback<CategoryResponse>{
@@ -58,7 +58,7 @@ class CategoryInteractor {
             }
 
             override fun onFailure(call: Call<CategoryResponse>, t: Throwable) {
-                   onFinishedListenersCategory.onResulCategorytFail(t.message.toString())
+                   //onFinishedListenersCategory.onResulCategorytFail(t.message.toString())
             }
 
         })

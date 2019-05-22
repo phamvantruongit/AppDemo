@@ -1,10 +1,8 @@
 package team.android.pv.qlshop.api
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
-import team.android.pv.qlshop.model.response.BaseResponse
-import team.android.pv.qlshop.model.response.CategoryResponse
-import team.android.pv.qlshop.model.response.LoginBaseResponse
-import team.android.pv.qlshop.model.response.ProductResponse
+import team.android.pv.qlshop.model.response.*
 
 interface ApiInterface {
 
@@ -14,8 +12,12 @@ interface ApiInterface {
     fun loginUser(@FieldMap user:Map<String,String>) :Call<LoginBaseResponse>
 
     @FormUrlEncoded
-    @POST("login/register.php")
-    fun  registerUser (@FieldMap user:Map<String,String>) :Call<LoginBaseResponse>
+    @POST("register/memmber.php")
+    fun  registerMemmber (@FieldMap user:Map<String,String>) :Call<LoginBaseResponse>
+
+    @FormUrlEncoded
+    @POST("register/admin.php")
+    fun  registerAdmin (@FieldMap user:Map<String,String>) :Call<LoginBaseResponse>
 
 
     @FormUrlEncoded
@@ -32,16 +34,21 @@ interface ApiInterface {
     fun  addProduct (@FieldMap user:Map<String,String>) :Call<BaseResponse>
 
 
-    @GET("get/brand.php")
-    fun getBrand(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
+    @GET("get/brands.php")
+    fun getBrands(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
 
 
-    @GET("get/category.php")
-    fun getCategory(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
+    @GET("get/categorys.php")
+    fun getCategorys(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
 
 
-    @GET("get/product.php")
-    fun getProduct(@Query("id_shop") id_shop:Int) :Call<ProductResponse>
+    @GET("get/products.php")
+    fun getProducts(@Query("id_shop") id_shop:Int) :Call<ProductResponse>
+
+
+    @GET("get/users.php")
+    fun getUsers(@Query("id_shop") id_shop:Int) :Call<UsersResponse>
+
 
 
 

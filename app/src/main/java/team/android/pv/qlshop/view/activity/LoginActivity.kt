@@ -24,15 +24,17 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
 
 
         login = LoginPresenter(this, LoginInteractor())
-        SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
-        val user:User? =  SharedPreferencesManager.getUser()
 
-        if(user!!.email!=null || user!!.email!=""){
-            edEmail.setHint(user.email)
-        }else{
-            edEmail.hint="Email"
+        val email=intent.getStringExtra("email")
+        if(!TextUtils.isEmpty(email)){
+             edEmail.setText(email)
         }
 
+        SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
+        val user:User?=SharedPreferencesManager.getUser()
+        if(user!=null){
+            edEmail.setText(user.email)
+        }
 
         tvRegister.setOnClickListener {
             var intent=Intent(this,RegisterActivity::class.java)
@@ -64,8 +66,10 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
     }
 
     override fun setData(user: User) {
-        Log.d("User",user.email + user.id_shop)
+        SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
+        SharedPreferencesManager.saveUser(user)
         startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
+        finish()
     }
 
     override fun setDataError(error: String) {
