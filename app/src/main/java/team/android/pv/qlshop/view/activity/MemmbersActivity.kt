@@ -3,6 +3,7 @@ package team.android.pv.qlshop.view.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_memmbers.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
@@ -25,7 +26,7 @@ class MemmbersActivity :AppCompatActivity(), ViewUsers {
     }
 
     override fun showUsers(users: ArrayList<User>) {
-        rv_memmbers.layoutManager=LinearLayoutManager(this)
+        rv_memmbers.layoutManager= LinearLayoutManager(this) as RecyclerView.LayoutManager?
         rv_memmbers.adapter=AdapterMemmbers(users)
     }
 

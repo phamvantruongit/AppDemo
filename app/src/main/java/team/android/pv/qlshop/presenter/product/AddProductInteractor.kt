@@ -10,32 +10,39 @@ import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 
 class AddProductInteractor {
 
-    fun addProduct(onFinishedListener: OnFinishedListeners, product: Product){
+    fun addProduct(onFinishedListener: OnFinishedListeners, product: Product) {
 
-        var param=HashMap<String,String>()
-        param.put("name",product.name)
-        param.put("desciption",product.description)
-        param.put("barcode",product.barcode)
+        var param = HashMap<String, String>()
+        param.put("name", product.name)
+        param.put("desciption", product.description)
+        param.put("barcode", product.barcode)
+        param.put("id_brand", product.id_brand.toString())
+        param.put("brand", product.brand)
+        param.put("category", product.category)
         param.put("price_outs", product.price_outs.toString())
         param.put("price_out", product.price_out.toString())
-        param.put("price_in",product.price_in.toString())
+        param.put("price_in", product.price_in.toString())
         param.put("amount", product.amount.toString())
-        param.put("id_shop",product.id_shop.toString())
+        param.put("id_shop", product.id_shop.toString())
+        param.put("note",product.note)
+        param.put("unit",product.unit)
 
 
-        var call:Call<BaseResponse> = apiClient.addProduct(param)
+        var call: Call<BaseResponse> = apiClient.addProduct(param)
 
         call!!.enqueue(object : retrofit2.Callback<BaseResponse> {
 
 
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-                if(response.body()!!.code==200){
+                if (response.body()!!.code == 200) {
                     onFinishedListener.onResultSuccess(response.body()!!.message)
+                }else{
+                    onFinishedListener.onResultFail(response.body()!!.message)
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
-                onFinishedListener.onResultFail(t.message.toString())
+                //onFinishedListener.onResultFail(t.message.toString())
             }
 
         })
@@ -43,12 +50,12 @@ class AddProductInteractor {
     }
 
 
-    fun getListProducts(onFinishedListener: OnFinishedListener,id_shop:Int){
-        var call:Call<ProductResponse> = apiClient.getProducts(id_shop)
-        call.enqueue(object :retrofit2.Callback<ProductResponse>{
+    fun getListProducts(onFinishedListener: OnFinishedListener, id_shop: Int) {
+        var call: Call<ProductResponse> = apiClient.getProducts(id_shop)
+        call.enqueue(object : retrofit2.Callback<ProductResponse> {
             override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
 
-                if(response.body()!!.code==200){
+                if (response.body()!!.code == 200) {
                     onFinishedListener.onResultListProducts(response.body()!!.listProduct)
                 }
 
@@ -64,7 +71,7 @@ class AddProductInteractor {
         })
     }
 
-    interface OnFinishedListener : OnFinishedListeners{
+    interface OnFinishedListener : OnFinishedListeners {
         fun onResultListProducts(listProduct: ArrayList<Product>)
 
     }

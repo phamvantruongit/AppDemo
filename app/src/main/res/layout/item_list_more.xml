@@ -11,6 +11,7 @@
     <TextView android:layout_toRightOf="@id/iv_left"
               android:id="@+id/tvTitle"
               android:text="Khach hang"
+              android:textStyle="bold"
               android:layout_marginLeft="5dp"
               android:layout_centerVertical="true"
               android:textColor="@color/black"
@@ -18,14 +19,11 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"/>
     <ImageView
-              android:id="@+id/iv_right"
+               android:visibility="gone"
+               android:id="@+id/iv_right"
                android:layout_centerVertical="true"
                android:src="@drawable/icon_right_more"
                android:layout_alignParentRight="true"
                android:layout_width="20dp"
                android:layout_height="20dp"/>
-    <View android:layout_width="match_parent"
-          android:layout_alignParentBottom="true"
-          android:background="@color/gray"
-          android:layout_height="1dp"/>
 </RelativeLayout>

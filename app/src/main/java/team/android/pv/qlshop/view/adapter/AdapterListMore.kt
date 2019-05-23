@@ -34,7 +34,7 @@ class AdapterListMore(var listMore: List<ListMore>  , var clickItem:IOnClick ) :
           }
     }
 
-   public interface IOnClick{
+    interface IOnClick{
         fun onClickItem(position:Int)
     }
 }

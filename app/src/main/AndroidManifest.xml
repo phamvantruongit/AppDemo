@@ -40,11 +40,18 @@
         <activity
                 android:name=".view.activity.HomeActivity"
                 android:theme="@style/AppThemeNoActionBar">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
         </activity>
         <activity
                 android:name=".view.activity.SellProductActivity"
                 android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".view.activity.AddProductActivity">
+        <activity android:name=".view.activity.AddProductActivity"
+                  android:theme="@style/AppThemeNoActionBar"
+        >
         </activity>
         <activity
                 android:name=".view.activity.ShowCaBrActivity"

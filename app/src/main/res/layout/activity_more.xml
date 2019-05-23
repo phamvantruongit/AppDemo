@@ -50,6 +50,7 @@
                         android:layout_below="@id/tvNameUser"
                 />
                 <TextView android:layout_width="wrap_content"
+                          android:visibility="gone"
                           android:text=">"
                           android:textColor="@color/black"
                           android:textStyle="bold"

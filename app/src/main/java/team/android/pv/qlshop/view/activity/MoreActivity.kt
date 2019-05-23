@@ -10,6 +10,7 @@ import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.ListMore
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.model.data.SharedPreferencesManager
+import team.android.pv.qlshop.view.DividerItemDecoration
 import team.android.pv.qlshop.view.adapter.AdapterListMore
 
 class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
@@ -46,6 +47,7 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         tvTitle.text = this.resources.getText(R.string.title_more)
 
         rvListMore.layoutManager = LinearLayoutManager(this)
+        rvListMore.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
         var listMore: ArrayList<ListMore> = ArrayList()
         for (i in 0..iv_left.size - 1) {
             var more = ListMore(iv_left[i], list_title[i], iv_right[i]);
@@ -83,12 +85,14 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         if (position == 2) {
             intent = Intent(this@MoreActivity, AddCategoryActivity::class.java)
             intent.putExtra("check", true)
+            intent.putExtra("pushMore",true)
             startActivity(intent)
         }
 
         if (position == 3) {
             intent = Intent(this@MoreActivity, AddCategoryActivity::class.java)
             intent.putExtra("check", false)
+            intent.putExtra("pushMore",true)
             startActivity(intent)
         }
 
