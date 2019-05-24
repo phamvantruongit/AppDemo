@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 import team.android.pv.qlshop.model.Product
 
 class ProductResponse: BaseResponse() {
-    @SerializedName("list")
+    @SerializedName("data")
     lateinit var listProduct:ArrayList<Product>
 }

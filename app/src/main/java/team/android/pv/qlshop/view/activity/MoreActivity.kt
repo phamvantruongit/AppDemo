@@ -50,8 +50,8 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         rvListMore.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
         var listMore: ArrayList<ListMore> = ArrayList()
         for (i in 0..iv_left.size - 1) {
-            var more = ListMore(iv_left[i], list_title[i], iv_right[i]);
-            listMore!!.add(more)
+            var more = ListMore(iv_left[i], list_title[i], iv_right[i])
+            listMore.add(more)
         }
 
         rvListMore.adapter = AdapterListMore(listMore, this)
@@ -66,8 +66,7 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
 
     override fun onClickItem(position: Int) {
 
-        SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
-        val user: User?=SharedPreferencesManager.getUser()
+
 
         var intent: Intent? = null
 
@@ -97,7 +96,7 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         }
 
         if (position == 4) {
-            if(user!!.check_admin.equals("admin")){
+            if(userSave!!.check_admin.equals("admin")){
                 intent = Intent(this@MoreActivity, RegisterActivity::class.java)
                 intent.putExtra("check_admin", 0)
                 startActivity(intent)
@@ -113,8 +112,7 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         }
 
         if (position == 6) {
-            SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
-            SharedPreferencesManager.logOut()
+            SharedPreferencesManager.logOut(true)
             startActivity(Intent(this, LoginActivity::class.java))
         }
 

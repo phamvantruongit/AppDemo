@@ -56,13 +56,13 @@ class ShowCaBrActivity : AppCompatActivity() {
 
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             tvCategory.text = data!!.getStringExtra("name")
-            nameCategory = data!!.getStringExtra("name")
+            nameCategory = data.getStringExtra("name")
 
         }
 
         if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
             tvBrand.text = data!!.getStringExtra("name")
-            nameBrand = data!!.getStringExtra("name")
+            nameBrand = data.getStringExtra("name")
         }
 
         var json = JSONObject()

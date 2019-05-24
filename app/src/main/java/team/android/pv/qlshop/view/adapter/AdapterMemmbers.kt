@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.item_memmbers.view.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
 
-class AdapterMemmbers(var listUser: List<User>) : RecyclerView.Adapter<AdapterMemmbers.ViewHolder>() {
+class AdapterMemmbers(var listUser: List<User> ,var iOnClickItem: IOnClickItem) : RecyclerView.Adapter<AdapterMemmbers.ViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_memmbers,viewGroup,false)
         return ViewHolder(view)
@@ -20,6 +20,16 @@ class AdapterMemmbers(var listUser: List<User>) : RecyclerView.Adapter<AdapterMe
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
          viewHolder.bindData(listUser.get(position))
+         viewHolder.itemView.tvDeleteUser.setOnClickListener {
+               iOnClickItem.onClickDeleteUser(listUser.get(position))
+          }
+        viewHolder.itemView.tvEditUser.setOnClickListener {
+            iOnClickItem.onClickEditUser(listUser.get(position))
+         }
+
+        viewHolder.itemView.tvAddUser.setOnClickListener {
+             iOnClickItem.onClickAddUser()
+        }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,5 +37,11 @@ class AdapterMemmbers(var listUser: List<User>) : RecyclerView.Adapter<AdapterMe
            itemView.tvNameUser.text=user.name
            itemView.tvEmailUser.text=user.email
        }
+    }
+
+    interface IOnClickItem{
+        fun onClickDeleteUser(user: User)
+        fun onClickEditUser(user: User)
+        fun onClickAddUser()
     }
 }

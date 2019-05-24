@@ -15,7 +15,7 @@ class CategoryPresenter(val viewAddCategory: ViewAddCategory, val categoryIntera
 
     override fun onResulCategorytFail(strError: String) {
         viewAddCategory.hideProgress()
-        viewAddCategory.setDataError(strError)
+        viewAddCategory.showMessage(strError)
     }
 
     override fun onResultSuccess(listCategory: ArrayList<Category>) {
@@ -28,11 +28,15 @@ class CategoryPresenter(val viewAddCategory: ViewAddCategory, val categoryIntera
         categoryInteractor.addCategoryToAPI(this, name, id_shop, check)
     }
 
-    override fun onResultSuccess(success: String) {
+    fun editCategory(name: String, id_shop: Int, id :Int,check: Boolean){
+        categoryInteractor.editCategoryToAPI(this,name,id_shop,id,check)
+    }
+
+    override fun showMessage(success: String) {
         viewAddCategory.setSuccess(success)
     }
 
     override fun onResultFail(strError: String) {
-        viewAddCategory.setDataError(strError)
+        viewAddCategory.showMessage(strError)
     }
 }

@@ -7,7 +7,6 @@ import retrofit2.Response
 import team.android.pv.qlshop.MyApplication.Companion.apiClient
 import team.android.pv.qlshop.model.response.LoginBaseResponse
 import team.android.pv.qlshop.model.User
-import team.android.pv.qlshop.model.data.SharedPreferencesManager
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListener
 
 class LoginInteractor {

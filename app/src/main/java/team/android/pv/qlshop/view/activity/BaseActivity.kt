@@ -9,10 +9,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.element_bottom_navigation.*
+import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
 
 abstract class BaseActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
+    var userSave = MyApplication.realmMyApplication.where(team.android.pv.qlshop.model.data.User::class.java).findFirst()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,14 +39,14 @@ abstract class BaseActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
     }
 
     internal fun selectBottomNavigationBarItem(itemId: Int) {
-        val menu = navigation.getMenu()
+        val menu = navigation.menu
         var i = 0
         val size = menu.size()
         while (i < size) {
             val item = menu.getItem(i)
-            val shouldBeChecked = item.getItemId() == itemId
+            val shouldBeChecked = item.itemId == itemId
             if (shouldBeChecked) {
-                item.setChecked(true)
+                item.isChecked = true
                 break
             }
             i++

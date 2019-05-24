@@ -30,7 +30,7 @@ class RegisterInteractor {
 
 
 
-      call!!.enqueue(object  :Callback<LoginBaseResponse>{
+      call.enqueue(object  :Callback<LoginBaseResponse>{
 
 
           override fun onResponse(call: Call<LoginBaseResponse>, response: Response<LoginBaseResponse>) {

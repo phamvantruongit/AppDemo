@@ -12,11 +12,11 @@ class ResgisterPresenter(val viewRegister: ViewRegister?,val registerInteractor:
     }
     override fun onResultSuccess(user: User) {
          viewRegister!!.setData(user)
-         viewRegister!!.hideProgress()
+         viewRegister.hideProgress()
     }
 
     override fun onResultFail(strError: String) {
-        viewRegister!!.setDataError(strError)
-        viewRegister!!.hideProgress()
+        viewRegister!!.showMessage(strError)
+        viewRegister.hideProgress()
     }
 }

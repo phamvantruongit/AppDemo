@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     <ImageView
-            
+            android:visibility="gone"
             android:layout_toLeftOf="@id/imgRight"
             android:id="@+id/imgBarcode"
             android:layout_marginRight="50dp"

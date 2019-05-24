@@ -12,18 +12,7 @@ class AddProductPresenter(var viewProduct: ViewProduct, var productInteractor: A
         productInteractor.addProduct(this, product)
     }
 
-//    fun getListProducts(id_shop:Int){
-//        viewProduct.showProgress()
-//        productInteractor.getListProducts(this,id_shop)
-//    }
-
-//    override fun onResultListProducts(listProduct: ArrayList<Product>) {
-//        viewProduct.hideProgress()
-//        viewProduct.getListProducts(listProduct)
-//    }
-
-
-    override fun onResultSuccess(success: String) {
+    override fun showMessage(success: String) {
         viewProduct.hideProgress()
         viewProduct.setSuccess(success)
 
@@ -31,6 +20,6 @@ class AddProductPresenter(var viewProduct: ViewProduct, var productInteractor: A
 
     override fun onResultFail(strError: String) {
         viewProduct.hideProgress()
-        viewProduct.setDataError(strError)
+        viewProduct.showMessage(strError)
     }
 }

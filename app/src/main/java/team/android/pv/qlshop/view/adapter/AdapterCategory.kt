@@ -38,22 +38,22 @@ class AdapterCategory(var listCategory: List<Category>,var pushMore:Boolean, var
         }
         viewHolder.itemView.setOnClickListener {
 
-            if(selected_position==position){
-                selected_position=-1
-                notifyDataSetChanged()
-                return@setOnClickListener
-            }
-            selected_position=position
-            notifyDataSetChanged()
-            iOnClickItem.onClickItem(listCategory.get(position))
+//            if(selected_position==position){
+//                selected_position=-1
+//                notifyDataSetChanged()
+//                return@setOnClickListener
+//            }
+//            selected_position=position
+//            notifyDataSetChanged()
+//            iOnClickItem.onClickItem(listCategory.get(position))
         }
 
 
-        viewHolder.itemView.tvAddProduct.setOnClickListener {
-        }
+
 
         viewHolder.itemView.tvEditProduct.setOnClickListener {
 
+            iOnClickItem.onClickEditCategory(listCategory.get(position))
 
         }
     }
@@ -67,5 +67,6 @@ class AdapterCategory(var listCategory: List<Category>,var pushMore:Boolean, var
 
     interface IOnClickItem{
        fun onClickItem(category: Category)
+       fun onClickEditCategory(category: Category)
     }
 }

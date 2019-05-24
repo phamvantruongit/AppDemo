@@ -2,9 +2,7 @@ package team.android.pv.qlshop.view.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.vision.barcode.Barcode
@@ -14,13 +12,11 @@ import kotlinx.android.synthetic.main.toolbar.*
 import org.json.JSONObject
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Product
-import team.android.pv.qlshop.model.User
-import team.android.pv.qlshop.model.data.SharedPreferencesManager
 import team.android.pv.qlshop.presenter.product.AddProductInteractor
 import team.android.pv.qlshop.presenter.product.AddProductPresenter
 import team.android.pv.qlshop.view.views.ViewProduct
 
-class AddProductActivity : AppCompatActivity(), ViewProduct {
+class AddProductActivity : BaseActivitys(), ViewProduct {
     private var dataJson: String = ""
     private var barcode: String = ""
 
@@ -28,7 +24,7 @@ class AddProductActivity : AppCompatActivity(), ViewProduct {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
-        productPresenter = AddProductPresenter(this, AddProductInteractor())
+        productPresenter = AddProductPresenter(this,AddProductInteractor())
 
 
 
@@ -63,9 +59,9 @@ class AddProductActivity : AppCompatActivity(), ViewProduct {
             product.name=edNameProduct.text.toString()
             if(barcode!=""){
                 product.barcode=barcode
-                Log.d("PPP",barcode)
             }
-            return@setOnClickListener
+
+            product.barcode=edBarcode.text.toString()
             product.description=edDesciptionProduct.text.toString()
             product.category=category
             product.brand=brand
@@ -75,10 +71,7 @@ class AddProductActivity : AppCompatActivity(), ViewProduct {
             product.price_outs= edPrice_outs.text.toString().toInt().toLong()
             product.note=edNote.text.toString()
             product.unit=edNote.text.toString()
-
-            SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
-            val users:User= SharedPreferencesManager.getUser()!!
-            product.id_shop=users.id_shop
+            product.id_shop=userSave!!.id_shop
 
             productPresenter!!.addProduct(product)
 
@@ -120,8 +113,8 @@ class AddProductActivity : AppCompatActivity(), ViewProduct {
 
     }
 
-    override fun setDataError(error: String) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+    override fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 }

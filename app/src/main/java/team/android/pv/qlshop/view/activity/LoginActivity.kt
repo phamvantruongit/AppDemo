@@ -1,12 +1,11 @@
 package team.android.pv.qlshop.view.activity
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.toolbar.*
+import team.android.pv.qlshop.MyApplication.Companion.realmMyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.model.data.SharedPreferencesManager
@@ -14,7 +13,9 @@ import team.android.pv.qlshop.presenter.login.LoginInteractor
 import team.android.pv.qlshop.presenter.login.LoginPresenter
 import team.android.pv.qlshop.view.views.ViewLogin
 
-class LoginActivity : AppCompatActivity(), ViewLogin {
+
+
+class LoginActivity : BaseActivitys(), ViewLogin {
 
 
     private lateinit var login: LoginPresenter
@@ -30,11 +31,15 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
              edEmail.setText(email)
         }
 
-        SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
-        val user:User?=SharedPreferencesManager.getUser()
-        if(user!=null){
-            edEmail.setText(user.email)
+
+
+        if( userSave!=null && userSave!!.email!=null){
+
+            edEmail.setText(userSave!!.email)
+
         }
+
+
 
         tvRegister.setOnClickListener {
             var intent=Intent(this,RegisterActivity::class.java)
@@ -52,9 +57,9 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
                 return@setOnClickListener
             }
             var user = User()
-            user!!.email = email
-            user!!.password = password
-            login.login(user!!)
+            user.email = email
+            user.password = password
+            login.login(user)
 
         }
     }
@@ -65,13 +70,27 @@ class LoginActivity : AppCompatActivity(), ViewLogin {
     override fun hideProgress() {
     }
 
+
     override fun setData(user: User) {
-        SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
-        SharedPreferencesManager.saveUser(user)
+        SharedPreferencesManager.logOut(false)
+        realmMyApplication.executeTransaction {
+
+            var users=it.createObject(team.android.pv.qlshop.model.data.User::class.java)
+            users.id=user.id
+            users.email=user.email
+            users.id_shop=user.id_shop
+            users.name=user.name
+            users.name_shop=user.name_shop
+            users.check_admin=user.check_admin
+
+
+
+        }
         startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
         finish()
     }
 
-    override fun setDataError(error: String) {
+    override fun showMessage(message: String) {
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show()
     }
 }

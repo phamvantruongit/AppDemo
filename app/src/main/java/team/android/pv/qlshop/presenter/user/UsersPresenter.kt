@@ -10,13 +10,17 @@ class UsersPresenter(var viewUsers: ViewUsers, var usersInteractor: UsersInterac
          usersInteractor.getListUser(id_shop,this)
     }
 
+    fun deleteUser(id_shop: Int, id: Int){
+        usersInteractor.deleteUser(id_shop,id,this)
+    }
+
 
     override fun onResultListProducts(listUser: ArrayList<User>) {
         viewUsers.showUsers(listUser)
     }
 
-    override fun onResultSuccess(success: String) {
-
+    override fun showMessage(message: String) {
+        viewUsers.showMessage(message)
     }
 
     override fun onResultFail(strError: String) {

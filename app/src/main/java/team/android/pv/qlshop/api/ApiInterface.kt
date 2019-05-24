@@ -1,5 +1,4 @@
 package team.android.pv.qlshop.api
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 import team.android.pv.qlshop.model.response.*
@@ -34,6 +33,21 @@ interface ApiInterface {
     fun  addProduct (@FieldMap user:Map<String,String>) :Call<BaseResponse>
 
 
+    @FormUrlEncoded
+    @POST("edit/category.php")
+    fun  editCategory (@FieldMap user:Map<String,String>) :Call<BaseResponse>
+
+
+    @FormUrlEncoded
+    @POST("edit/brand.php")
+    fun  editBrand (@FieldMap user:Map<String,String>) :Call<BaseResponse>
+
+
+    @FormUrlEncoded
+    @POST("edit/brand.php")
+    fun  editUser (@FieldMap user:Map<String,String>) :Call<BaseResponse>
+
+
     @GET("get/brands.php")
     fun getBrands(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
 
@@ -50,9 +64,8 @@ interface ApiInterface {
     fun getUsers(@Query("id_shop") id_shop:Int) :Call<UsersResponse>
 
 
-
-
-
+    @DELETE("delete/user.php")
+    fun deleteUser(@Query("id_shop") id_shop: Int,@Query("id") id: Int) : Call<BaseResponse>
 
 
 }

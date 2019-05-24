@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+    <ImageView
+            android:src="@drawable/icon_home"
+            android:id="@+id/imgCategory"
+            android:layout_width="100dp"
+            android:layout_height="120dp"/>
+    <TextView
+            android:id="@+id/tvName"
+            android:text="San pham"
+            android:layout_toRightOf="@id/imgCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"/>
+    <TextView
+            android:id="@+id/tvAmount"
+            android:layout_marginTop="5dp"
+            android:text="So luong:10"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/imgCategory"
+            android:layout_below="@id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:layout_marginTop="5dp"
+            android:text="100.000$"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tvPrice"
+            android:layout_below="@id/tvAmount"
+            android:layout_toRightOf="@id/imgCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+</RelativeLayout>
