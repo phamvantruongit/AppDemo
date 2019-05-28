@@ -24,11 +24,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        develop{
+            applicationId "team.android.pv.qlshop"
+            versionCode 1
+            versionName "1.0"
+            buildConfigField "String", "BASE_URL", "\"http://192.168.64.2/android_login_api/\""
+        }
+        product{
+            applicationId "team.android.pv.qlshop"
+            versionCode 1
+            versionName "1.0"
+            buildConfigField "String", "BASE_URL", "\"http://192.168.64.2/android_login_api/\""
+        }
+
+    }
 }
 repositories {
     flatDir {
         dirs 'libs'
     }
+
 }
 
 dependencies {

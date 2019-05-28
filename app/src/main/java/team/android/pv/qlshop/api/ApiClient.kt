@@ -4,12 +4,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.GsonBuilder
 import com.google.gson.Gson
-
+import team.android.pv.qlshop.BuildConfig
 
 
 class ApiClient {
     companion object {
-        val BASE_URL="http://192.168.64.2/android_login_api/"
+        val BASE_URL=BuildConfig.BASE_URL
         fun getInstance(): Retrofit? {
             val gson = GsonBuilder()
                 .setLenient()
