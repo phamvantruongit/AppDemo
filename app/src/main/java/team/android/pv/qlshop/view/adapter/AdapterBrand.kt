@@ -8,13 +8,13 @@ import kotlinx.android.synthetic.main.item_category.view.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
 
-class AdapterCategory(var listCategory: List<Category>,var pushMore:Boolean, var iOnClickItem: IOnClickItem) :RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
+class AdapterBrand(var listCategory: List<Category>, var pushMore:Boolean, var iOnClickItem: IOnClickItem) :RecyclerView.Adapter<AdapterBrand.ViewHolder>() {
     companion object {
         var selected_position = -1
 
     }
 
-    override fun onCreateViewHolder(viewgroup: ViewGroup, position: Int): AdapterCategory.ViewHolder {
+    override fun onCreateViewHolder(viewgroup: ViewGroup, position: Int): AdapterBrand.ViewHolder {
         val view=LayoutInflater.from(viewgroup.context).inflate(R.layout.item_category,viewgroup,false)
         return ViewHolder(view)
     }
@@ -23,12 +23,15 @@ class AdapterCategory(var listCategory: List<Category>,var pushMore:Boolean, var
        return listCategory.size
     }
 
-    override fun onBindViewHolder(viewHolder: AdapterCategory.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: AdapterBrand.ViewHolder, position: Int) {
         viewHolder.bindData(listCategory.get(position))
+
+
+
         var check_visible:Boolean
 
 
-        if(selected_position==position && !pushMore){
+        if(selected_position ==position && !pushMore){
             viewHolder.itemView.ivSelect.visibility=View.VISIBLE
         }else{
             viewHolder.itemView.ivSelect.visibility=View.GONE
@@ -44,8 +47,7 @@ class AdapterCategory(var listCategory: List<Category>,var pushMore:Boolean, var
             check_visible=true
             selected_position=position
             notifyDataSetChanged()
-            iOnClickItem.onClickItem(listCategory.get(position)  ,check_visible)
-
+            iOnClickItem.onClickItem(listCategory.get(position) ,check_visible)
         }
 
 

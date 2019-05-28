@@ -3,22 +3,26 @@ package team.android.pv.qlshop.view.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.vision.barcode.Barcode
 import com.notbytes.barcode_reader.BarcodeReaderActivity
-import kotlinx.android.synthetic.main.activity_add_product.*
+import kotlinx.android.synthetic.main.layout_product.*
 import kotlinx.android.synthetic.main.toolbar.*
-import org.json.JSONObject
 import team.android.pv.qlshop.R
+import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.presenter.product.AddProductInteractor
 import team.android.pv.qlshop.presenter.product.AddProductPresenter
+import team.android.pv.qlshop.view.adapter.AdapterBrand
+import team.android.pv.qlshop.view.adapter.AdapterCategory
 import team.android.pv.qlshop.view.views.ViewProduct
 
 class AddProductActivity : BaseActivitys(), ViewProduct {
-    private var dataJson: String = ""
     private var barcode: String = ""
+    private var id_category=0
+   private  var products:Product?=null
 
     private var productPresenter: AddProductPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +30,7 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         setContentView(R.layout.activity_add_product)
         productPresenter = AddProductPresenter(this,AddProductInteractor())
 
-
+        getData()
 
         imgRight?.visibility=View.VISIBLE
         imgRight.setImageResource(R.drawable.ic_add)
@@ -37,24 +41,23 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         }
 
 
-
-        rlCategory.setOnClickListener{
-
-            var intent = Intent(this, ShowCaBrActivity::class.java)
+        imgCategory.setOnClickListener {
+            var intent = Intent(this, AddCategoryActivity::class.java)
+            intent.putExtra("checkCategory",true)
             startActivityForResult(intent, 101)
+        }
 
+
+        imgBrand.setOnClickListener {
+            var intent = Intent(this, AddCategoryActivity::class.java)
+            intent.putExtra("checkCategory",false)
+            startActivityForResult(intent, 102)
         }
 
        imgRight.setOnClickListener{
 
             var product = Product()
-            var category = ""
-            var brand = ""
-            if(dataJson!="") {
-                var json = JSONObject(dataJson)
-                category = json.getString("category")
-                brand = json.getString("brand")
-            }
+
 
             product.name=edNameProduct.text.toString()
             if(barcode!=""){
@@ -63,19 +66,54 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
             product.barcode=edBarcode.text.toString()
             product.description=edDesciptionProduct.text.toString()
-            product.category=category
-            product.brand=brand
+            product.category=edCategory.text.toString()
+            product.brand=edBrand.text.toString()
             product.amount=edAmount.text.toString().toInt()
-            product.price_in= 1
+            product.price_in= edPrice_in.text.toString().toLong()
             product.price_out= edPrice_out.text.toString().toInt().toLong()
             product.price_outs= edPrice_outs.text.toString().toInt().toLong()
             product.note=edNote.text.toString()
             product.unit=edNote.text.toString()
             product.id_shop=userSave!!.id_shop
+            product.id_category=id_category
 
-            productPresenter!!.addProduct(product)
+            if(products!=null){
+                 product.id=products!!.id
+                 productPresenter!!.editProduct(product)
+
+            }else {
+
+                productPresenter!!.addProduct(product)
+            }
 
 
+        }
+    }
+
+    private fun getData() {
+        products=intent.getParcelableExtra<Product>("product")
+        if(products!=null){
+            tvTitle.text="Sua san pham"
+            edNameProduct.setText(products!!.name)
+            if(!products!!.description.equals("Null")) {
+                edDesciptionProduct.setText(products!!.description)
+            }
+            edBarcode.setText(products!!.barcode)
+            edBarcode.setEnabled(false)
+            imgBarcodes.visibility=View.GONE
+            edPrice_in.setText(products!!.price_in.toString())
+            edPrice_out.setText(products!!.price_out.toString())
+            edPrice_outs.setText(products!!.price_outs.toString())
+            edNote.setText(products!!.note)
+            edAmount.setText(products!!.amount.toString())
+            if(!products!!.category.equals("Null")) {
+                edCategory.setText(products!!.category)
+            }
+            if(!products!!.brand.equals("Null")) {
+                edBrand.setText(products!!.brand)
+            }
+        }else{
+            tvTitle.text="Them san pham"
         }
     }
 
@@ -96,7 +134,17 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
 
         if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
-            dataJson = data!!.getStringExtra("data")
+            var category=data!!.getParcelableExtra<Category>("category")
+            id_category=category.id
+            edCategory.setText(category.name)
+            edCategory.setEnabled(false)
+        }
+
+
+        if ( requestCode==102 && resultCode == Activity.RESULT_OK) {
+            var category=data!!.getParcelableExtra<Category>("category")
+            edBrand.setText(category.name)
+            edBrand.setEnabled(false)
         }
     }
 
@@ -115,6 +163,16 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
     override fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if( AdapterBrand.selected_position>0){
+            AdapterBrand.selected_position=-1
+        }
+        if( AdapterCategory.selected_position>0) {
+            AdapterCategory.selected_position = -1
+        }
     }
 
 }

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:padding="@dimen/_10dp"
+              android:background="@drawable/border_layout"
+              android:layout_below="@id/toolbars"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <EditText
+            android:hint="Tên sản phẩm"
+            android:textSize="13sp"
+            android:id="@+id/edNameProduct"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+    />
+
+
+    <EditText
+            android:hint="Mô tả"
+            android:textSize="@dimen/_13sp"
+            android:id="@+id/edDesciptionProduct"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+    />
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <EditText
+            android:layout_weight="1"
+            android:hint="Số lượng"
+            android:textSize="@dimen/_13sp"
+            android:inputType="numberDecimal"
+            android:id="@+id/edAmount"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+    />
+
+
+    <EditText
+            android:layout_weight="1"
+            android:hint="Giá nhập"
+            android:textSize="@dimen/_13sp"
+            android:inputType="numberDecimal"
+            android:id="@+id/edPrice_in"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+    />
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <EditText
+                android:layout_weight="1"
+                android:hint="Giá bán lẻ "
+                android:textSize="@dimen/_13sp"
+                android:inputType="numberDecimal"
+                android:id="@+id/edPrice_out"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+        />
+
+        <EditText
+                android:layout_weight="1"
+                android:hint="Giá bán sỉ"
+                android:textSize="@dimen/_13sp"
+                android:inputType="numberDecimal"
+                android:id="@+id/edPrice_outs"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+        />
+    </LinearLayout>
+
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <EditText
+                android:hint="Mã barcode"
+                android:textSize="@dimen/_13sp"
+                android:inputType="numberDecimal"
+                android:layout_toRightOf="@id/imgBarcode"
+                android:id="@+id/edBarcode"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+        />
+
+
+        <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_centerVertical="true"
+                android:id="@+id/imgBarcodes"
+                android:src="@drawable/barcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <EditText
+                android:hint="Danh muc "
+                android:textSize="@dimen/_13sp"
+                android:layout_toRightOf="@id/imgBarcode"
+                android:id="@+id/edCategory"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+        />
+
+
+        <ImageView
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_centerVertical="true"
+                android:id="@+id/imgCategory"
+                android:src="@drawable/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <EditText
+                android:hint="Nhãn hiệu"
+                android:textSize="@dimen/_13sp"
+                android:layout_toRightOf="@id/imgBarcode"
+                android:id="@+id/edBrand"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+        />
+
+
+        <ImageView
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_centerVertical="true"
+                android:id="@+id/imgBrand"
+                android:src="@drawable/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+
+    <EditText
+            android:hint="Ghi chú"
+            android:textSize="@dimen/_13sp"
+            android:id="@+id/edNote"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+    />
+
+</LinearLayout>

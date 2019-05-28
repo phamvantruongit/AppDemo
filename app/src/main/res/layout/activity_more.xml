@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/container"
+        android:id="@+id/containers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -65,7 +65,8 @@
                     android:layout_marginTop="@dimen/_10dp"
                     android:id="@+id/rvListMore"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginBottom="@dimen/_50dp"
+                    android:layout_height="match_parent"/>
 
         </LinearLayout>
 

@@ -12,6 +12,12 @@ class AddProductPresenter(var viewProduct: ViewProduct, var productInteractor: A
         productInteractor.addProduct(this, product)
     }
 
+
+    fun editProduct(product: Product){
+        viewProduct.showProgress()
+        productInteractor.editProduct(this, product)
+    }
+
     override fun showMessage(success: String) {
         viewProduct.hideProgress()
         viewProduct.setSuccess(success)

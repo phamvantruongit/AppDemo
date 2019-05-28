@@ -1,8 +1,16 @@
 package team.android.pv.qlshop.view.activity
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_more.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -12,6 +20,7 @@ import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.model.data.SharedPreferencesManager
 import team.android.pv.qlshop.view.DividerItemDecoration
 import team.android.pv.qlshop.view.adapter.AdapterListMore
+
 
 class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
 
@@ -35,7 +44,7 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         R.drawable.icon_home
     )
     var list_title: Array<String> =
-        arrayOf("Khach hang", "San pham", "Danh muc", "Nhan hieu", "Them nhan vien", "Danh sach nhan vien", "Dang xuat")
+        arrayOf("Khach hang", "Nha cung cap" , "San pham", "Danh muc", "Nhan hieu", "Them nhan vien", "Danh sach nhan vien")
 
 
 
@@ -45,6 +54,14 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         init()
 
         tvTitle.text = this.resources.getText(R.string.title_more)
+        imgRight.visibility = View.VISIBLE
+        imgRight.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
+
+
+        imgRight.setOnClickListener {
+            SharedPreferencesManager.logOut(true)
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
 
         rvListMore.layoutManager = LinearLayoutManager(this)
         rvListMore.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
@@ -76,26 +93,30 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
             startActivity(intent)
         }
 
-        if (position == 1) {
+        if(position==1){
+
+        }
+
+        if (position == 2) {
             intent= Intent(this@MoreActivity, AddProductActivity::class.java)
             startActivity(intent)
         }
 
-        if (position == 2) {
+        if (position == 3) {
             intent = Intent(this@MoreActivity, AddCategoryActivity::class.java)
             intent.putExtra("check", true)
             intent.putExtra("pushMore",true)
             startActivity(intent)
         }
 
-        if (position == 3) {
+        if (position == 4) {
             intent = Intent(this@MoreActivity, AddCategoryActivity::class.java)
             intent.putExtra("check", false)
             intent.putExtra("pushMore",true)
             startActivity(intent)
         }
 
-        if (position == 4) {
+        if (position == 5) {
             if(userSave!!.check_admin.equals("admin")){
                 intent = Intent(this@MoreActivity, RegisterActivity::class.java)
                 intent.putExtra("check_admin", 0)
@@ -106,15 +127,11 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
 
         }
 
-        if (position == 5) {
+        if (position == 6) {
             intent= Intent(this@MoreActivity, MemmbersActivity::class.java)
             startActivity(intent)
         }
 
-        if (position == 6) {
-            SharedPreferencesManager.logOut(true)
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
 
 
     }
@@ -126,4 +143,5 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
     override fun getNavigationMenuItemId(): Int {
         return R.id.navigation_more
     }
+
 }

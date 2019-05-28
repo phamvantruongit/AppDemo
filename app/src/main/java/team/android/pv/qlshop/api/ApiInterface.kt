@@ -1,4 +1,6 @@
 package team.android.pv.qlshop.api
+import android.graphics.pdf.PdfDocument
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 import team.android.pv.qlshop.model.response.*
@@ -34,6 +36,11 @@ interface ApiInterface {
 
 
     @FormUrlEncoded
+    @POST("edit/product.php")
+    fun  editProduct (@FieldMap user:Map<String,String>) :Call<BaseResponse>
+
+
+    @FormUrlEncoded
     @POST("edit/category.php")
     fun  editCategory (@FieldMap user:Map<String,String>) :Call<BaseResponse>
 
@@ -57,7 +64,7 @@ interface ApiInterface {
 
 
     @GET("get/products.php")
-    fun getProducts(@Query("id_shop") id_shop:Int) :Call<ProductResponse>
+    fun getProducts(@Query("id_shop") id_shop:Int ,@Query("id_category") id_category : Int ,@Query("page") page: Int) :Call<ProductResponse>
 
 
     @GET("get/users.php")
@@ -66,6 +73,10 @@ interface ApiInterface {
 
     @DELETE("delete/user.php")
     fun deleteUser(@Query("id_shop") id_shop: Int,@Query("id") id: Int) : Call<BaseResponse>
+
+
+    @DELETE("delete/product.php")
+    fun deleteProduct(@Query("id_shop") id_shop: Int,@Query("id") id: Int) : Call<BaseResponse>
 
 
 }
