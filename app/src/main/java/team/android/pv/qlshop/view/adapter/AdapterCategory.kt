@@ -19,9 +19,7 @@ class AdapterCategory(var listCategory: List<Category>,var pushMore:Boolean, var
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-       return listCategory.size
-    }
+    override fun getItemCount() = listCategory.size
 
     override fun onBindViewHolder(viewHolder: AdapterCategory.ViewHolder, position: Int) {
         viewHolder.bindData(listCategory.get(position))

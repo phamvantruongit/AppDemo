@@ -14,10 +14,7 @@ class AdapterMemmbers(var listUser: List<User> ,var iOnClickItem: IOnClickItem) 
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return listUser.size
-    }
-
+    override fun getItemCount() = listUser.size
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
          viewHolder.bindData(listUser.get(position))
          viewHolder.itemView.tvDeleteUser.setOnClickListener {

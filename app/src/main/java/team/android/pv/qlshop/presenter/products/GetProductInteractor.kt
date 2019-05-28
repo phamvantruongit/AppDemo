@@ -17,48 +17,43 @@ import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 class GetProductInteractor {
 
 
-    fun getListProducts(onFinishedListener: OnFinishedListenerProduct, id_shop: Int, id_category:Int, page:Int) {
-        var listProduct=ArrayList<Product>()
-        apiClient.getProducts(id_shop ,id_category,page)
+    fun getListProducts(onFinishedListener: OnFinishedListenerProduct, id_shop: Int, id_category: Int, page: Int) {
+        var listProduct = ArrayList<Product>()
+        apiClient.getProducts(id_shop, id_category, page)
             .enqueue(object : Callback<ProductResponse> {
-            override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
-                Log.d("KKKK","$page")
-                if (response.body()!!.code == 200) {
-                    if(page==1){
-                        listProduct=response.body()!!.listProduct
-                        onFinishedListener.onResultListProducts(listProduct)
-                    }else {
+                override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
+                    Log.d("DDDD",response.body()!!.listProduct.get(0).name)
+                    if (response.body()!!.code == 200) {
 
-                        listProduct.addAll(response.body()!!.listProduct)
-                        onFinishedListener.onResultListProducts(listProduct)
+                        listProduct = response.body()!!.listProduct
+                        onFinishedListener.onResultListProducts(response.body()!!.listProduct)
+
+                    } else {
+                        onFinishedListener.onResultFail(response.body()!!.message)
                     }
-                }
-               else {
-                    onFinishedListener.onResultFail(response.body()!!.message)
+
                 }
 
-            }
+                override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
 
-            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                    onFinishedListener.onResultFail(t.message.toString())
 
-                onFinishedListener.onResultFail(t.message.toString())
-
-            }
+                }
 
 
-        })
+            })
     }
 
 
-    fun getListNameCategory(onFinishedListener:OnFinishedListenerProduct, id_shop: Int){
+    fun getListNameCategory(onFinishedListener: OnFinishedListenerProduct, id_shop: Int) {
 
 
-        apiClient.getCategorys(id_shop ).enqueue(object : Callback<CategoryResponse> {
+        apiClient.getCategorys(id_shop).enqueue(object : Callback<CategoryResponse> {
 
             override fun onResponse(call: Call<CategoryResponse>, response: Response<CategoryResponse>) {
-                if(response.body()!!.code==200){
+                if (response.body()!!.code == 200) {
                     onFinishedListener.onResultSuccess(response.body()!!.listCategory)
-                }else{
+                } else {
                     onFinishedListener.onResultFail(response.body()!!.message)
                 }
             }
@@ -73,25 +68,23 @@ class GetProductInteractor {
     }
 
 
-    fun deleteProduct(listener: OnFinishedListeners, id: Int, id_shop:Int){
-     apiClient.deleteProduct(id,id_shop)
-         .enqueue(object : Callback<BaseResponse>{
-             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-                   if(response.body()!!.code==200){
-                       listener.showMessage(response.body()!!.message)
-                   }else{
-                       listener.showMessage(response.body()!!.message)
-                   }
-             }
+    fun deleteProduct(listener: OnFinishedListeners, id: Int, id_shop: Int) {
+        apiClient.deleteProduct(id, id_shop)
+            .enqueue(object : Callback<BaseResponse> {
+                override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                    if (response.body()!!.code == 200) {
+                        listener.showMessage(response.body()!!.message)
+                    } else {
+                        listener.showMessage(response.body()!!.message)
+                    }
+                }
 
-             override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
 
-             }
-         })
+                }
+            })
 
     }
-
-
 
 
     interface OnFinishedListenerProduct : OnFinishedListenerFail {

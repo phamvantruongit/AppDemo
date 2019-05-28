@@ -24,10 +24,6 @@ class AdapterCategorys(var listCategory: List<Category>, var iOnClickItem: IOnCl
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, po: Int): RecyclerView.ViewHolder {
         var view: View? = null
-
-
-
-
         if (po == HEADER) {
             view = LayoutInflater.from(viewGroup.context)
                 .inflate(team.android.pv.qlshop.R.layout.item_header, viewGroup, false)
@@ -93,10 +89,7 @@ class AdapterCategorys(var listCategory: List<Category>, var iOnClickItem: IOnCl
             return ITEM
     }
 
-    override fun getItemCount(): Int {
-        var size = listCategory.size + 1
-        return size
-    }
+    override fun getItemCount() = listCategory.size + 1
 
 
     class ViewHolderItem(itemView: View) : RecyclerView.ViewHolder(itemView)

@@ -22,9 +22,7 @@ class AdapterProduct(var productList: ArrayList<Product>, var iOnClick :IOnClick
         return ViewHolderProduct(view)
     }
 
-    override fun getItemCount(): Int {
-        return  productList.size
-    }
+    override fun getItemCount() = productList.size
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         viewHolder.itemView.tvNameProduct.text=productList.get(position).name

@@ -58,20 +58,20 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         rv_product.layoutManager = LinearLayoutManager(this)
         rv_product.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
         rv_product.adapter = AdapterProduct(productList, this)
-        rv_product.addOnScrollListener(object :
-            PaginationScrollListener(rv_product.layoutManager as LinearLayoutManager) {
-            override fun isLastPage(): Boolean {
-                return isLastPage
-            }
-
-            override fun isLoading(): Boolean {
-                return isLoading
-            }
-
-            override fun loadMoreItems(load: Boolean) {
-                getMoreItems(load)
-            }
-        })
+//        rv_product.addOnScrollListener(object :
+//            PaginationScrollListener(rv_product.layoutManager as LinearLayoutManager) {
+//            override fun isLastPage(): Boolean {
+//                return isLastPage
+//            }
+//
+//            override fun isLoading(): Boolean {
+//                return isLoading
+//            }
+//
+//            override fun loadMoreItems(load: Boolean) {
+//                getMoreItems(load)
+//            }
+//        })
 
     }
 

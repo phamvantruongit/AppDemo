@@ -15,10 +15,7 @@ class AdapterListMore(var listMore: List<ListMore>  , var clickItem:IOnClick ) :
        return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return listMore.size
-    }
-
+    override fun getItemCount()= listMore.size
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bindData(listMore.get(position))
         viewHolder.itemView.setOnClickListener{
