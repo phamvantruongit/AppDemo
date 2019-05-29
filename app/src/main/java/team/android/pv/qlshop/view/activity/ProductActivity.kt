@@ -113,7 +113,6 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
     override fun loadMore(isScroll: Boolean) {
         if (isScroll && isLoad) {
             page++
-            Log.d("loadMore", page.toString())
             getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
         }
     }

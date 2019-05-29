@@ -45,15 +45,12 @@ class AdapterCategorys(var listCategory: List<Category>, var iOnClickItem: IOnCl
             }
             selected_position = position
             notifyDataSetChanged()
-
-
             iOnClickItem.onClickItem(listCategory.get(position).id, selected_position)
 
 
         }
 
     }
-
 
     override fun getItemCount() = listCategory.size
 
