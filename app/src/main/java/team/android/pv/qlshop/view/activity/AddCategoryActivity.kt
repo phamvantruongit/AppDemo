@@ -75,7 +75,6 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
     override fun setSuccess(success: String) {
         categoryPresenter!!.getCategory(1, checkCategory)
-        Toast.makeText(this, success, Toast.LENGTH_SHORT).show()
     }
 
     override fun showMessage(message: String) {
@@ -143,6 +142,10 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
         }
         btnAddCategory.setOnClickListener {
             var name = edCategory.text.toString()
+            if(name.length==0){
+                dialog.dismiss()
+                return@setOnClickListener
+            }
             if (category.name != "") {
                 categoryPresenter!!.editCategory(name, userSave!!.id_shop, category.id, checkCategory)
             } else {

@@ -37,7 +37,7 @@ android {
             applicationId "team.android.pv.qlshop"
             versionCode 1
             versionName "1.0"
-            buildConfigField "String", "BASE_URL", "\"http://192.168.64.2/android_login_api/\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.1.22/android_login_api/\""
         }
 
     }

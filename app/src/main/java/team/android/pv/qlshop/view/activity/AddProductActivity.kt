@@ -3,6 +3,7 @@ package team.android.pv.qlshop.view.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -58,8 +59,38 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
             var product = Product()
 
+            var name=edNameProduct.text.toString()
+            var barcode=edBarcode.text.toString()
+            var amount=edAmount.text.toString().toInt()
+            var price_in=edPrice_in.text.toString().toLong()
+            var price_out=edPrice_out.text.toString().toInt().toLong()
+            var price_outs=edPrice_outs.text.toString().toInt().toLong()
 
-            product.name=edNameProduct.text.toString()
+            if(TextUtils.isEmpty(name)){
+
+            }
+
+
+
+
+           if(amount==0 || edAmount.text.toString().length<=0 ){
+
+
+           }
+
+           if(price_in==0L || edPrice_in.text.toString().length<=0 ){
+
+           }
+
+           if(price_out==0L || edPrice_out.text.toString().length<=0 ){
+
+           }
+
+           if(price_outs==0L || edPrice_outs.text.toString().length<=0 ){
+
+           }
+
+            product.name=name
             if(barcode!=""){
                 product.barcode=barcode
             }

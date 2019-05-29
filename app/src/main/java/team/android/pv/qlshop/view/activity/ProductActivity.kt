@@ -159,7 +159,6 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
             startActivity(intent)
         }
 
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 
 
