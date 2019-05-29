@@ -2,9 +2,7 @@ package team.android.pv.qlshop.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import team.android.pv.qlshop.R
-import team.android.pv.qlshop.Student
 import team.android.pv.qlshop.model.data.SharedPreferencesManager
 
 class SplashActivity : BaseActivitys() {

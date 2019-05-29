@@ -14,9 +14,6 @@ class AdapterCategorys(var listCategory: List<Category>, var iOnClickItem: IOnCl
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
-    private var HEADER = 0
-    private var ITEM = 1
-
     companion object {
         var selected_position = -1
 
@@ -24,74 +21,41 @@ class AdapterCategorys(var listCategory: List<Category>, var iOnClickItem: IOnCl
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, po: Int): RecyclerView.ViewHolder {
         var view: View? = null
-        if (po == HEADER) {
-            view = LayoutInflater.from(viewGroup.context)
-                .inflate(team.android.pv.qlshop.R.layout.item_header, viewGroup, false)
-            return ViewHolderHeader(view)
-        } else if (po == ITEM) {
-            view = LayoutInflater.from(viewGroup.context)
-                .inflate(team.android.pv.qlshop.R.layout.layout_item_categorys_name, viewGroup, false)
-            return ViewHolderItem(view)
-        } else
-            throw  RuntimeException("Could not inflate layout");
+
+        view = LayoutInflater.from(viewGroup.context)
+            .inflate(team.android.pv.qlshop.R.layout.layout_item_categorys_name, viewGroup, false)
+        return ViewHolderItem(view)
 
 
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-        if (viewHolder is ViewHolderItem) {
-            if (selected_position == position) {
-                viewHolder.itemView.ivSelects.visibility = View.VISIBLE
-            } else {
-                viewHolder.itemView.ivSelects.visibility = View.GONE
-            }
-            viewHolder.itemView.tvNameCategory.setText(listCategory.get(position - 1).name)
-            viewHolder.itemView.setOnClickListener {
-                if (selected_position == position) {
-                    selected_position = -1
-                    notifyDataSetChanged()
-                    return@setOnClickListener
-                }
-                selected_position = position
-                notifyDataSetChanged()
 
-
-                if(position==listCategory.size){
-                    iOnClickItem.onClickItem(listCategory.get(position).id, selected_position)
-                }else {
-                    iOnClickItem.onClickItem(listCategory.get(position).id, selected_position)
-                }
-
-            }
+        if (selected_position == position) {
+            viewHolder.itemView.ivSelects.visibility = View.VISIBLE
+        } else {
+            viewHolder.itemView.ivSelects.visibility = View.GONE
         }
-        if (viewHolder is ViewHolderHeader) {
+        viewHolder.itemView.tvNameCategory.setText(listCategory.get(position).name)
+        viewHolder.itemView.setOnClickListener {
             if (selected_position == position) {
-                viewHolder.itemView.iv_Select.visibility = View.VISIBLE
-            } else {
-                viewHolder.itemView.iv_Select.visibility = View.GONE
-            }
-            viewHolder.itemView.setOnClickListener {
-                if (selected_position == position) {
-                    selected_position = -1
-                    notifyDataSetChanged()
-                    return@setOnClickListener
-                }
-                selected_position = position
+                selected_position = -1
                 notifyDataSetChanged()
-                iOnClickItem.onClickItem(listCategory.get(position).id, selected_position)
+                return@setOnClickListener
             }
+            selected_position = position
+            notifyDataSetChanged()
+
+
+            iOnClickItem.onClickItem(listCategory.get(position).id, selected_position)
+
+
         }
+
     }
 
-    override fun getItemViewType(position: Int): Int {
 
-        if (position == HEADER)
-            return HEADER
-        else
-            return ITEM
-    }
-
-    override fun getItemCount() = listCategory.size + 1
+    override fun getItemCount() = listCategory.size
 
 
     class ViewHolderItem(itemView: View) : RecyclerView.ViewHolder(itemView)

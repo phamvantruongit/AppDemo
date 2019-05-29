@@ -1,12 +1,19 @@
 package team.android.pv.qlshop.view.activity
+
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.activity_products.rv_category
+import kotlinx.android.synthetic.main.show_dialog_category.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.tvTitle
 import team.android.pv.qlshop.R
@@ -21,32 +28,51 @@ import team.android.pv.qlshop.view.adapter.AdapterProduct
 import team.android.pv.qlshop.view.views.ViewProducts
 
 
-
 class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickItem, AdapterProduct.IOnClick,
     LoadMoreScroll.ILoadMoreScroll {
 
 
-
     private var page: Int = 0
-    var id_category=0
-    private var isLoad : Boolean=false
+    var id_category = 0
+    private var isLoad: Boolean = false
+    var dialog: Dialog? = null
+    var rv_category: RecyclerView? = null
+    var tvLoadAll: TextView? = null
     private lateinit var getProductPresenter: GetProductPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getProductPresenter = GetProductPresenter(this, GetProductInteractor())
-        getProductPresenter.getListCategoty(userSave!!.id_shop)
         tvTitle.text = this.resources.getText(R.string.title_products)
         imgRight.visibility = View.VISIBLE
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.menu_right))
         imgRight.setOnClickListener {
-            drawer_layout.openDrawer(Gravity.RIGHT)
+            //drawer_layout.openDrawer(Gravity.RIGHT)
+            getProductPresenter.getListCategoty(userSave!!.id_shop)
+            dialog = Dialog(this)
+            dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog!!.setContentView(R.layout.show_dialog_category)
+            rv_category = dialog!!.findViewById(R.id.rv_categorys)
+
+            dialog!!.show()
+            if (dialog!!.window != null) {
+                dialog!!.window!!.setGravity(Gravity.BOTTOM)
+                dialog!!.window!!.setLayout(
+                    WindowManager.LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT
+                )
+                dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            }
+            dialog!!.tvLoadAll.setOnClickListener {
+                getProductPresenter.getListProducts(userSave!!.id_shop, 0, this.page)
+                dialog!!.dismiss()
+            }
+
+
         }
-        page=1
+        page = 1
         getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
 
     }
-
-
 
 
     override fun getContentView(): Int {
@@ -63,14 +89,14 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         load: Boolean,
         current_page: Float
     ) {
-        isLoad=load
-        page= current_page.toInt()
-        ln_add.visibility=View.GONE
-        rv_product.visibility=View.VISIBLE
-        rv_product.layoutManager = LinearLayoutManager(this)
+        isLoad = load
+        page = current_page.toInt()
+        ln_add.visibility = View.GONE
+        rv_product.visibility = View.VISIBLE
+        rv_product.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         rv_product.addItemDecoration(DividerItemDecoration(resources.getDrawable(team.android.pv.qlshop.R.drawable.divider)))
         rv_product.adapter = AdapterProduct(productList, this)
-        rv_product.addOnScrollListener(LoadMoreScroll(rv_product.layoutManager as LinearLayoutManager,this))
+        rv_product.addOnScrollListener(LoadMoreScroll(rv_product.layoutManager as LinearLayoutManager, this))
 //        rv_product.addOnScrollListener(object : EndlessRecyclerOnScrollListener() {
 //            override fun onLoadMore() {
 //                if(load) {
@@ -84,64 +110,57 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
     }
 
 
-
-
     override fun loadMore(isScroll: Boolean) {
-        if(isScroll && isLoad) {
+        if (isScroll && isLoad) {
             page++
-            Log.d("loadMore" ,page.toString())
+            Log.d("loadMore", page.toString())
             getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
         }
     }
 
     override fun iOnCLickItem(product: Product) {
-        getProductPresenter.deleteProduct(product.id,product.id_shop)
+        getProductPresenter.deleteProduct(product.id, product.id_shop)
     }
 
     override fun getListNameCategory(category: ArrayList<Category>) {
-        rv_category.layoutManager = LinearLayoutManager(this)
-        rv_category.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
-        rv_category.adapter = AdapterCategorys(category, this)
+        rv_category!!.layoutManager = LinearLayoutManager(this)
+        rv_category!!.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
+        rv_category!!.adapter = AdapterCategorys(category, this)
 
     }
 
     override fun onClickItem(id_category: Int, selected_position: Int) {
-        drawer_layout.closeDrawers()
-        if(id_category==0){
-            return
-        }
-        if (selected_position == 0) {
-            getProductPresenter.getListProducts(userSave!!.id_shop, 0, this.page)
-        } else {
-            this.id_category = id_category
-            Log.d("BBBB", this.id_category.toString()  )
-            getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
-        }
+        dialog!!.dismiss()
+
+        this.id_category = id_category
+        Log.d("BBBB", this.id_category.toString())
+        getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
+
     }
 
 
     override fun showProgress() {
-        progress_bar.visibility=View.VISIBLE
+        progress_bar.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        progress_bar.visibility=View.GONE
+        progress_bar.visibility = View.GONE
     }
 
     override fun showMessage(message: String) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun showError(error: String) {
-        rv_product.visibility=View.GONE
-        ln_add.visibility=View.VISIBLE
+        rv_product.visibility = View.GONE
+        ln_add.visibility = View.VISIBLE
         ln_add.setOnClickListener {
-            var intent=Intent(this,AddProductActivity::class.java)
-            intent.putExtra("data","data")
+            var intent = Intent(this, AddProductActivity::class.java)
+            intent.putExtra("data", "data")
             startActivity(intent)
         }
 
-        Toast.makeText(this,error,Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 
 
