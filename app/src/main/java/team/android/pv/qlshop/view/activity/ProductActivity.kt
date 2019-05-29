@@ -2,6 +2,7 @@ package team.android.pv.qlshop.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_products.*
@@ -14,17 +15,21 @@ import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.presenter.product.GetProductInteractor
 import team.android.pv.qlshop.presenter.product.GetProductPresenter
 import team.android.pv.qlshop.view.DividerItemDecoration
-import team.android.pv.qlshop.view.PaginationScrollListener
+import team.android.pv.qlshop.view.LoadMoreScroll
 import team.android.pv.qlshop.view.adapter.AdapterCategorys
 import team.android.pv.qlshop.view.adapter.AdapterProduct
 import team.android.pv.qlshop.view.views.ViewProducts
 
-class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickItem, AdapterProduct.IOnClick {
 
 
-    private var page: Int = 1
-    var isLastPage: Boolean = false
-    var isLoading: Boolean = false
+class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickItem, AdapterProduct.IOnClick,
+    LoadMoreScroll.ILoadMoreScroll {
+
+
+
+    private var page: Int = 0
+    var id_category=0
+    private var isLoad : Boolean=false
     private lateinit var getProductPresenter: GetProductPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +41,8 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         imgRight.setOnClickListener {
             drawer_layout.openDrawer(Gravity.RIGHT)
         }
-        getProductPresenter.getListProducts(userSave!!.id_shop, 0, page)
+        page=1
+        getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
 
     }
 
@@ -52,36 +58,40 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
     }
 
 
-    override fun getListProducts(productList: ArrayList<Product>) {
+    override fun getListProducts(
+        productList: ArrayList<Product>,
+        load: Boolean,
+        current_page: Float
+    ) {
+        isLoad=load
+        page= current_page.toInt()
         ln_add.visibility=View.GONE
         rv_product.visibility=View.VISIBLE
         rv_product.layoutManager = LinearLayoutManager(this)
-        rv_product.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
+        rv_product.addItemDecoration(DividerItemDecoration(resources.getDrawable(team.android.pv.qlshop.R.drawable.divider)))
         rv_product.adapter = AdapterProduct(productList, this)
-//        rv_product.addOnScrollListener(object :
-//            PaginationScrollListener(rv_product.layoutManager as LinearLayoutManager) {
-//            override fun isLastPage(): Boolean {
-//                return isLastPage
-//            }
-//
-//            override fun isLoading(): Boolean {
-//                return isLoading
-//            }
-//
-//            override fun loadMoreItems(load: Boolean) {
-//                getMoreItems(load)
+        rv_product.addOnScrollListener(LoadMoreScroll(rv_product.layoutManager as LinearLayoutManager,this))
+//        rv_product.addOnScrollListener(object : EndlessRecyclerOnScrollListener() {
+//            override fun onLoadMore() {
+//                if(load) {
+//                    page++
+//                    Log.d("loadMore", page.toString())
+//                    getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
+//                }
 //            }
 //        })
 
     }
 
 
-    fun getMoreItems(load: Boolean) {
-        if(load) {
-            page++
-            getProductPresenter.getListProducts(userSave!!.id_shop, 0, page)
-        }
 
+
+    override fun loadMore(isScroll: Boolean) {
+        if(isScroll && isLoad) {
+            page++
+            Log.d("loadMore" ,page.toString())
+            getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
+        }
     }
 
     override fun iOnCLickItem(product: Product) {
@@ -103,18 +113,19 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         if (selected_position == 0) {
             getProductPresenter.getListProducts(userSave!!.id_shop, 0, this.page)
         } else {
-            var id_categorys = id_category - 1
-            getProductPresenter.getListProducts(userSave!!.id_shop, id_categorys, page)
+            this.id_category = id_category
+            Log.d("BBBB", this.id_category.toString()  )
+            getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
         }
     }
 
 
     override fun showProgress() {
-
+        progress_bar.visibility=View.VISIBLE
     }
 
     override fun hideProgress() {
-
+        progress_bar.visibility=View.GONE
     }
 
     override fun showMessage(message: String) {
@@ -129,6 +140,8 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
             intent.putExtra("data","data")
             startActivity(intent)
         }
+
+        Toast.makeText(this,error,Toast.LENGTH_SHORT).show()
     }
 
 

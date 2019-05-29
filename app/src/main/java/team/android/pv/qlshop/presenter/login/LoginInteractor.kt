@@ -1,6 +1,7 @@
 package team.android.pv.qlshop.presenter.login
 import android.content.Context
 import android.util.Log
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +21,9 @@ class LoginInteractor {
        call.enqueue(object :Callback<LoginBaseResponse>{
 
            override fun onResponse(call: Call<LoginBaseResponse>, response: Response<LoginBaseResponse>) {
+
+
+
                if(response.body()!!.code==200){
                    onFinishedListener.onResultSuccess(response.body()!!.user)
                }

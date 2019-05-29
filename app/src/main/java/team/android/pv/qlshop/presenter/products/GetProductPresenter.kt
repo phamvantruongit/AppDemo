@@ -25,9 +25,13 @@ class GetProductPresenter(var viewProduct: ViewProducts, val productInteractor: 
        viewProduct.hideProgress()
     }
 
-    override fun onResultListProducts(listProduct: ArrayList<Product>) {
+    override fun onResultListProducts(
+        listProduct: ArrayList<Product>,
+        load: Boolean,
+        current_page: Float
+    ) {
         viewProduct.hideProgress()
-        viewProduct.getListProducts(listProduct)
+        viewProduct.getListProducts(listProduct,load,current_page)
     }
 
 

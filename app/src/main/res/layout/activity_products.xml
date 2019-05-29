@@ -19,7 +19,14 @@
                 android:layout_marginTop="@dimen/_50dp"
                 android:id="@+id/rv_product"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content"/>
+
+        <ProgressBar
+                android:visibility="gone"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/ln_add"

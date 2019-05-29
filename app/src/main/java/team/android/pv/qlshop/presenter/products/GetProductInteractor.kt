@@ -1,5 +1,4 @@
 package team.android.pv.qlshop.presenter.product
-
 import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,7 +9,6 @@ import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.response.BaseResponse
 import team.android.pv.qlshop.model.response.CategoryResponse
 import team.android.pv.qlshop.model.response.ProductResponse
-import team.android.pv.qlshop.presenter.Inteface.OnFinishedListener
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListenerFail
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 
@@ -18,15 +16,22 @@ class GetProductInteractor {
 
 
     fun getListProducts(onFinishedListener: OnFinishedListenerProduct, id_shop: Int, id_category: Int, page: Int) {
-        var listProduct = ArrayList<Product>()
+        Log.d("PPP",id_category.toString())
         apiClient.getProducts(id_shop, id_category, page)
             .enqueue(object : Callback<ProductResponse> {
                 override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
-                    Log.d("DDDD",response.body()!!.listProduct.get(0).name)
                     if (response.body()!!.code == 200) {
-
-                        listProduct = response.body()!!.listProduct
-                        onFinishedListener.onResultListProducts(response.body()!!.listProduct)
+                        var  total_pages:Float=response.body()!!.total_pages
+                        var  current_page:Float=response.body()!!.current_page
+                        var  isLoad:Boolean= current_page < total_pages
+                        Log.d("Load",isLoad.toString() + total_pages.toString() + current_page.toString())
+                        var listProduct = ArrayList<Product>()
+                        if(current_page==1f){
+                            listProduct = response.body()!!.listProduct
+                        }else{
+                            listProduct.addAll(response.body()!!.listProduct)
+                        }
+                        onFinishedListener.onResultListProducts(listProduct,isLoad,current_page)
 
                     } else {
                         onFinishedListener.onResultFail(response.body()!!.message)
@@ -88,7 +93,11 @@ class GetProductInteractor {
 
 
     interface OnFinishedListenerProduct : OnFinishedListenerFail {
-        fun onResultListProducts(listProduct: ArrayList<Product>)
+        fun onResultListProducts(
+            listProduct: ArrayList<Product>,
+            load: Boolean,
+            current_page: Float
+        )
         fun onResultSuccess(listCategory: ArrayList<Category>)
     }
 

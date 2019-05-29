@@ -54,8 +54,10 @@ class AdapterCategorys(var listCategory: List<Category>, var iOnClickItem: IOnCl
                 }
                 selected_position = position
                 notifyDataSetChanged()
+
+
                 if(position==listCategory.size){
-                    iOnClickItem.onClickItem(listCategory.get(position-1).id, selected_position)
+                    iOnClickItem.onClickItem(listCategory.get(position).id, selected_position)
                 }else {
                     iOnClickItem.onClickItem(listCategory.get(position).id, selected_position)
                 }
