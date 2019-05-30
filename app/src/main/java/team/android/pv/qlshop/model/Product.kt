@@ -18,6 +18,16 @@ class Product() : Parcelable {
     var brand=""
     var note=""
     var unit=""
+     private var isSelected:Boolean=false
+
+
+    fun isSelected():Boolean{
+          return isSelected
+    }
+
+    fun setSelected(selected: Boolean) {
+        isSelected = selected
+    }
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readInt()

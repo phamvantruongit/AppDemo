@@ -1,7 +1,6 @@
 package team.android.pv.qlshop.view.activity
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,14 +10,20 @@ import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 
 class SellProductActivity :BaseActivity() {
-   val BARCODE_READER_ACTIVITY_REQUEST :Int=1
+   val BARCODE_READER_ACTIVITY_REQUEST :Int=100
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         tvTitle.text=this.resources.getText(R.string.title_sell)
         imgBarcode.visibility=View.VISIBLE
-        imgBarcode.setOnClickListener({
+        imgBarcode.setOnClickListener{
             launchBarCodeActivity()
-        })
+        }
+
+        imgRight.visibility=View.VISIBLE
+        imgRight.setOnClickListener {
+            var intent=Intent(this,SearchSellProductActivity::class.java)
+            startActivityForResult(intent,200)
+        }
     }
 
 

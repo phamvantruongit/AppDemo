@@ -80,4 +80,8 @@ interface ApiInterface {
     fun deleteProduct(@Query("id_shop") id_shop: Int,@Query("id") id: Int) : Call<BaseResponse>
 
 
+    @GET("get/search.php")
+    fun searchProduct(@Query("id_shop") id_shop:Int ,@Query("barcode") barcode : String ,@Query("name") name: String) :Call<ProductResponse>
+
+
 }

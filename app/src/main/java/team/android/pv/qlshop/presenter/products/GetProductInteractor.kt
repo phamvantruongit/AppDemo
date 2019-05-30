@@ -16,7 +16,6 @@ class GetProductInteractor {
 
 
     fun getListProducts(onFinishedListener: OnFinishedListenerProduct, id_shop: Int, id_category: Int, page: Int) {
-        Log.d("PPP",id_category.toString())
         apiClient.getProducts(id_shop, id_category, page)
             .enqueue(object : Callback<ProductResponse> {
                 override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {

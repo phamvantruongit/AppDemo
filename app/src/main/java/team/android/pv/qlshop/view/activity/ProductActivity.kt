@@ -12,7 +12,6 @@ import android.view.*
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_products.*
-import kotlinx.android.synthetic.main.activity_products.rv_category
 import kotlinx.android.synthetic.main.show_dialog_category.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.tvTitle
@@ -37,7 +36,6 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
     private var isLoad: Boolean = false
     var dialog: Dialog? = null
     var rv_category: RecyclerView? = null
-    var tvLoadAll: TextView? = null
     private lateinit var getProductPresenter: GetProductPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +44,9 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         imgRight.visibility = View.VISIBLE
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.menu_right))
         imgRight.setOnClickListener {
-            //drawer_layout.openDrawer(Gravity.RIGHT)
+
             getProductPresenter.getListCategoty(userSave!!.id_shop)
+
             dialog = Dialog(this)
             dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog!!.setContentView(R.layout.show_dialog_category)
@@ -67,6 +66,13 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
                 dialog!!.dismiss()
             }
 
+
+        }
+
+        imgBarcode.visibility = View.VISIBLE
+        imgBarcode.setOnClickListener {
+
+            startActivity(Intent(this,SearchProductActivity::class.java))
 
         }
         page = 1
@@ -97,15 +103,6 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         rv_product.addItemDecoration(DividerItemDecoration(resources.getDrawable(team.android.pv.qlshop.R.drawable.divider)))
         rv_product.adapter = AdapterProduct(productList, this)
         rv_product.addOnScrollListener(LoadMoreScroll(rv_product.layoutManager as LinearLayoutManager, this))
-//        rv_product.addOnScrollListener(object : EndlessRecyclerOnScrollListener() {
-//            override fun onLoadMore() {
-//                if(load) {
-//                    page++
-//                    Log.d("loadMore", page.toString())
-//                    getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
-//                }
-//            }
-//        })
 
     }
 
