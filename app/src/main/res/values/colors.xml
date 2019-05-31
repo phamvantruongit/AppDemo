@@ -11,4 +11,5 @@
     <color name="edSearch">#f6f7fb</color>
     <color name="red">#d62727</color>
     <color name="transparent">#00000000</color>
+    <color name="color_line">#e2e2e2</color>
 </resources>

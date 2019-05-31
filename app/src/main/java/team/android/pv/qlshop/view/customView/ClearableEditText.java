@@ -1,4 +1,4 @@
-package team.android.pv.qlshop.view.CustomView;
+package team.android.pv.qlshop.view.customView;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

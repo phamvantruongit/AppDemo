@@ -12,7 +12,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "team.android.pv.qlshop"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -66,5 +66,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-vision:15.0.2'
     implementation(name: 'barcode-reader-debug', ext: 'aar')
     implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 
 }

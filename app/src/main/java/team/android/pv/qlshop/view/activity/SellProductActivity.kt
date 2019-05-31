@@ -1,6 +1,7 @@
 package team.android.pv.qlshop.view.activity
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -20,6 +21,7 @@ class SellProductActivity :BaseActivity() {
         }
 
         imgRight.visibility=View.VISIBLE
+        imgRight.setImageDrawable(resources.getDrawable(R.drawable.ic_search))
         imgRight.setOnClickListener {
             var intent=Intent(this,SearchSellProductActivity::class.java)
             startActivityForResult(intent,200)

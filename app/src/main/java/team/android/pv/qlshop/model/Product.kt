@@ -18,6 +18,7 @@ class Product() : Parcelable {
     var brand=""
     var note=""
     var unit=""
+    var count=0
      private var isSelected:Boolean=false
 
 

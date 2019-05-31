@@ -70,6 +70,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         }
 
         imgBarcode.visibility = View.VISIBLE
+        imgBarcode.setImageDrawable(resources.getDrawable(R.drawable.ic_search))
         imgBarcode.setOnClickListener {
 
             startActivity(Intent(this,SearchProductActivity::class.java))
@@ -129,7 +130,6 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         dialog!!.dismiss()
 
         this.id_category = id_category
-        Log.d("BBBB", this.id_category.toString())
         getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
 
     }

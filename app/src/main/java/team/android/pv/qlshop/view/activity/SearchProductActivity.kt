@@ -42,19 +42,15 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
         setContentView(R.layout.activity_search_product)
 
         searchProductPresenter = SearchProductPresenter(this, SearchProductInteractor())
-
-        var pushFromSell=intent.getBooleanExtra("pushFromSell",false)
-        if(pushFromSell){
-            rlSearch.visibility=View.VISIBLE
-        }
+        searchProduct("ao")
 
         edSearch.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     if (edSearch.text.toString().length > 0) {
                         searchProduct(edSearch.text.toString())
-                        return true
                     }
+                    return true
                 }
                 return false
             }

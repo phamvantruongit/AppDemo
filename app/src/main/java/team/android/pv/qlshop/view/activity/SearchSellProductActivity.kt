@@ -9,17 +9,15 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.EditorInfo
-import android.widget.CompoundButton
 import android.widget.TextView
-import com.notbytes.barcode_reader.BarcodeReaderActivity
-import kotlinx.android.synthetic.main.activity_search_product.edSearch
-import kotlinx.android.synthetic.main.activity_search_product.iv_search_barcode
 import kotlinx.android.synthetic.main.activity_search_product.tvSearch
 import kotlinx.android.synthetic.main.activity_search_sell_product.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.Product
+import team.android.pv.qlshop.model.data.ProductDataBase
+import team.android.pv.qlshop.model.data.ProductEntity
 import team.android.pv.qlshop.presenter.product.GetProductInteractor
 import team.android.pv.qlshop.presenter.product.GetProductPresenter
 import team.android.pv.qlshop.view.DividerItemDecoration
@@ -35,15 +33,15 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     var rv_category: RecyclerView? = null
     var dialog: Dialog? = null
     var is_Checked: Boolean = false
-    private var listProduct:List<Product>?=null
-   public var listProductSave:List<Product>?=null
+    private var listProduct: List<Product>? = null
+    private var listProductSaveLocal: List<Product>? = null
     private lateinit var getProductPresenter: GetProductPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_sell_product)
 
-        listProduct=ArrayList<Product>()
-        listProductSave=ArrayList<Product>()
+        listProduct = ArrayList<Product>()
+        listProductSaveLocal = ArrayList<Product>()
 
         getProductPresenter = GetProductPresenter(this, GetProductInteractor())
 
@@ -86,9 +84,16 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
         }
 
 
-       tvSelect.setOnClickListener {
+        tvSelect.setOnClickListener {
+             if((this.listProductSaveLocal as ArrayList<Product>).size>0){
+                 for(i in 0..(listProductSaveLocal as ArrayList<Product>).size-1){
+                     var product:ProductEntity= ProductEntity((listProductSaveLocal as ArrayList<Product>).get(i).id ,(listProductSaveLocal as ArrayList<Product>).get(i).name,
+                         (listProductSaveLocal as ArrayList<Product>).get(i).count,(listProductSaveLocal as ArrayList<Product>).get(i).price_out)
+                     ProductDataBase.getInstance(this)!!.productDataBase().inSertProduct(product)
+                 }
 
-       }
+             }
+        }
 
     }
 
@@ -97,7 +102,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     }
 
     override fun getListProducts(productList: ArrayList<Product>, load: Boolean, current_page: Float) {
-        listProduct=productList
+        listProduct = productList
         rv_product_sell_search.visibility = View.VISIBLE
         rv_product_sell_search.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
         rv_product_sell_search.layoutManager = LinearLayoutManager(this)
@@ -105,25 +110,14 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
 
     }
 
-    override fun iOnCLickItem(position: Int) {
-        var listProductSave=ArrayList<Product>()
-       var product=listProduct!!.get(position)
-        if(product.isSelected()){
-            listProduct!!.get(position).setSelected(false)
-            if(listProductSave.size>0){
-                listProductSave.removeAt(position)
-            }
-        }else{
-            listProduct!!.get(position).setSelected(true)
-            var products=Product()
-            products.id=listProduct!!.get(position).id
-            listProductSave.add(products)
+    override fun iOnCLickItem(product: Product) {
+        saveProduct(product)
+    }
 
-        }
-        rv_product_sell_search.adapter!!.notifyItemChanged(position)
-
-
-
+    private fun saveProduct(product: Product){
+        var listProductSave = ArrayList<Product>()
+        listProductSave.add(product)
+        this.listProductSaveLocal=listProductSave
 
     }
 
