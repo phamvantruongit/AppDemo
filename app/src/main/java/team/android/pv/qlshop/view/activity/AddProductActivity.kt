@@ -168,14 +168,12 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             var category=data!!.getParcelableExtra<Category>("category")
             id_category=category.id
             edCategory.setText(category.name)
-            edCategory.setEnabled(false)
         }
 
 
         if ( requestCode==102 && resultCode == Activity.RESULT_OK) {
             var category=data!!.getParcelableExtra<Category>("category")
             edBrand.setText(category.name)
-            edBrand.setEnabled(false)
         }
     }
 

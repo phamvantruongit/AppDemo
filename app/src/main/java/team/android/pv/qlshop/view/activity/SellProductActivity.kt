@@ -1,19 +1,40 @@
 package team.android.pv.qlshop.view.activity
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.vision.barcode.Barcode
 import com.notbytes.barcode_reader.BarcodeReaderActivity
+import kotlinx.android.synthetic.main.activity_sell_product.*
 import kotlinx.android.synthetic.main.toolbar.*
+import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
+import team.android.pv.qlshop.model.Product
+import team.android.pv.qlshop.presenter.searchproduct.SearchProductInteractor
+import team.android.pv.qlshop.presenter.searchproduct.SearchProductPresenter
+import team.android.pv.qlshop.view.adapter.AdapterProductLocal
+import team.android.pv.qlshop.view.views.ViewSearchBarcode
 
-class SellProductActivity :BaseActivity() {
-   val BARCODE_READER_ACTIVITY_REQUEST :Int=100
+class SellProductActivity :BaseActivity(), ViewSearchBarcode, AdapterProductLocal.IOnClick {
+
+
+
+    val BARCODE_READER_ACTIVITY_REQUEST :Int=100
+    private lateinit var searchProductPresenter: SearchProductPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        searchProductPresenter = SearchProductPresenter( SearchProductInteractor() ,this)
+
+
+
+
+
+
+
         tvTitle.text=this.resources.getText(R.string.title_sell)
         imgBarcode.visibility=View.VISIBLE
         imgBarcode.setOnClickListener{
@@ -26,6 +47,45 @@ class SellProductActivity :BaseActivity() {
             var intent=Intent(this,SearchSellProductActivity::class.java)
             startActivityForResult(intent,200)
         }
+
+        getDataLocal()
+    }
+
+    private fun getDataLocal() {
+        var list = MyApplication.realmMyApplication.where(team.android.pv.qlshop.model.data.Product::class.java).findAll()
+        rv_product_local.layoutManager = LinearLayoutManager(this)
+        rv_product_local.adapter=AdapterProductLocal(this,list,this)
+    }
+
+    override fun iOnClick(amount: Int, id: Int) {
+        if(amount==0) {
+            Toast.makeText(this, "So luong >0", Toast.LENGTH_SHORT).show()
+            return
+        }
+        MyApplication.realmMyApplication.executeTransactionAsync {
+
+            var product=it.where(team.android.pv.qlshop.model.data.Product::class.java).equalTo("uid",id).findFirst()
+            product!!.amount=amount
+        }
+
+    }
+
+
+    override fun getListSearchProduct(listProduct: List<Product>) {
+
+
+    }
+
+    override fun showProgress() {
+
+    }
+
+    override fun hideProgress() {
+
+    }
+
+    override fun showMessage(message: String) {
+
     }
 
 
@@ -48,8 +108,8 @@ class SellProductActivity :BaseActivity() {
 
 
         if (requestCode == BARCODE_READER_ACTIVITY_REQUEST && data != null) {
-            val barcode = data.getParcelableExtra<Barcode>(BarcodeReaderActivity.KEY_CAPTURED_BARCODE)
-            Toast.makeText(this, barcode.rawValue, Toast.LENGTH_SHORT).show()
+            val barcode = data!!.getParcelableExtra<Barcode>(BarcodeReaderActivity.KEY_CAPTURED_BARCODE)
+            searchProductPresenter.searchProductBarocde(userSave!!.id_shop ,barcode = barcode.rawValue, name = "0")
         }
     }
 }

@@ -33,6 +33,25 @@ class SearchProductInteractor {
     }
 
 
+    fun getListSearchProductBarocde( listener  :OnFinishedListenerProductBarcode , id_shop:Int, barcode : String,  name: String){
+
+        apiClient.searchProduct(id_shop,barcode,name).enqueue(object :Callback<ProductResponse>{
+            override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
+                if(response.body()!!.code==200){
+                    listener.onResultListProductBarcode(response.body()!!.listProduct)
+                }else{
+                    listener.onResultFail(response.body()!!.message)
+                }
+            }
+
+            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                listener.onResultFail(t.message.toString())
+            }
+        })
+
+    }
+
+
     fun getListCategory(listeners: OnFinishedListenerProduct, id_shop: Int){
         apiClient.getCategorys(id_shop).enqueue(object : Callback<CategoryResponse>{
 
@@ -56,6 +75,11 @@ class SearchProductInteractor {
     interface OnFinishedListenerProduct : OnFinishedListenerFail {
         fun onResultListProducts( listProduct: ArrayList<Product>)
         fun onResultCategory(listCategory: ArrayList<Category>)
+    }
+
+
+    interface OnFinishedListenerProductBarcode : OnFinishedListenerFail{
+        fun onResultListProductBarcode( listProduct: ArrayList<Product>)
     }
 
 

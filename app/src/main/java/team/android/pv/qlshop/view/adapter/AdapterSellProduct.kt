@@ -38,21 +38,9 @@ class AdapterSellProduct(var context: Context, var productList: ArrayList<Produc
 
         var product = productList.get(position)
 
-//         if(product.isSelected()){
-//             viewHolder.itemView.cb_selected.visibility=View.VISIBLE
-//             viewHolder.itemView.cb_selected.isChecked=true
-//             viewHolder.itemView.cb_selected.setBackground(ContextCompat.getDrawable(context,R.drawable.icn_contacts_checkbox_selected))
-//
-//         }else{
-//             viewHolder.itemView.cb_selected.visibility=View.INVISIBLE
-//             viewHolder.itemView.cb_selected.isChecked=false
-//             viewHolder.itemView.cb_selected.setBackground(ContextCompat.getDrawable(context,R.drawable.icn_contacts_checkbox))
-//         }
-        var count: Int = 0
         viewHolder.itemView.setOnClickListener {
-            count++
-            product.count=count
-            viewHolder.itemView.cb_selected.text = count.toString()
+            product.count=1
+            viewHolder.itemView.cb_selected.text ="1"
             iOnClick.iOnCLickItem(product)
         }
 

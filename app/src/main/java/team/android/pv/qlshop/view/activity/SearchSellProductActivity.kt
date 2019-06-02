@@ -6,18 +6,15 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_search_product.tvSearch
 import kotlinx.android.synthetic.main.activity_search_sell_product.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
+import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.Product
-import team.android.pv.qlshop.model.data.ProductDataBase
-import team.android.pv.qlshop.model.data.ProductEntity
 import team.android.pv.qlshop.presenter.product.GetProductInteractor
 import team.android.pv.qlshop.presenter.product.GetProductPresenter
 import team.android.pv.qlshop.view.DividerItemDecoration
@@ -39,6 +36,8 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_sell_product)
+
+
 
         listProduct = ArrayList<Product>()
         listProductSaveLocal = ArrayList<Product>()
@@ -85,15 +84,11 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
 
 
         tvSelect.setOnClickListener {
-             if((this.listProductSaveLocal as ArrayList<Product>).size>0){
-                 for(i in 0..(listProductSaveLocal as ArrayList<Product>).size-1){
-                     var product:ProductEntity= ProductEntity((listProductSaveLocal as ArrayList<Product>).get(i).id ,(listProductSaveLocal as ArrayList<Product>).get(i).name,
-                         (listProductSaveLocal as ArrayList<Product>).get(i).count,(listProductSaveLocal as ArrayList<Product>).get(i).price_out)
-                     ProductDataBase.getInstance(this)!!.productDataBase().inSertProduct(product)
-                 }
 
-             }
+            finish()
+
         }
+
 
     }
 
@@ -114,10 +109,15 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
         saveProduct(product)
     }
 
-    private fun saveProduct(product: Product){
-        var listProductSave = ArrayList<Product>()
-        listProductSave.add(product)
-        this.listProductSaveLocal=listProductSave
+    private fun saveProduct(products: Product){
+        MyApplication.realmMyApplication.executeTransaction {
+            var product=it.createObject(team.android.pv.qlshop.model.data.Product::class.java,products.id)
+            product.name= products.name
+            product.amount= products.count
+            product.amounts= products.amount
+            product.price_out= products.price_out
+
+        }
 
     }
 

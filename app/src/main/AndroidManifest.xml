@@ -43,15 +43,16 @@
                 android:name=".view.activity.HomeActivity"
                 android:theme="@style/AppThemeNoActionBar">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN"/> -->
+             <!--<intent-filter> -->
+             <!--<action android:name="android.intent.action.MAIN"/> -->
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
-            <!-- </intent-filter> -->
+             <!--<category android:name="android.intent.category.LAUNCHER"/> -->
+             <!--</intent-filter> -->
         </activity>
         <activity
                 android:name=".view.activity.SellProductActivity"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
                 android:theme="@style/AppThemeNoActionBar"/>
         <activity
                 android:name=".view.activity.AddProductActivity"
@@ -59,6 +60,7 @@
         </activity>
         <activity
                 android:name=".view.activity.SearchProductActivity"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
                 android:theme="@style/AppThemeNoActionBar">
         </activity>
         <activity
@@ -68,6 +70,7 @@
 
         <activity
                 android:name=".view.activity.SearchSellProductActivity"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
                 android:theme="@style/AppThemeNoActionBar">
         </activity>
 

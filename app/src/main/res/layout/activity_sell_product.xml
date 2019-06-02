@@ -11,7 +11,10 @@
             android:layout_marginTop="@dimen/_50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_product_local"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
     </FrameLayout>
 
     <include

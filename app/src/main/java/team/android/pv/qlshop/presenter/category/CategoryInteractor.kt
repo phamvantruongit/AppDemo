@@ -44,7 +44,7 @@ class CategoryInteractor {
 
         var param=HashMap<String,String>()
         param.put("name",name)
-        param.put("id", id.toString())
+        param.put("uid", id.toString())
         param.put("id_shop", id_shop.toString())
 
         var call:Call<BaseResponse>?

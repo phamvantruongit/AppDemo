@@ -73,11 +73,11 @@ interface ApiInterface {
 
 
     @DELETE("delete/user.php")
-    fun deleteUser(@Query("id_shop") id_shop: Int,@Query("id") id: Int) : Call<BaseResponse>
+    fun deleteUser(@Query("id_shop") id_shop: Int,@Query("uid") id: Int) : Call<BaseResponse>
 
 
     @DELETE("delete/product.php")
-    fun deleteProduct(@Query("id_shop") id_shop: Int,@Query("id") id: Int) : Call<BaseResponse>
+    fun deleteProduct(@Query("id_shop") id_shop: Int,@Query("uid") id: Int) : Call<BaseResponse>
 
 
     @GET("get/search.php")

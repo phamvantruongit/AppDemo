@@ -17,6 +17,7 @@ import com.notbytes.barcode_reader.BarcodeReaderActivity
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.activity_search_product.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
+import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.Product
@@ -42,7 +43,7 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
         setContentView(R.layout.activity_search_product)
 
         searchProductPresenter = SearchProductPresenter(this, SearchProductInteractor())
-        searchProduct("ao")
+
 
         edSearch.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent): Boolean {
@@ -79,6 +80,9 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
                 dialog!!.dismiss()
             }
         }
+
+
+
 
 
 

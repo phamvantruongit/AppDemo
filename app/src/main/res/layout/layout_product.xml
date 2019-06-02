@@ -124,7 +124,7 @@
                 android:layout_gravity="center_vertical|right"
                 android:layout_centerVertical="true"
                 android:id="@+id/imgCategory"
-                android:src="@drawable/iv_right"
+                android:src="@drawable/iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
     </FrameLayout>
@@ -148,7 +148,7 @@
                 android:layout_gravity="center_vertical|right"
                 android:layout_centerVertical="true"
                 android:id="@+id/imgBrand"
-                android:src="@drawable/iv_right"
+                android:src="@drawable/iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
     </FrameLayout>
