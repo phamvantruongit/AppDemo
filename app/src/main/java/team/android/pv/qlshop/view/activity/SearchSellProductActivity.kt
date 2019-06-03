@@ -6,9 +6,9 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
-import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_search_sell_product.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
 import team.android.pv.qlshop.MyApplication
@@ -30,7 +30,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     var rv_category: RecyclerView? = null
     var dialog: Dialog? = null
     var is_Checked: Boolean = false
-    private var listProduct: List<Product>? = null
+    private var listProducts: List<Product>? = null
     private var listProductSaveLocal: List<Product>? = null
     private lateinit var getProductPresenter: GetProductPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
 
 
 
-        listProduct = ArrayList<Product>()
+        listProducts = ArrayList<Product>()
         listProductSaveLocal = ArrayList<Product>()
 
         getProductPresenter = GetProductPresenter(this, GetProductInteractor())
@@ -47,16 +47,22 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
         page = 1
         getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
 
-        edSearch.setOnEditorActionListener(object : TextView.OnEditorActionListener {
-            override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent): Boolean {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if (edSearch.text.toString().length > 0) {
-                        searchProduct(edSearch.text.toString())
-                        return true
-                    }
-                }
-                return false
+
+        edSearch.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+
             }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (edSearch.text.toString().length > 0) {
+                    searchProduct(edSearch.text.toString())
+                }
+            }
+
         })
         dialog = Dialog(this)
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -93,15 +99,24 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     }
 
     private fun searchProduct(name: String) {
-
+        getProductPresenter.getListSearch(userSave!!.id_shop,"",name)
     }
 
-    override fun getListProducts(productList: ArrayList<Product>, load: Boolean, current_page: Float) {
-        listProduct = productList
+
+    override fun getListProducts(productList: ArrayList<Product>) {
         rv_product_sell_search.visibility = View.VISIBLE
         rv_product_sell_search.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
         rv_product_sell_search.layoutManager = LinearLayoutManager(this)
-        rv_product_sell_search.adapter = AdapterSellProduct(this, listProduct as ArrayList<Product>, this)
+        rv_product_sell_search.adapter = AdapterSellProduct(this, productList as ArrayList<Product>, this)
+    }
+
+
+    override fun getListProducts(productList: ArrayList<Product>, load: Boolean, current_page: Float) {
+        listProducts = productList
+        rv_product_sell_search.visibility = View.VISIBLE
+        rv_product_sell_search.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
+        rv_product_sell_search.layoutManager = LinearLayoutManager(this)
+        rv_product_sell_search.adapter = AdapterSellProduct(this, listProducts as ArrayList<Product>, this)
 
     }
 

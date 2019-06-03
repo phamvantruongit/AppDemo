@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:background="@color/white"
         android:layout_height="match_parent"
         tools:context=".view.activity.SearchProductActivity">
     <RelativeLayout android:layout_width="match_parent"
@@ -19,7 +20,7 @@
                 android:layout_centerVertical="true"
                 android:background="@color/edSearch"
                 android:layout_marginLeft="30dp"
-                android:id="@+id/edSearch"
+                android:id="@+id/edSearchs"
                 android:lines="1"
                 android:maxLines="1"
                 android:layout_marginRight="@dimen/_40dp"
@@ -34,32 +35,6 @@
                    android:id="@+id/iv_search_barcode"
                    android:src="@drawable/barcode"
                    android:layout_height="wrap_content"/>
-    </RelativeLayout>
-    <RelativeLayout
-            android:visibility="gone"
-            android:id="@+id/rlSearch"
-            android:background="@color/rl"
-            android:padding="@dimen/_8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
-                android:id="@+id/tvSearch"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:drawablePadding="@dimen/_5dp"
-                android:padding="@dimen/_5dp"
-                android:drawableRight="@drawable/iv_down"
-                android:text="Tat ca san pham"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <android.support.v7.widget.SwitchCompat
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_alignParentRight="true"
-                android:text="Chon nhieu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
     </RelativeLayout>
     <android.support.v7.widget.RecyclerView
             android:layout_marginTop="@dimen/_10dp"

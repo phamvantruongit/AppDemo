@@ -52,29 +52,11 @@ class SearchProductInteractor {
     }
 
 
-    fun getListCategory(listeners: OnFinishedListenerProduct, id_shop: Int){
-        apiClient.getCategorys(id_shop).enqueue(object : Callback<CategoryResponse>{
 
-            override fun onResponse(call: Call<CategoryResponse>, response: Response<CategoryResponse>) {
-                if(response.body()!!.code==200){
-                    listeners.onResultCategory(response.body()!!.listCategory)
-                }else{
-                    listeners.onResultFail(response.body()!!.message)
-                }
-            }
-
-            override fun onFailure(call: Call<CategoryResponse>, t: Throwable) {
-                listeners.onResultFail(t.message.toString())
-            }
-
-        })
-
-    }
 
 
     interface OnFinishedListenerProduct : OnFinishedListenerFail {
         fun onResultListProducts( listProduct: ArrayList<Product>)
-        fun onResultCategory(listCategory: ArrayList<Category>)
     }
 
 

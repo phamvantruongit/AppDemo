@@ -27,18 +27,13 @@ class SearchProductPresenter :
     }
 
 
-    fun getListCategory(id_shop: Int){
-        searchProductInteractor!!.getListCategory(this,id_shop = id_shop)
-    }
+
 
 
     override fun onResultListProductBarcode(listProduct: ArrayList<Product>) {
           viewSearchBarcode!!.getListSearchProduct(listProduct)
     }
 
-    override fun onResultCategory(listCategory: ArrayList<Category>) {
-        viewProductSearch!!.getListCategory(listCategory)
-    }
 
     fun searchProduct(id_shop:Int, barcode : String,  name: String){
          searchProductInteractor!!.getListSearchProduct(this,id_shop,barcode,name)

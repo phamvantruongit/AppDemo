@@ -6,11 +6,19 @@ import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 import team.android.pv.qlshop.view.views.ViewProducts
 
 class GetProductPresenter(var viewProduct: ViewProducts, val productInteractor: GetProductInteractor) :  GetProductInteractor.OnFinishedListenerProduct,
-    OnFinishedListeners {
+    OnFinishedListeners, GetProductInteractor.OnFinishedListenerSearchProduct {
+    override fun onResultListProducts(listProduct: ArrayList<Product>) {
+        viewProduct.getListProducts(listProduct)
+    }
+
     override fun showMessage(success: String) {
         viewProduct.showMessage(success)
     }
 
+
+    fun getListSearch(id_shop:Int, barcode : String, name: String){
+        productInteractor.getListSearchProduct(this,id_shop,barcode,name)
+    }
 
     fun getListCategoty(id_shop: Int ){
         productInteractor.getListNameCategory(this,id_shop )

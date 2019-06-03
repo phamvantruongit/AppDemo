@@ -29,6 +29,9 @@ import team.android.pv.qlshop.view.views.ViewProducts
 
 class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickItem, AdapterProduct.IOnClick,
     LoadMoreScroll.ILoadMoreScroll {
+    override fun getListProducts(productList: ArrayList<Product>) {
+
+    }
 
 
     private var page: Int = 0

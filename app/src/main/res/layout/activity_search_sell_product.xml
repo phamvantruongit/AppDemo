@@ -13,7 +13,7 @@
                    android:layout_centerVertical="true"
                    android:src="@drawable/btn_back"
                    android:layout_height="wrap_content"/>
-        <team.android.pv.qlshop.view.customView.ClearableEditText
+        <EditText
                 android:paddingLeft="@dimen/_10dp"
                 android:textSize="@dimen/_13sp"
                 android:hint="@string/search_product"
@@ -23,7 +23,6 @@
                 android:id="@+id/edSearch"
                 android:lines="1"
                 android:layout_width="match_parent"
-                android:imeOptions="actionSearch"
                 android:layout_height="@dimen/_40dp"/>
     </RelativeLayout>
     <RelativeLayout

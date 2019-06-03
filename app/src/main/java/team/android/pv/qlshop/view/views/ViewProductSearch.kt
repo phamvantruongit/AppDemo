@@ -5,5 +5,4 @@ import team.android.pv.qlshop.model.Product
 
 interface ViewProductSearch : ViewParents {
     fun getListSearchProduct(listProduct:List<Product>)
-    fun getListCategory(listCategory:ArrayList<Category>)
 }

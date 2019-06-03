@@ -9,6 +9,10 @@ interface ViewProducts :ViewParents {
         load: Boolean,
         current_page: Float
     )
+
+    fun getListProducts(
+        productList: ArrayList<Product>
+    )
     fun getListNameCategory(category: ArrayList<Category>)
     fun showError(error:String)
 }

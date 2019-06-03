@@ -6,10 +6,6 @@ import team.android.pv.qlshop.BuildConfig
 import okhttp3.OkHttpClient
 
 
-
-
-
-
 class ApiClient {
     companion object {
         val BASE_URL=BuildConfig.BASE_URL
@@ -29,7 +25,8 @@ class ApiClient {
 
             val httpClient = OkHttpClient.Builder()
 
-            httpClient.addInterceptor { chain ->
+            httpClient
+                .addInterceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder()
                     .build()

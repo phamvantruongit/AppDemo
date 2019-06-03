@@ -11,6 +11,7 @@ import team.android.pv.qlshop.model.response.CategoryResponse
 import team.android.pv.qlshop.model.response.ProductResponse
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListenerFail
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
+import team.android.pv.qlshop.presenter.searchproduct.SearchProductInteractor
 
 class GetProductInteractor {
 
@@ -91,6 +92,25 @@ class GetProductInteractor {
     }
 
 
+    fun getListSearchProduct(listener  : OnFinishedListenerSearchProduct, id_shop:Int, barcode : String, name: String){
+
+        apiClient.searchProduct(id_shop,barcode,name).enqueue(object :Callback<ProductResponse>{
+            override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
+                if(response.body()!!.code==200){
+                    listener.onResultListProducts(response.body()!!.listProduct)
+                }else{
+                    listener.onResultFail(response.body()!!.message)
+                }
+            }
+
+            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                listener.onResultFail(t.message.toString())
+            }
+        })
+
+    }
+
+
     interface OnFinishedListenerProduct : OnFinishedListenerFail {
         fun onResultListProducts(
             listProduct: ArrayList<Product>,
@@ -98,6 +118,11 @@ class GetProductInteractor {
             current_page: Float
         )
         fun onResultSuccess(listCategory: ArrayList<Category>)
+    }
+
+
+    interface OnFinishedListenerSearchProduct : OnFinishedListenerFail {
+        fun onResultListProducts( listProduct: ArrayList<Product>)
     }
 
 }
