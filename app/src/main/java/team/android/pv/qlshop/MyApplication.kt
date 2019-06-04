@@ -20,13 +20,10 @@ class MyApplication : Application() {
         SharedPreferencesManager.getInstanceSharedPreferencesManager(this)
 
         Realm.init(this)
-        val config = RealmConfiguration.Builder().build()
+        val config = RealmConfiguration.Builder().
+            schemaVersion(2).build()
         Realm.setDefaultConfiguration(config)
-
-
         realmMyApplication = Realm.getDefaultInstance()
-
-
         realmMyApplication.beginTransaction()
         realmMyApplication.commitTransaction()
 

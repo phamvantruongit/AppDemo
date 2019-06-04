@@ -24,7 +24,6 @@ class GetProductInteractor {
                         var  total_pages:Float=response.body()!!.total_pages
                         var  current_page:Float=response.body()!!.current_page
                         var  isLoad:Boolean= current_page < total_pages
-                        Log.d("Load",isLoad.toString() + total_pages.toString() + current_page.toString())
                         var listProduct = ArrayList<Product>()
                         if(current_page==1f){
                             listProduct = response.body()!!.listProduct

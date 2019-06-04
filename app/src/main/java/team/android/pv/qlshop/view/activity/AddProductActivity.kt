@@ -124,8 +124,6 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
                 edDesciptionProduct.setText(products!!.description)
             }
             edBarcode.setText(products!!.barcode)
-            edBarcode.setEnabled(false)
-            imgBarcodes.visibility=View.GONE
             edPrice_in.setText(products!!.price_in.toString())
             edPrice_out.setText(products!!.price_out.toString())
             edNote.setText(products!!.note)

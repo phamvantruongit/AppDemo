@@ -3,6 +3,7 @@ package team.android.pv.qlshop.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.vision.barcode.Barcode
@@ -30,11 +31,6 @@ class SellProductActivity :BaseActivity(), ViewSearchBarcode, AdapterProductLoca
         searchProductPresenter = SearchProductPresenter( SearchProductInteractor() ,this)
 
 
-
-
-
-
-
         tvTitle.text=this.resources.getText(R.string.title_sell)
         imgBarcode.visibility=View.VISIBLE
         imgBarcode.setOnClickListener{
@@ -48,6 +44,10 @@ class SellProductActivity :BaseActivity(), ViewSearchBarcode, AdapterProductLoca
             startActivityForResult(intent,200)
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         getDataLocal()
     }
 

@@ -50,14 +50,13 @@ class AddProductInteractor {
     fun editProduct(onFinishedListener: OnFinishedListeners, product: Product) {
 
         var param = HashMap<String, String>()
-        param.put("uid",product.id.toString())
+        param.put("id",product.id.toString())
         param.put("name", product.name)
        // param.put("desciption", product.description)
         param.put("barcode", product.barcode)
         param.put("amount", product.amount.toString())
         param.put("price_in", product.price_in.toString())
         param.put("price_out", product.price_out.toString())
-        param.put("note", product.note)
         param.put("id_category", product.id_category.toString())
         param.put("category", product.category)
         param.put("brand", product.brand)

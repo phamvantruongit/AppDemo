@@ -125,14 +125,18 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     }
 
     private fun saveProduct(products: Product){
-        MyApplication.realmMyApplication.executeTransaction {
-            var product=it.createObject(team.android.pv.qlshop.model.data.Product::class.java,products.id)
-            product.name= products.name
-            product.amount= products.count
-            product.amounts= products.amount
-            product.price_out= products.price_out
 
+        var product=team.android.pv.qlshop.model.data.Product()
+        product.uid=products.id
+        product.name= products.name
+        product.amount= products.count
+        product.amounts= products.amount
+        product.price_out= products.price_out
+
+        MyApplication.realmMyApplication.executeTransaction {
+            MyApplication.realmMyApplication.insertOrUpdate(product)
         }
+
 
     }
 
