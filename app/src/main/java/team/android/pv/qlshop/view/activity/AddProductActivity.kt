@@ -64,7 +64,6 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             var amount=edAmount.text.toString().toInt()
             var price_in=edPrice_in.text.toString().toLong()
             var price_out=edPrice_out.text.toString().toInt().toLong()
-            var price_outs=edPrice_outs.text.toString().toInt().toLong()
 
             if(TextUtils.isEmpty(name)){
 
@@ -86,9 +85,6 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
            }
 
-           if(price_outs==0L || edPrice_outs.text.toString().length<=0 ){
-
-           }
 
             product.name=name
             if(barcode!=""){
@@ -102,8 +98,6 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             product.amount=edAmount.text.toString().toInt()
             product.price_in= edPrice_in.text.toString().toLong()
             product.price_out= edPrice_out.text.toString().toInt().toLong()
-            product.price_outs= edPrice_outs.text.toString().toInt().toLong()
-            product.note=edNote.text.toString()
             product.unit=edNote.text.toString()
             product.id_shop=userSave!!.id_shop
             product.id_category=id_category
@@ -134,7 +128,6 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             imgBarcodes.visibility=View.GONE
             edPrice_in.setText(products!!.price_in.toString())
             edPrice_out.setText(products!!.price_out.toString())
-            edPrice_outs.setText(products!!.price_outs.toString())
             edNote.setText(products!!.note)
             edAmount.setText(products!!.amount.toString())
             if(!products!!.category.equals("Null")) {

@@ -8,9 +8,8 @@ import team.android.pv.qlshop.api.ApiInterface
 import team.android.pv.qlshop.model.data.SharedPreferencesManager
 
 class MyApplication : Application() {
-
    companion object {
-       var apiClient= ApiClient.getInstance()!!.create(ApiInterface::class.java)
+       var  apiClient= ApiClient.getClient()!!.create(ApiInterface::class.java)
        lateinit var realmMyApplication:Realm
    }
 
@@ -27,8 +26,15 @@ class MyApplication : Application() {
 
         realmMyApplication = Realm.getDefaultInstance()
 
+
         realmMyApplication.beginTransaction()
         realmMyApplication.commitTransaction()
+
+
+
+
+
+
 
 
 

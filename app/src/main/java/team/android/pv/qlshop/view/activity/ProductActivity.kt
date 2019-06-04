@@ -12,6 +12,7 @@ import android.view.*
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_products.*
+import kotlinx.android.synthetic.main.progressbar.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.tvTitle
@@ -42,6 +43,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
     private lateinit var getProductPresenter: GetProductPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        progress_bar.visibility=View.VISIBLE
         getProductPresenter = GetProductPresenter(this, GetProductInteractor())
         tvTitle.text = this.resources.getText(R.string.title_products)
         imgRight.visibility = View.VISIBLE

@@ -36,11 +36,11 @@ class MemmbersActivity : BaseActivitys(), ViewUsers, AdapterMemmbers.IOnClickIte
     }
 
     override fun showProgress() {
-        progress_bar.visibility = View.VISIBLE
+        //progress_bar.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        progress_bar.visibility = View.GONE
+        //progress_bar.visibility = View.GONE
     }
 
     override fun showMessage(message: String) {

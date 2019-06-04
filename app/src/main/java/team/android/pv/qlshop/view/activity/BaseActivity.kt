@@ -88,6 +88,7 @@ abstract class BaseActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
                 R.anim.anim_slide_out_left
             )
             finish()
+            finish()
         }
         builder.setNegativeButton(
             "No"

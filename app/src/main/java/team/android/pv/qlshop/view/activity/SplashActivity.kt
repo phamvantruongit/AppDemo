@@ -9,7 +9,8 @@ class SplashActivity : BaseActivitys() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+//        startActivity(Intent(this,HomeActivity::class.java))
+//        return
         setContentView(R.layout.activity_splash)
         if( userSave!=null && userSave!!.email!=null){
             if(SharedPreferencesManager.checkLogin()){
