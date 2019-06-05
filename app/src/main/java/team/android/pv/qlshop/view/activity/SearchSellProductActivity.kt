@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
+import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_search_sell_product.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
 import team.android.pv.qlshop.MyApplication
@@ -29,7 +30,9 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     private var page = 0
     var rv_category: RecyclerView? = null
     var dialog: Dialog? = null
-    var is_Checked: Boolean = false
+    var iv_check: ImageView?=null
+    var isLoadAll : Boolean ?=false
+
     private var listProducts: List<Product>? = null
     private var listProductSaveLocal: List<Product>? = null
     private lateinit var getProductPresenter: GetProductPresenter
@@ -67,6 +70,8 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
         dialog = Dialog(this)
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog!!.setContentView(R.layout.show_dialog_category)
+        iv_check=dialog!!.findViewById(R.id.iv_check)
+
 
         tvSearch.setOnClickListener {
 
@@ -83,6 +88,8 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
                 dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             }
             dialog!!.tvLoadAll.setOnClickListener {
+                isLoadAll=true
+                iv_check!!.visibility=View.VISIBLE
                 getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
                 dialog!!.dismiss()
             }
@@ -143,11 +150,12 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     override fun getListNameCategory(listCategory: ArrayList<Category>) {
         rv_category!!.layoutManager = LinearLayoutManager(this)
         rv_category!!.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
-        rv_category!!.adapter = AdapterCategorys(listCategory, this)
+        rv_category!!.adapter = AdapterCategorys(listCategory, this,isLoadAll)
     }
 
     override fun onClickItem(id_category: Int, selected_position: Int) {
         dialog!!.dismiss()
+        iv_check!!.visibility=View.GONE
         getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
     }
 

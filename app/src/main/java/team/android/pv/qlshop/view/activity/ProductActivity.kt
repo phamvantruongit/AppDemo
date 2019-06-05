@@ -7,12 +7,10 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.*
-import android.widget.TextView
+import android.widget.ImageView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_products.*
-import kotlinx.android.synthetic.main.progressbar.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.tvTitle
@@ -34,12 +32,13 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
 
     }
 
-
+    var isLoadAll : Boolean ?=false
     private var page: Int = 0
     var id_category = 0
     private var isLoad: Boolean = false
     var dialog: Dialog? = null
     var rv_category: RecyclerView? = null
+    var iv_check:ImageView?=null
     private lateinit var getProductPresenter: GetProductPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,15 +47,17 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         tvTitle.text = this.resources.getText(R.string.title_products)
         imgRight.visibility = View.VISIBLE
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.menu_right))
+
+        dialog = Dialog(this)
+        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog!!.setContentView(R.layout.show_dialog_category)
+        iv_check=dialog!!.findViewById(R.id.iv_check)
+
         imgRight.setOnClickListener {
 
             getProductPresenter.getListCategoty(userSave!!.id_shop)
 
-            dialog = Dialog(this)
-            dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog!!.setContentView(R.layout.show_dialog_category)
             rv_category = dialog!!.findViewById(R.id.rv_categorys)
-
             dialog!!.show()
             if (dialog!!.window != null) {
                 dialog!!.window!!.setGravity(Gravity.BOTTOM)
@@ -66,7 +67,10 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
                 )
                 dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             }
+
             dialog!!.tvLoadAll.setOnClickListener {
+                isLoadAll=true
+                iv_check!!.visibility=View.VISIBLE
                 getProductPresenter.getListProducts(userSave!!.id_shop, 0, this.page)
                 dialog!!.dismiss()
             }
@@ -127,13 +131,15 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
     override fun getListNameCategory(category: ArrayList<Category>) {
         rv_category!!.layoutManager = LinearLayoutManager(this)
         rv_category!!.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
-        rv_category!!.adapter = AdapterCategorys(category, this)
+        rv_category!!.adapter = AdapterCategorys(category, this, isLoadAll)
 
     }
 
     override fun onClickItem(id_category: Int, selected_position: Int) {
         dialog!!.dismiss()
-
+        if(dialog!=null){
+            iv_check!!.visibility=View.GONE
+        }
         this.id_category = id_category
         getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
 

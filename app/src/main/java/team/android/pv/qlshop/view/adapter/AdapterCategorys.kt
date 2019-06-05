@@ -1,16 +1,18 @@
 package team.android.pv.qlshop.view.adapter
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.item_header.view.*
 import kotlinx.android.synthetic.main.layout_item_categorys_name.view.*
 import team.android.pv.qlshop.model.Category
 
 
-class AdapterCategorys(var listCategory: List<Category>, var iOnClickItem: IOnClickItem) :
+class AdapterCategorys(
+    var listCategory: List<Category>,
+    var iOnClickItem: IOnClickItem,
+    var loadAll: Boolean?
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
@@ -30,6 +32,10 @@ class AdapterCategorys(var listCategory: List<Category>, var iOnClickItem: IOnCl
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+
+        if(loadAll==true){
+            viewHolder.itemView.ivSelects.visibility = View.GONE
+        }
 
         if (selected_position == position) {
             viewHolder.itemView.ivSelects.visibility = View.VISIBLE

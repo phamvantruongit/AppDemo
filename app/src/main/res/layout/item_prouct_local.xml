@@ -31,6 +31,4 @@
                 android:text="1"
                 android:id="@+id/edAmount"
                 android:layout_height="40dp"/>
-
-
 </RelativeLayout>
