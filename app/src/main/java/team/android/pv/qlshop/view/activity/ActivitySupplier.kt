@@ -5,19 +5,26 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import kotlinx.android.synthetic.main.activity_search_sell_product.*
+import kotlinx.android.synthetic.main.activity_supplier.*
 import kotlinx.android.synthetic.main.show_dialog_nhacc.*
 import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Supplier
 import team.android.pv.qlshop.presenter.supplier.SupplierInteractor
 import team.android.pv.qlshop.presenter.supplier.SupplierPresenter
+import team.android.pv.qlshop.view.DividerItemDecoration
+import team.android.pv.qlshop.view.adapter.AdapterSupplier
 import team.android.pv.qlshop.view.views.ViewParents
+import team.android.pv.qlshop.view.views.ViewSupplier
 
-class ActivitySupplier : AppCompatActivity(), ViewParents {
+class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier {
+
 
     private lateinit var supplierPresenter: SupplierPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +32,7 @@ class ActivitySupplier : AppCompatActivity(), ViewParents {
         setContentView(R.layout.activity_supplier)
 
         supplierPresenter= SupplierPresenter(this, SupplierInteractor())
+        supplierPresenter.getListSupplier(userSave!!.id_shop)
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
 
         imgRight.setOnClickListener {
@@ -57,7 +65,7 @@ class ActivitySupplier : AppCompatActivity(), ViewParents {
                 supplier.email=email
                 supplier.phone=phone.toInt()
                 supplier.description=description
-                //supplierPresenter.addSupplier(supplier)
+                supplierPresenter.addSupplier(supplier)
 
             }
 
@@ -67,6 +75,12 @@ class ActivitySupplier : AppCompatActivity(), ViewParents {
 
             }
         }
+    }
+
+    override fun getListSupplier(list: ArrayList<Supplier>) {
+          rv_supplier.layoutManager= LinearLayoutManager(this)
+          rv_supplier.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
+          rv_supplier.adapter=AdapterSupplier(list)
     }
 
     override fun showProgress() {

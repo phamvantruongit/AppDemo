@@ -4,8 +4,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import team.android.pv.qlshop.MyApplication
+import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.model.Supplier
 import team.android.pv.qlshop.model.response.BaseResponse
+import team.android.pv.qlshop.model.response.SupplierResponse
+import team.android.pv.qlshop.presenter.Inteface.OnFinishedListenerFail
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 
 class SupplierInteractor {
@@ -32,6 +35,27 @@ class SupplierInteractor {
                     listeners.onResultFail(t.message.toString())
                 }
             })
+    }
+
+
+    fun getListSupplier(id_shop:Int,listeners:OnFinishedListenerSupplier){
+        MyApplication.apiClient.getSupplier(id_shop).enqueue(object :Callback<SupplierResponse>{
+            override fun onResponse(call: Call<SupplierResponse>, response: Response<SupplierResponse>) {
+                 if(response.body()!!.code==200){
+                     listeners.onResultListSupplier(response.body()!!.listSupplier)
+                 }else{
+                     listeners.onResultFail(response.body()!!.message)
+                 }
+            }
+
+            override fun onFailure(call: Call<SupplierResponse>, t: Throwable) {
+                listeners.onResultFail(t.message.toString())
+            }
+        })
+    }
+
+    interface OnFinishedListenerSupplier : OnFinishedListenerFail {
+        fun onResultListSupplier( list: ArrayList<Supplier>)
     }
 
 
