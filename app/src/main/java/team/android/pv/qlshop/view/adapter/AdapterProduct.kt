@@ -24,6 +24,14 @@ class AdapterProduct(var productList: ArrayList<Product>, var iOnClick :IOnClick
 
     override fun getItemCount() = productList.size
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         viewHolder.itemView.tvNameProduct.text=productList.get(position).name
         viewHolder.itemView.tvAmount.text="So luong : ${productList.get(position).amount}"

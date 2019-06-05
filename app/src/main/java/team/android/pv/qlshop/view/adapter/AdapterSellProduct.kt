@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.item_products.view.tvCategory
 import kotlinx.android.synthetic.main.item_products.view.tvIDProduct
 import kotlinx.android.synthetic.main.item_products.view.tvNameProduct
 import kotlinx.android.synthetic.main.item_products.view.tvPrice_In
+import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Product
 
@@ -24,6 +25,14 @@ class AdapterSellProduct(var context: Context, var productList: ArrayList<Produc
 
     override fun getItemCount() = productList.size
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         viewHolder.itemView.tvNameProduct.text = productList.get(position).name
         viewHolder.itemView.tvAmount.text = "So luong : ${productList.get(position).amount}"
@@ -31,6 +40,13 @@ class AdapterSellProduct(var context: Context, var productList: ArrayList<Produc
             viewHolder.itemView.tvCategory.text = "Danh muc : ${productList.get(position).category}"
         } else {
             viewHolder.itemView.tvCategory.text = ""
+        }
+
+        var list = MyApplication.realmMyApplication.where(team.android.pv.qlshop.model.data.Product::class.java).findAll()
+        for(i in 0..list.size-1){
+            if(productList.get(position).id==list.get(i)!!.uid){
+                viewHolder.itemView.cb_selected.text=list.get(i)!!.amount.toString()
+            }
         }
 
         viewHolder.itemView.tvPrice_In.text = "Gia ban : ${productList.get(position).price_in}"

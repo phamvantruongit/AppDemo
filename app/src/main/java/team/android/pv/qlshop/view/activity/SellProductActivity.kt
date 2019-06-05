@@ -15,6 +15,7 @@ import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.presenter.searchproduct.SearchProductInteractor
 import team.android.pv.qlshop.presenter.searchproduct.SearchProductPresenter
+import team.android.pv.qlshop.view.DividerItemDecoration
 import team.android.pv.qlshop.view.adapter.AdapterProductLocal
 import team.android.pv.qlshop.view.views.ViewSearchBarcode
 
@@ -55,6 +56,7 @@ class SellProductActivity :BaseActivity(), ViewSearchBarcode, AdapterProductLoca
         var list = MyApplication.realmMyApplication.where(team.android.pv.qlshop.model.data.Product::class.java).findAll()
         rv_product_local.layoutManager = LinearLayoutManager(this)
         rv_product_local.adapter=AdapterProductLocal(this,list,this)
+        rv_product_local.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
     }
 
     override fun iOnClick(amount: Int, id: Int) {
