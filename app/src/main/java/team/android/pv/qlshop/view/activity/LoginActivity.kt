@@ -3,8 +3,12 @@ package team.android.pv.qlshop.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
+import android.widget.CompoundButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_register.*
 import team.android.pv.qlshop.MyApplication.Companion.realmMyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
@@ -38,6 +42,19 @@ class LoginActivity : BaseActivitys(), ViewLogin {
             edEmail.setText(userSave!!.email)
 
         }
+
+
+        ckpass.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
+            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+                if(isChecked){
+                    edPass.transformationMethod= HideReturnsTransformationMethod.getInstance()
+                }else{
+                    edPass.transformationMethod= PasswordTransformationMethod.getInstance()
+
+                }
+            }
+
+        })
 
 
 

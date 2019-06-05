@@ -12,16 +12,23 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.ActivitySupplier"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+                  android:theme="@style/AppThemeNoActionBar"
+        >
+        </activity>
         <activity android:name=".view.activity.SearchActivity">
         </activity>
         <activity
                 android:name=".view.activity.SplashActivity"
                 android:theme="@style/AppThemeNoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN"/> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".view.activity.MainActivity">
         </activity>
@@ -42,38 +49,34 @@
         <activity
                 android:name=".view.activity.HomeActivity"
                 android:theme="@style/AppThemeNoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
-             <!--<intent-filter> -->
-             <!--<action android:name="android.intent.action.MAIN"/> -->
-
-
-             <!--<category android:name="android.intent.category.LAUNCHER"/> -->
-             <!--</intent-filter> -->
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name=".view.activity.SellProductActivity"
-                android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
-                android:theme="@style/AppThemeNoActionBar"/>
+                android:theme="@style/AppThemeNoActionBar"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
         <activity
                 android:name=".view.activity.AddProductActivity"
                 android:theme="@style/AppThemeNoActionBar">
         </activity>
         <activity
                 android:name=".view.activity.SearchProductActivity"
-                android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
-                android:theme="@style/AppThemeNoActionBar">
+                android:theme="@style/AppThemeNoActionBar"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
         </activity>
         <activity
                 android:name=".view.activity.AddCategoryActivity"
                 android:theme="@style/AppThemeNoActionBar">
         </activity>
-
         <activity
                 android:name=".view.activity.SearchSellProductActivity"
-                android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
-                android:theme="@style/AppThemeNoActionBar">
+                android:theme="@style/AppThemeNoActionBar"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
         </activity>
-
         <activity android:name=".view.activity.CustomerActivity">
         </activity>
         <activity android:name=".view.activity.UserActivity">

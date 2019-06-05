@@ -6,6 +6,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="gray">#cccccc</color>
+    <color name="edt">#1F1E1E</color>
     <color name="black">#000000</color>
     <color name="rl">#f2f4f9</color>
     <color name="edSearch">#f6f7fb</color>

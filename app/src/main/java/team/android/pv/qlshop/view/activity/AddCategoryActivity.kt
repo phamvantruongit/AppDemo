@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.View
 import android.view.Window
@@ -42,7 +43,7 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
 
 
-        rv_category.layoutManager = LinearLayoutManager(this)
+        rv_category.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         rv_category.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
 
 

@@ -55,6 +55,14 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             startActivityForResult(intent, 102)
         }
 
+
+        imgSupplier.setOnClickListener {
+
+            var intent=Intent(this,ActivitySupplier::class.java)
+            startActivity(intent)
+
+        }
+
        imgRight.setOnClickListener{
 
             var product = Product()
@@ -98,7 +106,6 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             product.amount=edAmount.text.toString().toInt()
             product.price_in= edPrice_in.text.toString().toLong()
             product.price_out= edPrice_out.text.toString().toInt().toLong()
-            product.unit=edNote.text.toString()
             product.id_shop=userSave!!.id_shop
             product.id_category=id_category
 
@@ -126,7 +133,6 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             edBarcode.setText(products!!.barcode)
             edPrice_in.setText(products!!.price_in.toString())
             edPrice_out.setText(products!!.price_out.toString())
-            edNote.setText(products!!.note)
             edAmount.setText(products!!.amount.toString())
             if(!products!!.category.equals("Null")) {
                 edCategory.setText(products!!.category)

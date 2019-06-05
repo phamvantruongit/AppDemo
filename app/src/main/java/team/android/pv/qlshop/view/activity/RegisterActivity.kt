@@ -2,6 +2,10 @@ package team.android.pv.qlshop.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
+import android.widget.CompoundButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
@@ -28,6 +32,19 @@ class RegisterActivity : BaseActivitys() ,ViewRegister {
             ed_Email.setText(user.email)
             edNameShop.setText(user.name_shop)
         }
+
+
+        ck_pass.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
+            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+                if(isChecked){
+                    ed_Pass.transformationMethod=HideReturnsTransformationMethod.getInstance()
+                }else{
+                    ed_Pass.transformationMethod=PasswordTransformationMethod.getInstance()
+
+                }
+            }
+
+        })
 
 
         btnRegister.setOnClickListener{

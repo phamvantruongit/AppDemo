@@ -94,7 +94,8 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         }
 
         if(position==1){
-
+            var intent=Intent(this,ActivitySupplier::class.java)
+            startActivity(intent)
         }
 
         if (position == 2) {

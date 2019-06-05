@@ -31,6 +31,11 @@ interface ApiInterface {
     @POST("add/brand.php")
     fun  addBrand (@FieldMap user:Map<String,String>) :Call<BaseResponse>
 
+
+    @FormUrlEncoded
+    @POST("add/supplier.php")
+    fun  addSupplier (@FieldMap user:Map<String,String>) :Call<BaseResponse>
+
     @FormUrlEncoded
     @POST("add/product.php")
     fun  addProduct (@FieldMap user:Map<String,String>) :Call<BaseResponse>
