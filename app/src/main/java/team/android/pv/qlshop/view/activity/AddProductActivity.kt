@@ -69,28 +69,46 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
             var name=edNameProduct.text.toString()
             var barcode=edBarcode.text.toString()
-            var amount=edAmount.text.toString().toInt()
-            var price_in=edPrice_in.text.toString().toLong()
-            var price_out=edPrice_out.text.toString().toInt().toLong()
+            var amount=edAmount.text.toString()
+            var price_in=edPrice_in.text.toString()
+            var price_out=edPrice_out.text.toString()
 
             if(TextUtils.isEmpty(name)){
-
+                edNameProduct.error=getString(R.string.enter_info)
+                return@setOnClickListener
             }
 
+           if(TextUtils.isEmpty(edAmount.text.toString())){
+               edAmount.error=getString(R.string.enter_info)
+               return@setOnClickListener
+           }
 
-
-
-           if(amount==0 || edAmount.text.toString().length<=0 ){
-
+           if(amount.toInt()<=0 ){
+               edAmount.error=getString(R.string.amout)
+               return@setOnClickListener
 
            }
 
-           if(price_in==0L || edPrice_in.text.toString().length<=0 ){
-
+           if(TextUtils.isEmpty(edPrice_in.text.toString())){
+               edPrice_in.error=getString(R.string.enter_info)
+               return@setOnClickListener
            }
 
-           if(price_out==0L || edPrice_out.text.toString().length<=0 ){
+           if(price_in.toLong()<=0L){
+               edPrice_in.error=getString(R.string.price)
+               return@setOnClickListener
+           }
 
+           if(TextUtils.isEmpty(edPrice_out.text.toString())){
+               edPrice_out.error=getString(R.string.enter_info)
+               return@setOnClickListener
+           }
+
+
+
+           if(price_out.toLong()<=0L ){
+             edPrice_out.error=getString(R.string.prices)
+             return@setOnClickListener
            }
 
 
@@ -103,9 +121,9 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             product.description=edDesciptionProduct.text.toString()
             product.category=edCategory.text.toString()
             product.brand=edBrand.text.toString()
-            product.amount=edAmount.text.toString().toInt()
-            product.price_in= edPrice_in.text.toString().toLong()
-            product.price_out= edPrice_out.text.toString().toInt().toLong()
+            product.amount=amount.toInt()
+            product.price_in= price_in.toLong()
+            product.price_out=price_out.toLong()
             product.id_shop=userSave!!.id_shop
             product.id_category=id_category
 

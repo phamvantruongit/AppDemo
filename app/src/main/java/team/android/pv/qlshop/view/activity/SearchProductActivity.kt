@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import com.google.android.gms.vision.barcode.Barcode
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import kotlinx.android.synthetic.main.activity_search_product.*
@@ -47,8 +48,6 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (edSearchs.text.toString().length > 0) {
                     searchProduct(edSearchs.text.toString())
-                }else{
-                   listProduct.clear()
                 }
             }
 
@@ -75,6 +74,7 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
     }
 
     override fun getListSearchProduct(listProduct: List<Product>) {
+        rv_product_search.visibility=View.VISIBLE
         this.listProduct= listProduct as ArrayList<Product>
         rv_product_search.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
         rv_product_search.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
@@ -94,7 +94,7 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
     }
 
     override fun showMessage(message: String) {
-
+          rv_product_search.visibility=View.GONE
     }
 
 

@@ -2,7 +2,6 @@ package team.android.pv.qlshop.presenter.supplier
 
 import team.android.pv.qlshop.model.Supplier
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
-import team.android.pv.qlshop.view.views.ViewParents
 import team.android.pv.qlshop.view.views.ViewSupplier
 
 class SupplierPresenter(var viewParents: ViewSupplier ,var supplierInteractor: SupplierInteractor) :OnFinishedListeners,
@@ -13,13 +12,13 @@ class SupplierPresenter(var viewParents: ViewSupplier ,var supplierInteractor: S
     }
 
 
-    fun getListSupplier(id_shop:Int){
-        supplierInteractor.getListSupplier(id_shop,this)
+    fun getListSupplier(id_shop: Int, checkCustomer: Boolean){
+        supplierInteractor.getListSupplier(id_shop,this,checkCustomer)
     }
 
-    fun addSupplier(supplier: Supplier){
+    fun addSupplier(supplier: Supplier, checkCustomer: Boolean){
         viewParents.showProgress()
-        supplierInteractor.addSupplier(this,supplier)
+        supplierInteractor.addSupplier(this,supplier ,checkCustomer)
     }
 
     override fun showMessage(success: String) {

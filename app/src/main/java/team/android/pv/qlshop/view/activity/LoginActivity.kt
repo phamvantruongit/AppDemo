@@ -68,9 +68,11 @@ class LoginActivity : BaseActivitys(), ViewLogin {
             val email = edEmail.text.toString()
             val password = edPass.text.toString()
             if (TextUtils.isEmpty(email)) {
+                edEmail.error=getString(R.string.enter_email)
                 return@setOnClickListener
             }
             if (TextUtils.isEmpty(password)) {
+                edPass.error=getString(R.string.enter_password)
                 return@setOnClickListener
             }
             var user = User()

@@ -51,6 +51,6 @@ class SearchProductPresenter :
 
     override fun onResultFail(strError: String) {
 //        viewProductSearch!!.hideProgress()
-//        viewProductSearch!!.showMessage(strError)
+        viewProductSearch!!.showMessage(strError)
     }
 }

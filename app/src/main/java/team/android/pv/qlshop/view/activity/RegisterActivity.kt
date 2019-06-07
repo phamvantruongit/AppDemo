@@ -47,6 +47,10 @@ class RegisterActivity : BaseActivitys() ,ViewRegister {
         })
 
 
+        if(check_admin==0){
+            edNameShop.setText(userSave!!.name_shop)
+        }
+
         btnRegister.setOnClickListener{
 
             var email =ed_Email.text.toString()
@@ -54,6 +58,32 @@ class RegisterActivity : BaseActivitys() ,ViewRegister {
             var name_shop=edNameShop.text.toString()
             var name=edName.text.toString()
             var phone=edPhone.text.toString()
+
+
+
+            if(name_shop==""){
+                edNameShop.error=getString(R.string.enter_info)
+                return@setOnClickListener
+            }
+
+
+            if(name==""){
+                edName.error=getString(R.string.enter_info)
+                return@setOnClickListener
+            }
+
+
+
+
+            if(phone==""){
+                edPhone.error=getString(R.string.enter_info)
+                return@setOnClickListener
+            }
+
+            if(password==""){
+                ed_Pass.error=getString(R.string.enter_info)
+                return@setOnClickListener
+            }
 
             var user:User?=User()
             user!!.email=email

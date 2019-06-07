@@ -89,7 +89,8 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
 
 
         if (position == 0) {
-            intent = Intent(this@MoreActivity, CustomerActivity::class.java)
+            var intent=Intent(this,ActivitySupplier::class.java)
+            intent.putExtra("checkCustomer",true)
             startActivity(intent)
         }
 
