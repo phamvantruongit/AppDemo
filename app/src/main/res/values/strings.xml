@@ -34,4 +34,5 @@
     <string name="price"><![CDATA[Price product >0]]></string>
     <string name="prices"><![CDATA[Price product >0]]></string>
     <string name="name">Ten KH</string>
+    <string name="edit_info">Sua thong tin</string>
 </resources>

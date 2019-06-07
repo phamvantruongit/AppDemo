@@ -37,8 +37,18 @@ interface ApiInterface {
     fun  addSupplier (@FieldMap user:Map<String,String>) :Call<BaseResponse>
 
     @FormUrlEncoded
-    @POST("add/supplier.php")
+    @POST("add/customer.php")
     fun  addCustomer (@FieldMap user:Map<String,String>) :Call<BaseResponse>
+
+
+
+    @FormUrlEncoded
+    @POST("edit/supplier.php")
+    fun  editSupplier (@FieldMap user:Map<String,String>) :Call<BaseResponse>
+
+    @FormUrlEncoded
+    @POST("edit/customer.php")
+    fun  editCustomer (@FieldMap user:Map<String,String>) :Call<BaseResponse>
 
     @FormUrlEncoded
     @POST("add/product.php")
@@ -77,6 +87,14 @@ interface ApiInterface {
 
     @GET("get/customer.php")
     fun getCustomer(@Query("id_shop") id_shop:Int) :Call<SupplierResponse>
+
+
+
+    @DELETE("delete/customer.php")
+    fun deleteCustomer(@Query("id_shop") id_shop: Int,@Query("id") id: Int) : Call<BaseResponse>
+
+    @DELETE("delete/supplier.php")
+    fun deleteSupplier(@Query("id_shop") id_shop: Int,@Query("id") id: Int) : Call<BaseResponse>
 
 
 

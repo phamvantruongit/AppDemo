@@ -20,20 +20,28 @@ import team.android.pv.qlshop.view.adapter.AdapterSupplier
 import team.android.pv.qlshop.view.views.ViewParents
 import team.android.pv.qlshop.view.views.ViewSupplier
 
-class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier {
+class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupplier.IOnCLick {
 
 
     private lateinit var supplierPresenter: SupplierPresenter
+    private var checkCustomer: Boolean? = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_supplier)
 
-        var checkCustomer: Boolean = intent.getBooleanExtra("checkCustomer", false)
+        checkCustomer = intent.getBooleanExtra("checkCustomer", false)
         supplierPresenter = SupplierPresenter(this, SupplierInteractor())
-        supplierPresenter.getListSupplier(userSave!!.id_shop,checkCustomer)
+        supplierPresenter.getListSupplier(userSave!!.id_shop, checkCustomer!!)
+
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
 
+        showDialogApp(null)
+
+
+    }
+
+    private fun showDialogApp(supplier: Supplier?) {
         imgRight.setOnClickListener {
 
             var dialog = Dialog(this)
@@ -51,7 +59,16 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier {
                 dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             }
 
-            if (checkCustomer) {
+            if (supplier != null) {
+                dialog.edName.setText(supplier.name)
+                dialog.edAddress.setText(supplier.address)
+                dialog.edEmail.setText(supplier.email)
+                dialog.edPhone.setText(supplier.phone)
+                dialog.edDesciption.setText(supplier.description)
+                dialog.btnAddSupplier.setText(getString(R.string.edit_info))
+            }
+
+            if (checkCustomer as Boolean) {
                 dialog.tvNameCustomer.setText("Ten KH")
             }
 
@@ -76,16 +93,20 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier {
                     dialog.edPhone.error = getString(R.string.enter_info)
                     return@setOnClickListener
                 }
-                var supplier = Supplier()
-                supplier.name = name
-                supplier.address = address
-                supplier.email = email
-                supplier.phone = phone.toInt()
-                supplier.description = description
+                var suppliers = Supplier()
+                suppliers.name = name
+                suppliers.address = address
+                suppliers.email = email
+                suppliers.phone = phone.toInt()
+                suppliers.description = description
 
+                if (supplier != null) {
+                    suppliers.id = supplier.id
+                    supplierPresenter.editSupplier(suppliers, checkCustomer!!)
+                }
+                 else
+                    supplierPresenter.addSupplier(suppliers, checkCustomer!!)
 
-
-                supplierPresenter.addSupplier(supplier,checkCustomer)
 
 
             }
@@ -101,7 +122,15 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier {
     override fun getListSupplier(list: ArrayList<Supplier>) {
         rv_supplier.layoutManager = LinearLayoutManager(this)
         rv_supplier.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
-        rv_supplier.adapter = AdapterSupplier(list)
+        rv_supplier.adapter = AdapterSupplier(list, this)
+    }
+
+    override fun delete(id: Int) {
+        checkCustomer?.let { supplierPresenter.deleteInfo(userSave!!.id_shop,id, it) }
+    }
+
+    override fun edit(supplier: Supplier) {
+        showDialogApp(supplier)
     }
 
     override fun showProgress() {

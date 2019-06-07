@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        swipe:leftEdgeSwipeOffset="0dp"
+        swipe:rightEdgeSwipeOffset="0dp">
+
+
+    <LinearLayout
+            android:id="@+id/bottom_wrapper"
+            android:layout_width="@dimen/_150dp"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+        <TextView
+                android:id="@+id/tvEdit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#003c54"
+                android:gravity="center"
+                android:text="Edit"
+                android:textColor="#fff"/>
+
+
+        <TextView
+                android:id="@+id/tvDelete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0076a5"
+                android:gravity="center"
+                android:text="Delete"
+                android:textColor="#fff"/>
+
+    </LinearLayout>
+
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
-            android:padding="@dimen/_10dp"
+            android:padding="@dimen/_5dp"
             android:id="@+id/tvName"
             android:text="Nam"
             android:textStyle="bold"
@@ -12,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     <TextView
-            android:padding="@dimen/_10dp"
+            android:padding="@dimen/_5dp"
             app:layout_constraintTop_toBottomOf="@id/tvName"
             android:id="@+id/tvPhone"
             android:text="0367249134"
@@ -20,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     <TextView
-            android:padding="@dimen/_10dp"
+            android:padding="@dimen/_5dp"
             app:layout_constraintTop_toBottomOf="@id/tvPhone"
             android:id="@+id/tvAddress"
             android:text="Giao thiện , Giao Thủy , Nam Định"
@@ -28,3 +68,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 </android.support.constraint.ConstraintLayout>
+</com.daimajia.swipe.SwipeLayout>
