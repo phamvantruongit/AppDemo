@@ -43,13 +43,16 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         R.drawable.icon_home,
         R.drawable.icon_home
     )
-    var list_title: Array<String> =
-        arrayOf("Khach hang", "Nha cung cap" , "San pham", "Danh muc", "Nhan hieu", "Them nhan vien", "Danh sach nhan vien")
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var list_title: Array<String> =
+            arrayOf(getString(R.string.customer), getString(R.string.supplier) , getString(R.string.product), getString(R.string.category), getString(
+                R.string.brand), getString(R.string.add_em), getString(R.string.ems))
+
 
         init()
 

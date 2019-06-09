@@ -1,5 +1,8 @@
 package team.android.pv.qlshop.view.adapter
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +11,10 @@ import kotlinx.android.synthetic.main.item_supplier.view.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Supplier
 
-class AdapterSupplier(var list: List<Supplier> , var iOnCLick :IOnCLick) : androidx.recyclerview.widget.RecyclerView.Adapter<AdapterSupplier.ViewHolder>() {
+class AdapterSupplier(var list: List<Supplier> , var iOnCLick :IOnCLick) : RecyclerView.Adapter<AdapterSupplier.ViewHolder>() {
+    var context:Context?=null
     override fun onCreateViewHolder(viewGroup: ViewGroup, p: Int): ViewHolder {
+        context=viewGroup.context
         var view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_supplier, viewGroup, false)
         return ViewHolder(view)
     }
@@ -21,6 +26,9 @@ class AdapterSupplier(var list: List<Supplier> , var iOnCLick :IOnCLick) : andro
         viewHolder.itemView.tvName.text = list.get(p).name
         viewHolder.itemView.tvAddress.text = list.get(p).address
         viewHolder.itemView.tvPhone.text = list.get(p).phone.toString()
+        viewHolder.itemView.setOnClickListener {
+          iOnCLick.onClick(list.get(p))
+        }
         viewHolder.itemView.tvEdit.setOnClickListener {
             iOnCLick.edit(list.get(p))
         }
@@ -30,10 +38,11 @@ class AdapterSupplier(var list: List<Supplier> , var iOnCLick :IOnCLick) : andro
         }
     }
 
-    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
+    class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView)
 
     public interface IOnCLick{
         fun delete(id:Int)
         fun edit(supplier: Supplier)
+        fun onClick(supplier: Supplier)
     }
 }

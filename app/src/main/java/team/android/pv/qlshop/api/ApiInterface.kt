@@ -82,7 +82,7 @@ interface ApiInterface {
     @GET("get/categorys.php")
     fun getCategorys(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
 
-    @GET("get/supplier.php")
+    @GET("get/suppliers.php")
     fun getSupplier(@Query("id_shop") id_shop:Int) :Call<SupplierResponse>
 
     @GET("get/customer.php")

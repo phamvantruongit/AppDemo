@@ -18,6 +18,7 @@ class SupplierInteractor {
         checkCustomer: Boolean
     ) {
         var param = HashMap<String, String>()
+        param.put("id_shop",supplier.id_shop.toString())
         param.put("name", supplier.name)
         param.put("address", supplier.address)
         param.put("phone", supplier.phone.toString())
@@ -70,6 +71,7 @@ class SupplierInteractor {
         param.put("phone", supplier.phone.toString())
         param.put("email", supplier.email)
         param.put("description", supplier.description)
+        param.put("id_shop",supplier.id_shop.toString())
         if(checkCustomer){
             MyApplication.apiClient.editCustomer(param)
                 .enqueue(object : Callback<BaseResponse> {

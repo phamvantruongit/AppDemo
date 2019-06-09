@@ -2,19 +2,79 @@
 <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/container"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
     <include layout="@layout/toolbar"/>
 
     <FrameLayout
+            android:padding="@dimen/_10dp"
             android:layout_marginTop="@dimen/_50dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_product_local"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="270dp"
                 android:layout_height="wrap_content"/>
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:id="@+id/rl_sell_product"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="@dimen/_60dp"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="vertical"
+                        android:layout_height="200dp">
+            <View android:layout_width="match_parent"
+                  android:background="@color/gray"
+                  android:layout_height="1dp"/>
+            <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/tvCustomer"
+                    android:drawableRight="@drawable/iv"
+                    android:gravity="center_vertical"
+                    android:text="Khach hang"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+            <View android:layout_width="match_parent"
+                  android:background="@color/gray"
+                  android:layout_below="@id/tvCustomer"
+                  android:layout_height="1dp"/>
+            <TextView
+                    android:textColor="@color/black"
+                    android:layout_below="@id/tvCustomer"
+                    android:id="@+id/tvSale"
+                    android:drawableRight="@drawable/iv"
+                    android:gravity="center_vertical"
+                    android:text="Thêm chiết khấu"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+            <View android:layout_width="match_parent"
+                  android:background="@color/gray"
+                  android:layout_below="@id/tvSale"
+                  android:layout_height="1dp"/>
+            <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_below="@id/tvSale"
+                    android:id="@+id/tvT"
+                    android:gravity="center_vertical"
+                    android:text="Tổng tiền:1000"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+
+            <Button
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_alignParentBottom="true"
+                    android:text="Thanh toán"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50dp"/>
+        </RelativeLayout>
     </FrameLayout>
 
     <include

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.vision.barcode.Barcode
@@ -14,6 +13,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.Product
+import team.android.pv.qlshop.model.Supplier
 import team.android.pv.qlshop.presenter.product.AddProductInteractor
 import team.android.pv.qlshop.presenter.product.AddProductPresenter
 import team.android.pv.qlshop.view.adapter.AdapterBrand
@@ -59,7 +59,7 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         imgSupplier.setOnClickListener {
 
             var intent=Intent(this,ActivitySupplier::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, 103)
 
         }
 
@@ -189,6 +189,11 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         if ( requestCode==102 && resultCode == Activity.RESULT_OK) {
             var category=data!!.getParcelableExtra<Category>("category")
             edBrand.setText(category.name)
+        }
+
+        if ( requestCode==103 && resultCode == Activity.RESULT_OK) {
+            var supplier=data!!.getParcelableExtra<Supplier>("supplier")
+            edSupplier.setText(supplier.name)
         }
     }
 

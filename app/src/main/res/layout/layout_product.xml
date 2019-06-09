@@ -14,7 +14,7 @@
         <TextView
                 android:textColor="@color/black"
                 android:layout_weight="7"
-                android:text="Ten san pham"
+                android:text="@string/name_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <EditText
@@ -35,7 +35,7 @@
         <TextView
                 android:textColor="@color/black"
                 android:layout_weight="7"
-                android:text="Mô tả"
+                android:text="@string/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -51,7 +51,6 @@
     </LinearLayout>
 
 
-
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="horizontal"
                   android:weightSum="10"
@@ -59,7 +58,7 @@
         <TextView
                 android:textColor="@color/black"
                 android:layout_weight="7"
-                android:text="Số lượng"
+                android:text="@string/amountt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <EditText
@@ -81,7 +80,7 @@
         <TextView
                 android:textColor="@color/black"
                 android:layout_weight="7"
-                android:text="Giá nhập"
+                android:text="@string/price_in"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <EditText
@@ -103,7 +102,7 @@
         <TextView
                 android:textColor="@color/black"
                 android:layout_weight="7"
-                android:text="Giá bán"
+                android:text="@string/price_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <EditText
@@ -126,7 +125,7 @@
                 android:textColor="@color/black"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="7"
-                android:text="Mã barcode"
+                android:text="@string/barcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -134,9 +133,10 @@
                 android:layout_weight="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <EditText
+            <TextView
+                    android:gravity="center_vertical"
                     android:textCursorDrawable="@drawable/color_cursor"
-                    android:backgroundTint="@color/gray"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_13sp"
                     android:inputType="numberDecimal"
                     android:layout_toRightOf="@id/imgBarcode"
@@ -144,6 +144,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
             />
+            <View   android:layout_gravity="bottom"
+                    android:background="@color/gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
 
 
             <ImageView
@@ -166,7 +171,7 @@
                 android:textColor="@color/black"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="7"
-                android:text="Danh muc"
+                android:text="@string/category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -174,15 +179,21 @@
                 android:layout_weight="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <EditText
+            <TextView
+                    android:gravity="center_vertical"
                     android:textCursorDrawable="@drawable/color_cursor"
-                    android:backgroundTint="@color/gray"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_13sp"
                     android:layout_toRightOf="@id/imgBarcode"
                     android:id="@+id/edCategory"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
             />
+            <View   android:layout_gravity="bottom"
+                    android:background="@color/gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
 
 
             <ImageView
@@ -206,7 +217,7 @@
                 android:textColor="@color/black"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="7"
-                android:text="Nhãn hiệu"
+                android:text="@string/brand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -214,15 +225,21 @@
                 android:layout_weight="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <EditText
+            <TextView
+                    android:gravity="center_vertical"
                     android:textCursorDrawable="@drawable/color_cursor"
-                    android:backgroundTint="@color/gray"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_13sp"
                     android:layout_toRightOf="@id/imgBarcode"
                     android:id="@+id/edBrand"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
             />
+            <View   android:layout_gravity="bottom"
+                    android:background="@color/gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
 
 
             <ImageView
@@ -244,7 +261,7 @@
                 android:textColor="@color/black"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="7"
-                android:text="Nha cung cap"
+                android:text="@string/supplier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -252,15 +269,20 @@
                 android:layout_weight="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <EditText
+            <TextView
+                    android:gravity="center_vertical"
                     android:textCursorDrawable="@drawable/color_cursor"
-                    android:backgroundTint="@color/gray"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_13sp"
                     android:layout_toRightOf="@id/imgBarcode"
-                    android:id="@+id/ed"
+                    android:id="@+id/edSupplier"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
             />
+            <View   android:layout_gravity="bottom"
+                    android:background="@color/gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
 
 
             <ImageView
@@ -273,7 +295,6 @@
                     android:layout_height="wrap_content"/>
         </FrameLayout>
     </LinearLayout>
-
 
 
 </LinearLayout>

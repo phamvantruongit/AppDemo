@@ -14,7 +14,6 @@ class HomeActivity :BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         tvTitle.text=this.resources.getText(R.string.title_home)
-        var userSave = realmMyApplication.where(team.android.pv.qlshop.model.data.User::class.java).findFirst()
 
 
 

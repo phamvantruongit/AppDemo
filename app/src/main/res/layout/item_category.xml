@@ -33,7 +33,7 @@
                 android:layout_weight="1"
                 android:background="#003c54"
                 android:gravity="center"
-                android:text="Edit"
+                android:text="@string/edit"
                 android:textColor="#fff"/>
 
 

@@ -46,7 +46,7 @@
 
     <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/ckpass"
-            android:text="Hien thi mat khau"
+            android:text="@string/show_pass"
             android:layout_marginTop="@dimen/_10dp"
             android:layout_marginLeft="@dimen/_20dp"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -32,6 +32,7 @@ class SupplierPresenter(var viewParents: ViewSupplier ,var supplierInteractor: S
     }
 
     override fun showMessage(success: String) {
+        viewParents.showMessage(success)
         viewParents.hideProgress()
     }
 
