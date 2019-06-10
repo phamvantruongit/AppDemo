@@ -13,6 +13,9 @@ import kotlinx.android.synthetic.main.show_dialog_delete_product.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.view.activity.AddProductActivity
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
 
 class AdapterProduct(var productList: ArrayList<Product>, var iOnClick :IOnClick ): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     var  context:Context?=null
@@ -41,7 +44,11 @@ class AdapterProduct(var productList: ArrayList<Product>, var iOnClick :IOnClick
             viewHolder.itemView.tvCategory.text =""
         }
 
-        viewHolder.itemView.tvPrice_In.text="Gia ban : ${productList.get(position).price_in}"
+        val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
+        formatter.applyPattern("#,###,###,###")
+        val total = formatter.format(productList.get(position).price_in).toString()
+
+        viewHolder.itemView.tvPrice_In.text="Gia ban : " + total
         viewHolder.itemView.tvIDProduct.text="Ma SP : ${productList.get(position).id}"
         viewHolder.itemView.setOnClickListener {
             var dialog = Dialog(context)

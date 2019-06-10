@@ -14,6 +14,9 @@ import kotlinx.android.synthetic.main.item_products.view.tvPrice_In
 import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Product
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
 
 class AdapterSellProduct(var context: Context, var productList: ArrayList<Product>, var iOnClick: IOnClick) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -33,6 +36,13 @@ class AdapterSellProduct(var context: Context, var productList: ArrayList<Produc
         return position
     }
 
+    fun totalSum(sum:Long):String{
+        val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
+        formatter.applyPattern("#,###,###,###")
+        val total = formatter.format(sum)
+        return total.toString()
+    }
+
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         viewHolder.itemView.tvNameProduct.text = productList.get(position).name
         viewHolder.itemView.tvAmount.text = "So luong : ${productList.get(position).amount}"
@@ -49,7 +59,7 @@ class AdapterSellProduct(var context: Context, var productList: ArrayList<Produc
             }
         }
 
-        viewHolder.itemView.tvPrice_In.text = "Gia ban : ${productList.get(position).price_in}"
+        viewHolder.itemView.tvPrice_In.text = "Gia ban : " + totalSum(productList.get(position).price_in)
         viewHolder.itemView.tvIDProduct.text = "Ma SP : ${productList.get(position).id}"
 
         var product = productList.get(position)

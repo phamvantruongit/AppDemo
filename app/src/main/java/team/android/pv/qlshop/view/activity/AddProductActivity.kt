@@ -3,7 +3,9 @@ package team.android.pv.qlshop.view.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.vision.barcode.Barcode
@@ -19,6 +21,10 @@ import team.android.pv.qlshop.presenter.product.AddProductPresenter
 import team.android.pv.qlshop.view.adapter.AdapterBrand
 import team.android.pv.qlshop.view.adapter.AdapterCategory
 import team.android.pv.qlshop.view.views.ViewProduct
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
+
 
 class AddProductActivity : BaseActivitys(), ViewProduct {
     private var barcode: String = ""
@@ -63,15 +69,87 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
         }
 
-       imgRight.setOnClickListener{
+        edPrice_in.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                edPrice_in.removeTextChangedListener(this)
+                try {
+                    var originalString = s.toString()
+
+                    val longval: Long?
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replace(",".toRegex(), "")
+                    }
+                    longval = java.lang.Long.parseLong(originalString)
+
+                    val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
+                    formatter.applyPattern("#,###,###,###")
+                    val formattedString = formatter.format(longval)
+
+                    edPrice_in.setText(formattedString)
+                    edPrice_in.setSelection(edPrice_in.text.length)
+                } catch (nfe: NumberFormatException) {
+                    nfe.printStackTrace()
+                }
+
+                edPrice_in.addTextChangedListener(this)
+            }
+
+        })
+
+
+        edPrice_out.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                edPrice_out.removeTextChangedListener(this)
+                try {
+                    var originalString = s.toString()
+
+                    val longval: Long?
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replace(",".toRegex(), "")
+                    }
+                    longval = java.lang.Long.parseLong(originalString)
+
+                    val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
+                    formatter.applyPattern("#,###,###,###")
+                    val formattedString = formatter.format(longval)
+
+                    edPrice_out.setText(formattedString)
+                    edPrice_out.setSelection(edPrice_out.text.length)
+                } catch (nfe: NumberFormatException) {
+                    nfe.printStackTrace()
+                }
+
+                edPrice_out.addTextChangedListener(this)
+            }
+
+        })
+
+
+        imgRight.setOnClickListener{
 
             var product = Product()
 
             var name=edNameProduct.text.toString()
             var barcode=edBarcode.text.toString()
             var amount=edAmount.text.toString()
-            var price_in=edPrice_in.text.toString()
-            var price_out=edPrice_out.text.toString()
+            var price_in=edPrice_in.text.toString().replace(",","")
+            var price_out=edPrice_out.text.toString().replace(",","")
 
             if(TextUtils.isEmpty(name)){
                 edNameProduct.error=getString(R.string.enter_info)
@@ -117,6 +195,7 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
                 product.barcode=barcode
             }
 
+
             product.barcode=edBarcode.text.toString()
             product.description=edDesciptionProduct.text.toString()
             product.category=edCategory.text.toString()
@@ -140,6 +219,13 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         }
     }
 
+    fun totalSum(sum:Long):String{
+        val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
+        formatter.applyPattern("#,###,###,###")
+        val total = formatter.format(sum)
+        return total.toString()
+    }
+
     private fun getData() {
         products=intent.getParcelableExtra<Product>("product")
         if(products!=null){
@@ -149,8 +235,8 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
                 edDesciptionProduct.setText(products!!.description)
             }
             edBarcode.setText(products!!.barcode)
-            edPrice_in.setText(products!!.price_in.toString())
-            edPrice_out.setText(products!!.price_out.toString())
+            edPrice_in.setText(totalSum(products!!.price_in))
+            edPrice_out.setText(totalSum(products!!.price_out))
             edAmount.setText(products!!.amount.toString())
             if(!products!!.category.equals("Null")) {
                 edCategory.setText(products!!.category)

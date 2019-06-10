@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.item_prouct_local.view.*
 import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.data.Product
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
 
 class AdapterProductLocal(var context: Context, var list: List<Product>, var iOnClick: IOnClick) :
     RecyclerView.Adapter<AdapterProductLocal.ViewHolder>() {
@@ -26,13 +29,20 @@ class AdapterProductLocal(var context: Context, var list: List<Product>, var iOn
 
     override fun getItemCount(): Int = list.size
 
+    fun totalSum(sum:Long):String{
+        val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
+        formatter.applyPattern("#,###,###,###")
+        val total = formatter.format(sum)
+        return total.toString()
+    }
 
     override fun onBindViewHolder(viewHolder: AdapterProductLocal.ViewHolder, position: Int) {
         viewHolder.itemView.tvNameProduct.text = list.get(position).name
         viewHolder.itemView.tvPrice.text = "Giá: " + list.get(position).price_out.toString()
         viewHolder.itemView.tvAmount.setText(list.get(position).amount.toString())
         var sum = list.get(position).price_out * list.get(position).amount
-        viewHolder.itemView.tvSum.text = sum.toString()
+
+        viewHolder.itemView.tvSum.text = totalSum(sum)
 
 
         viewHolder.itemView.btnTang.setOnClickListener {
@@ -45,13 +55,13 @@ class AdapterProductLocal(var context: Context, var list: List<Product>, var iOn
                 iOnClick.iOnClick(amounts, list.get(position).uid)
                 iOnClick.sum()
                 var sum = list.get(position).price_out * amounts
-                viewHolder.itemView.tvSum.text = sum.toString()
+                viewHolder.itemView.tvSum.text = totalSum(sum)
             } else {
                 viewHolder.itemView.tvAmount.setText(amount.toString())
                 iOnClick.iOnClick(amount, list.get(position).uid)
                 iOnClick.sum()
                 var sum = list.get(position).price_out * amount
-                viewHolder.itemView.tvSum.text = sum.toString()
+                viewHolder.itemView.tvSum.text = totalSum(sum)
 
 
 
@@ -67,13 +77,13 @@ class AdapterProductLocal(var context: Context, var list: List<Product>, var iOn
                 Thread.sleep(1000)
                 iOnClick.sum( )
                 var sum = list.get(position).price_out
-                viewHolder.itemView.tvSum.text = sum.toString()
+                viewHolder.itemView.tvSum.text = totalSum(sum)
             } else {
                 viewHolder.itemView.tvAmount.setText(amount.toString())
                 iOnClick.iOnClick(amount, list.get(position).uid)
                 iOnClick.sum()
                 var sum = list.get(position).price_out * amount
-                viewHolder.itemView.tvSum.text = sum.toString()
+                viewHolder.itemView.tvSum.text = totalSum(sum)
             }
 
 

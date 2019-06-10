@@ -17,8 +17,8 @@
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
         <RadioButton android:layout_width="match_parent"
-                     android:background="@drawable/checkbox_background"
-                     android:clickable="true"
+                     android:background="@drawable/bg_tab_state_selected"
+                     android:checked="true"
                      android:id="@+id/radioLeft"
                      android:textColor="@color/white"
                      android:textStyle="bold"
@@ -30,8 +30,8 @@
                      android:layout_weight="1"
                      android:layout_height="wrap_content"/>
         <RadioButton android:layout_width="match_parent"
-                     android:background="@drawable/checkbox_background"
                      android:textSize="@dimen/_18sp"
+                     android:background="@drawable/bg_tab_state_selected"
                      android:layout_weight="1"
                      android:id="@+id/radioRight"
                      android:gravity="center"
@@ -49,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <android.support.design.widget.TextInputEditText
+                android:id="@+id/edSale"
                 android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

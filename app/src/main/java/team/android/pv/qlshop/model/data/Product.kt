@@ -12,6 +12,6 @@ open class Product :RealmObject() {
     var price_out:Long=0
     var amount:Int=0
     var amounts:Int=0
-    var sale:Float=0f
-    var sale_money:Int=0
+    var sale:Long=0L
+    var sale_money:Long=0L
 }
