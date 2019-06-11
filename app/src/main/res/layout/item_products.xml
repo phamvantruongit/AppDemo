@@ -1,4 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        swipe:leftEdgeSwipeOffset="0dp"
+        swipe:rightEdgeSwipeOffset="0dp">
+
+
+    <LinearLayout
+            android:id="@+id/bottom_wrapper"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+        <TextView
+                android:id="@+id/tvEdProduct"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0076a5"
+                android:gravity="center"
+                android:text="@string/edit"
+                android:textColor="#fff"/>
+
+        <TextView
+
+                android:id="@+id/tvDeProduct"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#003c54"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textColor="#fff"/>
+
+
+    </LinearLayout>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:padding="@dimen/_8dp"
@@ -64,3 +104,4 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 </RelativeLayout>
+</com.daimajia.swipe.SwipeLayout>

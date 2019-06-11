@@ -89,12 +89,22 @@ class AdapterProductLocal(var context: Context, var list: List<Product>, var iOn
 
 
         }
+
+        viewHolder.itemView.tvSaleProduct.setOnClickListener {
+            iOnClick.sale(list.get(position).uid)
+        }
+
+        viewHolder.itemView.tvDeleteProduct.setOnClickListener {
+            iOnClick.delete(list.get(position).uid)
+        }
     }
 
 
     interface IOnClick {
         fun iOnClick(amount: Int, id: Int)
         fun sum()
+        fun sale(id: Int)
+        fun delete(id: Int)
 
 
     }

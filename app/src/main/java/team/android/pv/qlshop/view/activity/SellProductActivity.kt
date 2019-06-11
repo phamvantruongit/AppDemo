@@ -65,62 +65,67 @@ class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLoc
 
         tvSale.setOnClickListener {
 
-            var dialog = Dialog(this)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.dialog_sale)
-            dialog.show()
-            if (dialog!!.window != null) {
-                dialog!!.window!!.setLayout(
-                    WindowManager.LayoutParams.MATCH_PARENT,
-                    WindowManager.LayoutParams.MATCH_PARENT
-                )
-                dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            }
+            showDialogSale()
 
-            var radLeft = dialog.findViewById<RadioButton>(team.android.pv.qlshop.R.id.radioLeft)
-            var radRight = dialog.findViewById<RadioButton>(team.android.pv.qlshop.R.id.radioRight)
-            var radio = dialog.findViewById<RadioGroup>(team.android.pv.qlshop.R.id.radio)
-            var edSale = dialog.findViewById<TextInputEditText>(R.id.edSale)
-            var checked = false
-
-
-            radio.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
-                override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
-                    if (checkedId == R.id.radioLeft) {
-                        checked = true
-                        radLeft.isChecked = true
-                        radRight.isChecked = false
-                        radLeft.setTextColor(resources.getColor(R.color.white))
-                        radRight.setTextColor(resources.getColor(R.color.black))
-                    } else {
-                        checked = false
-                        radRight.isChecked = true
-                        radLeft.isChecked = false
-                        radRight.setTextColor(resources.getColor(R.color.white))
-                        radLeft.setTextColor(resources.getColor(R.color.black))
-                    }
-                }
-
-            })
-
-
-            dialog.imgRight.setOnClickListener {
-
-
-                dialog.dismiss()
-                val sale = edSale.text.toString().toLong()
-                if (checked) {
-                    updateSale(sale, checked)
-                } else {
-                    updateSale(sale, checked)
-                }
-
-
-            }
 
 
         }
 
+    }
+
+    private fun showDialogSale() {
+        var dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_sale)
+        dialog.show()
+        if (dialog!!.window != null) {
+            dialog!!.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT
+            )
+            dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+
+        var radLeft = dialog.findViewById<RadioButton>(team.android.pv.qlshop.R.id.radioLeft)
+        var radRight = dialog.findViewById<RadioButton>(team.android.pv.qlshop.R.id.radioRight)
+        var radio = dialog.findViewById<RadioGroup>(team.android.pv.qlshop.R.id.radio)
+        var edSale = dialog.findViewById<TextInputEditText>(R.id.edSale)
+        var checked = false
+
+
+        radio.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
+            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+                if (checkedId == R.id.radioLeft) {
+                    checked = true
+                    radLeft.isChecked = true
+                    radRight.isChecked = false
+                    radLeft.setTextColor(resources.getColor(R.color.white))
+                    radRight.setTextColor(resources.getColor(R.color.black))
+                } else {
+                    checked = false
+                    radRight.isChecked = true
+                    radLeft.isChecked = false
+                    radRight.setTextColor(resources.getColor(R.color.white))
+                    radLeft.setTextColor(resources.getColor(R.color.black))
+                }
+            }
+
+        })
+
+
+        dialog.imgRight.setOnClickListener {
+
+
+            dialog.dismiss()
+            val sale = edSale.text.toString().toLong()
+            if (checked) {
+                updateSale(sale, checked)
+            } else {
+                updateSale(sale, checked)
+            }
+
+
+        }
     }
 
     fun updateSale(sale: Long, check: Boolean) {
@@ -159,6 +164,20 @@ class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLoc
         rv_product_local!!.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
         rv_product_local!!.adapter = AdapterProductLocal(this, list, this)
         rv_product_local!!.adapter!!.notifyDataSetChanged()
+    }
+
+    override fun sale(id: Int) {
+              showDialogSale()
+    }
+
+    override fun delete(id: Int) {
+        MyApplication.realmMyApplication.removeChangeListener{
+            MyApplication.realmMyApplication.where(team.android.pv.qlshop.model.data.Product::class.java).equalTo(
+                "uid",
+                id
+            ).findFirst()!!.deleteFromRealm()
+        }
+
     }
 
     override fun iOnClick(amount: Int, id: Int) {
