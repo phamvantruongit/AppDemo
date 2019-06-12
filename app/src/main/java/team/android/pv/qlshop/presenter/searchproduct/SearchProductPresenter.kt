@@ -1,9 +1,8 @@
 package team.android.pv.qlshop.presenter.searchproduct
 
-import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.Product
-import team.android.pv.qlshop.view.views.ViewProductSearch
-import team.android.pv.qlshop.view.views.ViewSearchBarcode
+import team.android.pv.qlshop.view.view.ViewProductSearch
+import team.android.pv.qlshop.view.view.ViewSearchBarcode
 
 class SearchProductPresenter :
     SearchProductInteractor.OnFinishedListenerProduct, SearchProductInteractor.OnFinishedListenerProductBarcode {

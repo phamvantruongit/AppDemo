@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.item_category.view.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
 
-class AdapterCategory(var listCategory: List<Category>,var pushMore:Boolean, var iOnClickItem: IOnClickItem) :RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
+class AdapterCategory(var listCategory: List<Category>,var iOnClickItem: IOnClickItem) :RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
     companion object {
         var selected_position = -1
 
@@ -26,11 +26,13 @@ class AdapterCategory(var listCategory: List<Category>,var pushMore:Boolean, var
         var check_visible:Boolean
 
 
-        if(selected_position==position && !pushMore){
+        if(selected_position==position){
             viewHolder.itemView.ivSelect.visibility=View.VISIBLE
         }else{
             viewHolder.itemView.ivSelect.visibility=View.GONE
         }
+
+
         viewHolder.itemView.setOnClickListener {
 
            if(selected_position==position){

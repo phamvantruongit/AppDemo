@@ -2,7 +2,7 @@ package team.android.pv.qlshop.presenter.category
 
 import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
-import team.android.pv.qlshop.view.views.ViewAddCategory
+import team.android.pv.qlshop.view.view.ViewAddCategory
 
 class CategoryPresenter(val viewAddCategory: ViewAddCategory, val categoryInteractor: CategoryInteractor) :
     OnFinishedListeners, CategoryInteractor.OnFinishedListenersCategory {

@@ -108,16 +108,14 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         }
 
         if (position == 3) {
-            intent = Intent(this@MoreActivity, AddCategoryActivity::class.java)
+            intent = Intent(this@MoreActivity, AddCategoryMoreActivity::class.java)
             intent.putExtra("checkCategory", true)
-            intent.putExtra("pushMore",true)
             startActivity(intent)
         }
 
         if (position == 4) {
-            intent = Intent(this@MoreActivity, AddCategoryActivity::class.java)
+            intent = Intent(this@MoreActivity, AddCategoryMoreActivity::class.java)
             intent.putExtra("checkCategory", false)
-            intent.putExtra("pushMore",true)
             startActivity(intent)
         }
 

@@ -1,4 +1,4 @@
-package team.android.pv.qlshop.view.views
+package team.android.pv.qlshop.view.view
 
 import team.android.pv.qlshop.model.Product
 

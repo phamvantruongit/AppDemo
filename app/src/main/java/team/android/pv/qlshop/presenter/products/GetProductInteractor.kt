@@ -14,9 +14,10 @@ import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 import team.android.pv.qlshop.presenter.searchproduct.SearchProductInteractor
 
 class GetProductInteractor {
-
+    var listProduct = ArrayList<Product>()
 
     fun getListProducts(onFinishedListener: OnFinishedListenerProduct, id_shop: Int, id_category: Int, page: Int) {
+
         apiClient.getProducts(id_shop, id_category, page)
             .enqueue(object : Callback<ProductResponse> {
                 override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
@@ -24,7 +25,6 @@ class GetProductInteractor {
                         var  total_pages:Float=response.body()!!.total_pages
                         var  current_page:Float=response.body()!!.current_page
                         var  isLoad:Boolean= current_page < total_pages
-                        var listProduct = ArrayList<Product>()
                         if(current_page==1f){
                             listProduct = response.body()!!.listProduct
                         }else{

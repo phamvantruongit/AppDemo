@@ -1,7 +1,7 @@
 package team.android.pv.qlshop.presenter.user
 
 import team.android.pv.qlshop.model.User
-import team.android.pv.qlshop.view.views.ViewUsers
+import team.android.pv.qlshop.view.view.ViewUsers
 
 class UsersPresenter(var viewUsers: ViewUsers, var usersInteractor: UsersInteractor) : UsersInteractor.OnFinishedListener {
 

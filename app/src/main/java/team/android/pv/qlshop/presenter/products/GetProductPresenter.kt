@@ -3,7 +3,7 @@ package team.android.pv.qlshop.presenter.product
 import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
-import team.android.pv.qlshop.view.views.ViewProducts
+import team.android.pv.qlshop.view.view.ViewProducts
 
 class GetProductPresenter(var viewProduct: ViewProducts, val productInteractor: GetProductInteractor) :  GetProductInteractor.OnFinishedListenerProduct,
     OnFinishedListeners, GetProductInteractor.OnFinishedListenerSearchProduct {

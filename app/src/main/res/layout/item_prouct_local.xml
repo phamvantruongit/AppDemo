@@ -1,4 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        swipe:leftEdgeSwipeOffset="0dp"
+        swipe:rightEdgeSwipeOffset="0dp">
+
+
+    <LinearLayout
+            android:id="@+id/bottom_wrapper"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+        <TextView
+                android:id="@+id/tvSaleProduct"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0076a5"
+                android:gravity="center"
+                android:text="Chiết khấu"
+                android:textColor="#fff"/>
+
+        <TextView
+
+                android:id="@+id/tvDeleteProduct"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#003c54"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textColor="#fff"/>
+
+
+    </LinearLayout>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:padding="@dimen/_5dp"
@@ -53,3 +92,4 @@
                   android:layout_height="@dimen/_30dp"/>
     </LinearLayout>
 </RelativeLayout>
+</com.daimajia.swipe.SwipeLayout>
