@@ -8,14 +8,14 @@ import android.text.method.PasswordTransformationMethod
 import android.widget.CompoundButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_register.*
-import team.android.pv.qlshop.MyApplication.Companion.realmMyApplication
+import team.android.pv.qlshop.MyApplication.Companion.appDatabase
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.model.data.SharedPreferencesManager
+import team.android.pv.qlshop.model.data.database.UserEntity
 import team.android.pv.qlshop.presenter.login.LoginInteractor
 import team.android.pv.qlshop.presenter.login.LoginPresenter
-import team.android.pv.qlshop.view.views.ViewLogin
+import team.android.pv.qlshop.view.view.ViewLogin
 
 
 
@@ -92,19 +92,33 @@ class LoginActivity : BaseActivitys(), ViewLogin {
 
     override fun setData(user: User) {
         SharedPreferencesManager.logOut(false)
-        realmMyApplication.executeTransaction {
+        var userEntity=UserEntity()
+        userEntity.id=user.id
+        userEntity.email=user.email
+        userEntity.id_shop=user.id_shop
+        userEntity.name=user.name
+        userEntity.name_shop=user.name_shop
+        userEntity.check_admin=user.check_admin
 
-            var users=it.createObject(team.android.pv.qlshop.model.data.User::class.java)
-            users.id=user.id
-            users.email=user.email
-            users.id_shop=user.id_shop
-            users.name=user.name
-            users.name_shop=user.name_shop
-            users.check_admin=user.check_admin
+        appDatabase.userDao().addUser(userEntity)
+
+        var user= appDatabase.userDao().getUser()
 
 
 
-        }
+//        realmMyApplication.executeTransaction {
+//
+//            var users=it.createObject(team.android.pv.qlshop.model.data.User::class.java)
+//            users.id=user.id
+//            users.email=user.email
+//            users.id_shop=user.id_shop
+//            users.name=user.name
+//            users.name_shop=user.name_shop
+//            users.check_admin=user.check_admin
+//
+//
+//
+//        }
         startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
         finish()
     }

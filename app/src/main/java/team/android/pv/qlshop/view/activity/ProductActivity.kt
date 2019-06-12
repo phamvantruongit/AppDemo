@@ -24,7 +24,7 @@ import team.android.pv.qlshop.view.DividerItemDecoration
 import team.android.pv.qlshop.view.LoadMoreScroll
 import team.android.pv.qlshop.view.adapter.AdapterCategorys
 import team.android.pv.qlshop.view.adapter.AdapterProduct
-import team.android.pv.qlshop.view.views.ViewProducts
+import team.android.pv.qlshop.view.view.ViewProducts
 
 
 class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickItem, AdapterProduct.IOnClick,
@@ -56,7 +56,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
 
         imgRight.setOnClickListener {
 
-            getProductPresenter.getListCategoty(userSave!!.id_shop)
+            getProductPresenter.getListCategoty(userEntity!!.id_shop)
 
             rv_category = dialog!!.findViewById(R.id.rv_categorys)
             dialog!!.show()
@@ -72,7 +72,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
             dialog!!.tvLoadAll.setOnClickListener {
                 isLoadAll=true
                 iv_check!!.visibility=View.VISIBLE
-                getProductPresenter.getListProducts(userSave!!.id_shop, 0, this.page)
+                getProductPresenter.getListProducts(userEntity!!.id_shop, 0, this.page)
                 dialog!!.dismiss()
             }
 
@@ -87,7 +87,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
 
         }
         page = 1
-        getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
+        getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
 
     }
 
@@ -121,7 +121,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
     override fun loadMore(isScroll: Boolean) {
         if (isScroll && isLoad) {
             page++
-            getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
+            getProductPresenter.getListProducts(userEntity!!.id_shop, this.id_category, page)
         }
     }
 
@@ -142,7 +142,8 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
             iv_check!!.visibility=View.GONE
         }
         this.id_category = id_category
-        getProductPresenter.getListProducts(userSave!!.id_shop, this.id_category, page)
+        getProductPresenter.getListProducts(userEntity
+        !!.id_shop, this.id_category, page)
 
     }
 

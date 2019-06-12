@@ -11,14 +11,13 @@ import com.google.android.gms.vision.barcode.Barcode
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import kotlinx.android.synthetic.main.activity_search_product.*
 import team.android.pv.qlshop.R
-import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.presenter.searchproduct.SearchProductInteractor
 import team.android.pv.qlshop.presenter.searchproduct.SearchProductPresenter
 import team.android.pv.qlshop.view.DividerItemDecoration
 import team.android.pv.qlshop.view.adapter.AdapterCategorys
 import team.android.pv.qlshop.view.adapter.AdapterProduct
-import team.android.pv.qlshop.view.views.ViewProductSearch
+import team.android.pv.qlshop.view.view.ViewProductSearch
 
 
 class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct.IOnClick,
@@ -69,7 +68,7 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
 
     private fun searchProduct(name: String) {
        if(name.length>0){
-            searchProductPresenter.searchProduct(userSave!!.id_shop, barcode, name)
+            searchProductPresenter.searchProduct(userEntity!!.id_shop, barcode, name)
         }
     }
 
@@ -102,7 +101,7 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && data != null) {
             barcode = data.getParcelableExtra<Barcode>(BarcodeReaderActivity.KEY_CAPTURED_BARCODE).rawValue
-            searchProductPresenter.searchProduct(userSave!!.id_shop, barcode, "0")
+            searchProductPresenter.searchProduct(userEntity!!.id_shop, barcode, "0")
         }
     }
 

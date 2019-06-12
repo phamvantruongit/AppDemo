@@ -20,18 +20,22 @@ import team.android.pv.qlshop.presenter.category.CategoryInteractor
 import team.android.pv.qlshop.presenter.category.CategoryPresenter
 import team.android.pv.qlshop.view.DividerItemDecoration
 import team.android.pv.qlshop.view.adapter.AdapterBrand
+import team.android.pv.qlshop.view.adapter.AdapterBrandMore
 import team.android.pv.qlshop.view.adapter.AdapterCategory
-import team.android.pv.qlshop.view.views.ViewAddCategory
+import team.android.pv.qlshop.view.adapter.AdapterCategoryMore
+import team.android.pv.qlshop.view.view.ViewAddCategory
 
-class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IOnClickItem, AdapterBrand.IOnClickItem {
+class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IOnClickItem, AdapterBrand.IOnClickItem,
+    AdapterCategoryMore.IOnClickItem, AdapterBrandMore.IOnClickItem {
 
 
     private var categoryPresenter: CategoryPresenter? = null
 
     private var checkCategory: Boolean = false
-    private var nameCategory: String = ""
-    private var pushMore: Boolean = false
+
     private var category: Category? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +53,11 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
 
         checkCategory = intent.getBooleanExtra("checkCategory", false)
-        pushMore = intent.getBooleanExtra("pushMore", false)
 
 
-        categoryPresenter!!.getCategory(userSave!!.id_shop, checkCategory)
+
+
+        categoryPresenter!!.getCategory(userEntity!!.id_shop, checkCategory)
 
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
 
@@ -84,34 +89,21 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
 
     override fun getListCategory(listCategory: ArrayList<Category>) {
-        if (checkCategory) {
-            rv_category!!.adapter = AdapterCategory(listCategory, pushMore, this)
+
+        if ( checkCategory) {
+            rv_category!!.adapter = AdapterCategory(listCategory, this)
         } else {
-            rv_category!!.adapter = AdapterBrand(listCategory, pushMore, this)
+            rv_category!!.adapter = AdapterBrand(listCategory, this)
         }
     }
 
     override fun onClickItem(category: Category, check_visible: Boolean) {
-        nameCategory = category.name
-        var dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.show_dialog)
-        //dialog.show()
-        if (dialog.window != null) {
-            dialog.window!!.setGravity(Gravity.BOTTOM)
-            dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
-            dialog.window!!.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-        }
 
 
-        if (check_visible) {
-            var intent = Intent()
-            intent.putExtra("category", category)
-            setResult(Activity.RESULT_OK, intent)
-            finish()
-        } else {
-            finish()
-        }
+        var intent = Intent()
+        intent.putExtra("category", category)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
 
 
     }
@@ -143,14 +135,14 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
         }
         btnAddCategory.setOnClickListener {
             var name = edCategory.text.toString()
-            if(name.length==0){
+            if (name.length == 0) {
                 dialog.dismiss()
                 return@setOnClickListener
             }
             if (category.name != "") {
-                categoryPresenter!!.editCategory(name, userSave!!.id_shop, category.id, checkCategory)
+                categoryPresenter!!.editCategory(name, userEntity!!.id_shop, category.id, checkCategory)
             } else {
-                categoryPresenter!!.addCategory(name, userSave!!.id_shop, checkCategory)
+                categoryPresenter!!.addCategory(name, userEntity!!.id_shop, checkCategory)
             }
             dialog.dismiss()
         }

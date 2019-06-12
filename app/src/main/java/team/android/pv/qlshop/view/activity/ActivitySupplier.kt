@@ -20,8 +20,8 @@ import team.android.pv.qlshop.presenter.supplier.SupplierInteractor
 import team.android.pv.qlshop.presenter.supplier.SupplierPresenter
 import team.android.pv.qlshop.view.DividerItemDecoration
 import team.android.pv.qlshop.view.adapter.AdapterSupplier
-import team.android.pv.qlshop.view.views.ViewParents
-import team.android.pv.qlshop.view.views.ViewSupplier
+import team.android.pv.qlshop.view.view.ViewParents
+import team.android.pv.qlshop.view.view.ViewSupplier
 
 class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupplier.IOnCLick {
 
@@ -40,7 +40,7 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupp
 
         checkCustomer = intent.getBooleanExtra("checkCustomer", false)
         supplierPresenter = SupplierPresenter(this, SupplierInteractor())
-        supplierPresenter.getListSupplier(userSave!!.id_shop, checkCustomer!!)
+        supplierPresenter.getListSupplier(userEntity!!.id_shop, checkCustomer!!)
 
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
 
@@ -112,7 +112,7 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupp
             suppliers.email = email
             suppliers.phone = phone.toInt()
             suppliers.description = description
-            suppliers.id_shop = userSave!!.id_shop
+            suppliers.id_shop = userEntity!!.id_shop
 
             if (supplier != null) {
                 suppliers.id = supplier.id
@@ -138,7 +138,7 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupp
     }
 
     override fun delete(id: Int) {
-        checkCustomer?.let { supplierPresenter.deleteInfo(userSave!!.id_shop, id, it) }
+        checkCustomer?.let { supplierPresenter.deleteInfo(userEntity!!.id_shop, id, it) }
     }
 
     override fun edit(supplier: Supplier) {

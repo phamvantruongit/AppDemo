@@ -2,7 +2,7 @@ package team.android.pv.qlshop.presenter.product
 
 import team.android.pv.qlshop.model.Product
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
-import team.android.pv.qlshop.view.views.ViewProduct
+import team.android.pv.qlshop.view.view.ViewProduct
 
 class AddProductPresenter(var viewProduct: ViewProduct, var productInteractor: AddProductInteractor) : OnFinishedListeners {
 

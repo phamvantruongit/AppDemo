@@ -2,7 +2,7 @@ package team.android.pv.qlshop.presenter.register
 
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListener
-import team.android.pv.qlshop.view.views.ViewRegister
+import team.android.pv.qlshop.view.view.ViewRegister
 
 class ResgisterPresenter(val viewRegister: ViewRegister?,val registerInteractor: RegisterInteractor): OnFinishedListener {
 

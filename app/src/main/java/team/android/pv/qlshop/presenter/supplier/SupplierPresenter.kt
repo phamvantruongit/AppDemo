@@ -1,9 +1,8 @@
 package team.android.pv.qlshop.presenter.supplier
 
 import team.android.pv.qlshop.model.Supplier
-import team.android.pv.qlshop.presenter.Inteface.OnFinishedListenerFail
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
-import team.android.pv.qlshop.view.views.ViewSupplier
+import team.android.pv.qlshop.view.view.ViewSupplier
 
 class SupplierPresenter(var viewParents: ViewSupplier ,var supplierInteractor: SupplierInteractor) :OnFinishedListeners,
     SupplierInteractor.OnFinishedListenerSupplier {

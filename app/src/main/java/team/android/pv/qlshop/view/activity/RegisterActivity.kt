@@ -5,16 +5,14 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.CompoundButton
-import android.widget.RadioGroup
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.toolbar
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.presenter.register.RegisterInteractor
 import team.android.pv.qlshop.presenter.register.ResgisterPresenter
-import team.android.pv.qlshop.view.views.ViewRegister
+import team.android.pv.qlshop.view.view.ViewRegister
 
 class RegisterActivity : BaseActivitys() ,ViewRegister {
     private lateinit var register : ResgisterPresenter
@@ -48,7 +46,7 @@ class RegisterActivity : BaseActivitys() ,ViewRegister {
 
 
         if(check_admin==0){
-            edNameShop.setText(userSave!!.name_shop)
+            edNameShop.setText(userEntity!!.name_shop)
         }
 
         btnRegister.setOnClickListener{
@@ -92,7 +90,7 @@ class RegisterActivity : BaseActivitys() ,ViewRegister {
             user.phone=phone
             user.password=password
             if(check_admin==0){
-                user.id_shop= userSave!!.id_shop
+                user.id_shop= userEntity!!.id_shop
             }
             register.registerUsers(user,check_admin)
         }

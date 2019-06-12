@@ -20,7 +20,7 @@ import team.android.pv.qlshop.presenter.product.AddProductInteractor
 import team.android.pv.qlshop.presenter.product.AddProductPresenter
 import team.android.pv.qlshop.view.adapter.AdapterBrand
 import team.android.pv.qlshop.view.adapter.AdapterCategory
-import team.android.pv.qlshop.view.views.ViewProduct
+import team.android.pv.qlshop.view.view.ViewProduct
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
@@ -203,7 +203,7 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             product.amount=amount.toInt()
             product.price_in= price_in.toLong()
             product.price_out=price_out.toLong()
-            product.id_shop=userSave!!.id_shop
+            product.id_shop=userEntity!!.id_shop
             product.id_category=id_category
 
             if(products!=null){

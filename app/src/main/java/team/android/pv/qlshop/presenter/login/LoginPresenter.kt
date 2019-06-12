@@ -2,7 +2,7 @@ package team.android.pv.qlshop.presenter.login
 
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.presenter.Inteface.OnFinishedListener
-import team.android.pv.qlshop.view.views.ViewLogin
+import team.android.pv.qlshop.view.view.ViewLogin
 
 class LoginPresenter(private var viewLogin: ViewLogin?, private val loginInteractor: LoginInteractor) :
     OnFinishedListener {

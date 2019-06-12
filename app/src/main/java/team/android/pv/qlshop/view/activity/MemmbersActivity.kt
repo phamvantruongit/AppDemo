@@ -4,17 +4,15 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_memmbers.*
-import kotlinx.android.synthetic.main.progressbar.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.presenter.user.UsersInteractor
 import team.android.pv.qlshop.presenter.user.UsersPresenter
 import team.android.pv.qlshop.view.DividerItemDecoration
 import team.android.pv.qlshop.view.adapter.AdapterMemmbers
-import team.android.pv.qlshop.view.views.ViewUsers
+import team.android.pv.qlshop.view.view.ViewUsers
 
 
 class MemmbersActivity : BaseActivitys(), ViewUsers, AdapterMemmbers.IOnClickItem {
@@ -26,7 +24,7 @@ class MemmbersActivity : BaseActivitys(), ViewUsers, AdapterMemmbers.IOnClickIte
         setContentView(R.layout.activity_memmbers)
 
         usersPresenter = UsersPresenter(this, UsersInteractor())
-        usersPresenter.getListUser(userSave!!.id_shop)
+        usersPresenter.getListUser(userEntity!!.id_shop)
     }
 
     override fun showUsers(users: ArrayList<User>) {
@@ -44,7 +42,7 @@ class MemmbersActivity : BaseActivitys(), ViewUsers, AdapterMemmbers.IOnClickIte
     }
 
     override fun showMessage(message: String) {
-        usersPresenter.getListUser(userSave!!.id_shop)
+        usersPresenter.getListUser(userEntity!!.id_shop)
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 

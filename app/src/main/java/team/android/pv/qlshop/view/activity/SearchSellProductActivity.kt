@@ -1,6 +1,8 @@
 package team.android.pv.qlshop.view.activity
 
 import android.app.Dialog
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Observer
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -8,23 +10,28 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_search_sell_product.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
 import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
 import team.android.pv.qlshop.model.Product
+import team.android.pv.qlshop.model.data.database.ProductEntity
 import team.android.pv.qlshop.presenter.product.GetProductInteractor
 import team.android.pv.qlshop.presenter.product.GetProductPresenter
 import team.android.pv.qlshop.view.DividerItemDecoration
+import team.android.pv.qlshop.view.LoadMoreScroll
 import team.android.pv.qlshop.view.adapter.AdapterCategorys
 import team.android.pv.qlshop.view.adapter.AdapterSellProduct
-import team.android.pv.qlshop.view.views.ViewProducts
+import team.android.pv.qlshop.view.view.ViewProducts
 
 class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProduct.IOnClick,
-    AdapterCategorys.IOnClickItem {
+    AdapterCategorys.IOnClickItem, LoadMoreScroll.ILoadMoreScroll {
+
 
     private val id_category: Int = 0
     private var page = 0
@@ -32,6 +39,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     var dialog: Dialog? = null
     var iv_check: ImageView?=null
     var isLoadAll : Boolean ?=false
+    private var isLoad: Boolean = false
 
     private var listProducts: List<Product>? = null
     private var listProductSaveLocal: List<Product>? = null
@@ -48,7 +56,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
         getProductPresenter = GetProductPresenter(this, GetProductInteractor())
 
         page = 1
-        getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
+        getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
 
 
         edSearch.addTextChangedListener(object : TextWatcher{
@@ -78,7 +86,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
             dialog!!.show()
 
             rv_category = dialog!!.findViewById(R.id.rv_categorys)
-            getProductPresenter.getListCategoty(userSave!!.id_shop)
+            getProductPresenter.getListCategoty(userEntity!!.id_shop)
             if (dialog!!.window != null) {
                 dialog!!.window!!.setGravity(Gravity.BOTTOM)
                 dialog!!.window!!.setLayout(
@@ -90,7 +98,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
             dialog!!.tvLoadAll.setOnClickListener {
                 isLoadAll=true
                 iv_check!!.visibility=View.VISIBLE
-                getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
+                getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
                 dialog!!.dismiss()
             }
         }
@@ -106,7 +114,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     }
 
     private fun searchProduct(name: String) {
-        getProductPresenter.getListSearch(userSave!!.id_shop,"",name)
+        getProductPresenter.getListSearch(userEntity!!.id_shop,"",name)
     }
 
 
@@ -115,15 +123,27 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
         rv_product_sell_search.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
         rv_product_sell_search.layoutManager = LinearLayoutManager(this)
         rv_product_sell_search.adapter = AdapterSellProduct(this, productList as ArrayList<Product>, this)
+
     }
 
 
     override fun getListProducts(productList: ArrayList<Product>, load: Boolean, current_page: Float) {
         listProducts = productList
+        isLoad=load
         rv_product_sell_search.visibility = View.VISIBLE
         rv_product_sell_search.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
         rv_product_sell_search.layoutManager = LinearLayoutManager(this)
         rv_product_sell_search.adapter = AdapterSellProduct(this, listProducts as ArrayList<Product>, this)
+        rv_product_sell_search.addOnScrollListener(LoadMoreScroll(rv_product_sell_search.layoutManager as LinearLayoutManager, this))
+
+    }
+
+    override fun loadMore(isScroll: Boolean) {
+        if (isScroll && isLoad) {
+            page++
+            getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
+
+        }
 
     }
 
@@ -131,18 +151,16 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
         saveProduct(product)
     }
 
-    private fun saveProduct(products: Product){
+    private fun saveProduct(product: Product){
 
-        var product=team.android.pv.qlshop.model.data.Product()
-        product.uid=products.id
-        product.name= products.name
-        product.amount= products.count
-        product.amounts= products.amount
-        product.price_out= products.price_out
+        var productEntity=ProductEntity()
+        productEntity.uid=product.id
+        productEntity.name= product.name
+        productEntity.amount= product.count
+        productEntity.amounts= product.amount
+        productEntity.price_out= product.price_out
+        MyApplication.appDatabase.productDao().addProduct(productEntity)
 
-        MyApplication.realmMyApplication.executeTransaction {
-            MyApplication.realmMyApplication.insertOrUpdate(product)
-        }
 
 
     }
@@ -156,7 +174,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     override fun onClickItem(id_category: Int, selected_position: Int) {
         dialog!!.dismiss()
         iv_check!!.visibility=View.GONE
-        getProductPresenter.getListProducts(userSave!!.id_shop, id_category, page)
+        getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
     }
 
     override fun showError(error: String) {
