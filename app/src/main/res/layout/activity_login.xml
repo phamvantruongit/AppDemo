@@ -41,6 +41,7 @@
         <FrameLayout android:layout_width="match_parent"
                      android:layout_height="wrap_content">
             <EditText
+                    android:maxLength="20"
                     android:layout_marginLeft="@dimen/_20dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:maxLines="1"
@@ -71,6 +72,7 @@
 
 
         <TextView
+                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:layout_marginLeft="@dimen/_20dp"
@@ -79,13 +81,14 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edPass"
                 android:text="@string/ban_quen_mat_khau"
+                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
         <Button
-                android:background="@color/colorPrimary"
+                android:textColor="@color/text_btn"
+                android:background="@drawable/boder_login_btn"
                 android:textStyle="bold"
-                android:textColor="@color/white"
                 android:layout_marginLeft="@dimen/_20dp"
                 android:layout_marginRight="@dimen/_20dp"
                 android:textAllCaps="false"
@@ -96,6 +99,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50dp"/>
         <TextView
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
                 android:id="@+id/tvRegister"
                 android:layout_marginTop="@dimen/_20dp"
                 android:gravity="center"

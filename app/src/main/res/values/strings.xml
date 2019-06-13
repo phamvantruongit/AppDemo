@@ -43,4 +43,5 @@
     <string name="add">Add</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="error_pass">Password must be at least 7 characters</string>
 </resources>

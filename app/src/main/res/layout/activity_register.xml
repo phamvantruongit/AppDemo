@@ -85,6 +85,7 @@
        <FrameLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content">
         <EditText
+                android:maxLength="20"
                 android:layout_marginLeft="@dimen/_20dp"
                 android:layout_marginRight="@dimen/_20dp"
                 android:maxLines="1"
@@ -114,11 +115,10 @@
        </FrameLayout>
 
         <Button
-
                 android:layout_marginTop="@dimen/_20dp"
-                android:textColor="@color/white"
+                android:textColor="@color/text_btn"
                 app:layout_constraintTop_toBottomOf="@id/ck_pass"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/boder_login_btn"
                 android:layout_marginLeft="@dimen/_20dp"
                 android:layout_marginRight="@dimen/_20dp"
                 android:textAllCaps="false"
