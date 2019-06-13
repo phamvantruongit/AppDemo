@@ -4,6 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent"
         tools:context=".view.activity.LoginActivity">
     <android.support.v7.widget.Toolbar
@@ -12,78 +13,97 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-          />
+    />
+
+    <LinearLayout android:layout_width="match_parent"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintRight_toRightOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/toolbar"
+                  android:orientation="vertical"
+                  android:layout_height="wrap_content">
 
 
-    <EditText
-            android:layout_marginLeft="@dimen/_20dp"
-            android:layout_marginRight="@dimen/_20dp"
-            android:maxLines="1"
-            android:inputType="textEmailAddress"
-            android:layout_marginTop="@dimen/_150dp"
-            android:id="@+id/edEmail"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:hint="@string/email"
-            android:padding="@dimen/_8dp"
-            android:background="@drawable/boder_ed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <team.android.pv.qlshop.view.customView.ClearableEditText
-            android:layout_marginLeft="@dimen/_20dp"
-            android:layout_marginRight="@dimen/_20dp"
-            android:maxLines="1"
-            android:inputType="textPassword"
-            android:layout_marginTop="@dimen/_20dp"
-            android:id="@+id/edPass"
-            app:layout_constraintTop_toBottomOf="@id/edEmail"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:hint="@string/password"
-            android:padding="@dimen/_8dp"
-            android:background="@drawable/boder_ed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <EditText
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginRight="@dimen/_20dp"
+                android:maxLines="1"
+                android:inputType="textEmailAddress"
+                android:id="@+id/edEmail"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:hint="@string/email"
+                android:textSize="@dimen/_13sp"
+                android:padding="@dimen/_12dp"
+                android:background="@drawable/boder_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <FrameLayout android:layout_width="match_parent"
+                     android:layout_height="wrap_content">
+            <EditText
+                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/_20dp"
+                    android:maxLines="1"
+                    android:inputType="textPassword"
+                    android:layout_marginTop="@dimen/_15dp"
+                    android:id="@+id/edPass"
+                    app:layout_constraintTop_toBottomOf="@id/edPhone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:hint="@string/password"
+                    android:textSize="@dimen/_13sp"
+                    android:padding="@dimen/_12dp"
+                    android:background="@drawable/boder_ed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-    <android.support.v7.widget.AppCompatCheckBox
-            android:id="@+id/ckpass"
-            android:text="@string/show_pass"
-            android:layout_marginTop="@dimen/_10dp"
-            android:layout_marginLeft="@dimen/_20dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edPass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
-    <TextView
-            android:layout_marginLeft="@dimen/_20dp"
-            android:layout_marginRight="@dimen/_20dp"
-            android:layout_marginTop="@dimen/_15dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edPass"
-            android:text="@string/ban_quen_mat_khau"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <Button
-            android:background="@color/colorPrimary"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_marginLeft="@dimen/_20dp"
-            android:layout_marginRight="@dimen/_20dp"
-            android:textAllCaps="false"
-            android:id="@+id/btnLogin"
-            android:layout_marginTop="@dimen/_50dp"
-            android:text="@string/dang_nhap"
-            app:layout_constraintTop_toBottomOf="@id/edPass"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50dp"/>
-    <TextView
-            android:id="@+id/tvRegister"
-            android:layout_marginTop="@dimen/_10dp"
-            android:gravity="center"
-            android:text="@string/dang_ki_tai_khoan"
-            app:layout_constraintTop_toBottomOf="@id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <android.support.v7.widget.AppCompatCheckBox
+                    android:layout_marginTop="7dp"
+                    android:layout_marginRight="@dimen/_30dp"
+                    android:background="@drawable/iv_eye_un"
+                    android:button="@null"
+                    android:id="@+id/ckpass"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-           />
+        </FrameLayout>
+
+
+        <TextView
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginRight="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_20dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edPass"
+                android:text="@string/ban_quen_mat_khau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                android:background="@color/colorPrimary"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginRight="@dimen/_20dp"
+                android:textAllCaps="false"
+                android:id="@+id/btnLogin"
+                android:layout_marginTop="20dp"
+                android:text="@string/dang_nhap"
+                app:layout_constraintTop_toBottomOf="@id/edPass"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50dp"/>
+        <TextView
+                android:id="@+id/tvRegister"
+                android:layout_marginTop="@dimen/_20dp"
+                android:gravity="center"
+                android:text="@string/dang_ki_tai_khoan"
+                app:layout_constraintTop_toBottomOf="@id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

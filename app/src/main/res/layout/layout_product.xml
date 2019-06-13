@@ -2,153 +2,107 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:padding="@dimen/_10dp"
-              android:background="@drawable/border_layout"
+              android:background="@color/white"
               android:layout_below="@id/toolbars"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="@string/name_product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
         <EditText
+                android:maxLines="1"
+                android:layout_marginTop="@dimen/_20dp"
+                android:padding="@dimen/_12dp"
+                android:hint="@string/name_product"
+                android:background="@drawable/boder_ed"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
-                android:layout_weight="3"
-                android:textSize="13sp"
+                android:textSize="@dimen/_15_sp"
                 android:id="@+id/edNameProduct"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
         />
-    </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="@string/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
+
 
         <EditText
+                android:maxLines="2"
+                android:layout_marginTop="@dimen/_12dp"
+                android:hint="@string/description"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
-                android:layout_weight="3"
-                android:textSize="@dimen/_13sp"
+                android:background="@drawable/boder_ed"
+                android:textSize="@dimen/_15_sp"
+                android:padding="@dimen/_12dp"
                 android:id="@+id/edDesciptionProduct"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
         />
-    </LinearLayout>
 
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="@string/amountt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
+
         <EditText
+                android:layout_marginTop="@dimen/_12dp"
+                android:padding="@dimen/_12dp"
+                android:hint="@string/amountt"
                 android:inputType="number"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
+                android:background="@drawable/boder_ed"
                 android:id="@+id/edAmount"
-                android:layout_weight="3"
-                android:textSize="13sp"
+                android:textSize="@dimen/_15_sp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
         />
-    </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="@string/price_in"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
+
         <EditText
+                android:layout_marginTop="@dimen/_12dp"
+                android:background="@drawable/boder_ed"
+                android:padding="@dimen/_12dp"
                 android:inputType="number"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
+                android:hint="@string/price_in"
                 android:id="@+id/edPrice_in"
-                android:layout_weight="3"
-                android:textSize="13sp"
+                android:textSize="@dimen/_15_sp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
         />
-    </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="@string/price_out"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
+
         <EditText
+                android:layout_marginTop="@dimen/_12dp"
+                android:background="@drawable/boder_ed"
+                android:hint="@string/price_out"
                 android:inputType="number"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
                 android:id="@+id/edPrice_out"
-                android:layout_weight="3"
-                android:textSize="13sp"
+                android:textSize="@dimen/_15_sp"
+                android:padding="@dimen/_12dp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
         />
-    </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="7"
-                android:text="@string/barcode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
 
         <FrameLayout
-                android:layout_weight="3"
+                android:layout_marginTop="@dimen/_12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
+                    android:padding="@dimen/_12dp"
+                    android:background="@drawable/boder_ed"
+                    android:hint="@string/barcode"
                     android:gravity="center_vertical"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_13sp"
+                    android:textSize="@dimen/_15_sp"
                     android:inputType="numberDecimal"
                     android:layout_toRightOf="@id/imgBarcode"
                     android:id="@+id/edBarcode"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
             />
-            <View   android:layout_gravity="bottom"
-                    android:background="@color/gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
-
 
 
             <ImageView
@@ -160,41 +114,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
         </FrameLayout>
-    </LinearLayout>
 
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="7"
-                android:text="@string/category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
+
 
         <FrameLayout
-                android:layout_weight="3"
+                android:layout_marginTop="@dimen/_12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
+                    android:background="@drawable/boder_ed"
+                    android:padding="@dimen/_12dp"
+                    android:hint="@string/category"
                     android:gravity="center_vertical"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_13sp"
+                    android:textSize="@dimen/_15_sp"
                     android:layout_toRightOf="@id/imgBarcode"
                     android:id="@+id/edCategory"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
             />
-            <View   android:layout_gravity="bottom"
-                    android:background="@color/gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
-
-
 
             <ImageView
                     android:layout_marginRight="5dp"
@@ -206,41 +147,28 @@
                     android:layout_height="wrap_content"/>
         </FrameLayout>
 
-    </LinearLayout>
 
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="7"
-                android:text="@string/brand"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
+
 
         <FrameLayout
-                android:layout_weight="3"
+                android:layout_marginTop="@dimen/_12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
+                    android:background="@drawable/boder_ed"
+                    android:hint="@string/brand"
                     android:gravity="center_vertical"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_13sp"
+                    android:textSize="@dimen/_15_sp"
+                    android:padding="@dimen/_12dp"
                     android:layout_toRightOf="@id/imgBarcode"
                     android:id="@+id/edBrand"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
             />
-            <View   android:layout_gravity="bottom"
-                    android:background="@color/gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
-
-
 
             <ImageView
                     android:layout_marginRight="5dp"
@@ -251,38 +179,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
         </FrameLayout>
-    </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="7"
-                android:text="@string/supplier"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
+
 
         <FrameLayout
-                android:layout_weight="3"
+                android:layout_marginTop="@dimen/_12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
+                    android:padding="@dimen/_12dp"
+                    android:hint="@string/supplier"
+                    android:background="@drawable/boder_ed"
                     android:gravity="center_vertical"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_13sp"
+                    android:textSize="@dimen/_15_sp"
                     android:layout_toRightOf="@id/imgBarcode"
                     android:id="@+id/edSupplier"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
             />
-            <View   android:layout_gravity="bottom"
-                    android:background="@color/gray"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
 
 
             <ImageView
@@ -294,7 +211,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
         </FrameLayout>
-    </LinearLayout>
 
 
 </LinearLayout>
