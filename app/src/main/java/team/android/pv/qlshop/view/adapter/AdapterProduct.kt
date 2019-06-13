@@ -21,7 +21,7 @@ class AdapterProduct(var productList: ArrayList<Product>, var iOnClick :IOnClick
     var  context:Context?=null
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): RecyclerView.ViewHolder {
         context=viewGroup.context
-        val view= LayoutInflater.from(viewGroup.context).inflate(R.layout.item_products,viewGroup,false)
+        var view= LayoutInflater.from(viewGroup.context).inflate(R.layout.item_products,viewGroup,false)
         return ViewHolderProduct(view)
     }
 
@@ -66,6 +66,15 @@ class AdapterProduct(var productList: ArrayList<Product>, var iOnClick :IOnClick
             notifyDataSetChanged()
         }
 
+        viewHolder.itemView.tvAddProduct.setOnClickListener {
+            iOnClick.addProuct()
+
+        }
+
+        viewHolder.itemView.iv_product.setOnClickListener {
+            iOnClick.iOnClickItemDetail(productList.get(position))
+        }
+
 
     }
 
@@ -73,6 +82,8 @@ class AdapterProduct(var productList: ArrayList<Product>, var iOnClick :IOnClick
 
     interface IOnClick{
         fun iOnCLickItem(product: Product)
+        fun iOnClickItemDetail(product: Product)
+        fun addProuct()
     }
 
 }

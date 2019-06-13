@@ -15,6 +15,7 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_search_sell_product.*
+import kotlinx.android.synthetic.main.activity_sell_product.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
 import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
@@ -153,13 +154,44 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
 
     private fun saveProduct(product: Product){
 
-        var productEntity=ProductEntity()
-        productEntity.uid=product.id
-        productEntity.name= product.name
-        productEntity.amount= product.count
-        productEntity.amounts= product.amount
-        productEntity.price_out= product.price_out
-        MyApplication.appDatabase.productDao().addProduct(productEntity)
+
+
+
+        var liveData: LiveData<List<ProductEntity>> =   MyApplication.appDatabase.productDao().getListProduct()
+
+        liveData.observe(this,object :Observer<List<ProductEntity>>{
+            override fun onChanged(list: List<ProductEntity>?) {
+                if(list!!.size>0){
+                    for(i in 0..list.size-1){
+                         if(product.id==list.get(i).uid){
+                             MyApplication.appDatabase.productDao().updateAmount(product.id,list.get(i).amount+1)
+                             return
+                         }else{
+                             var productEntity = ProductEntity()
+                             productEntity.uid = product.id
+                             productEntity.name = product.name
+                             productEntity.amount = product.count
+                             productEntity.amounts = product.amount
+                             productEntity.price_out = product.price_out
+                             MyApplication.appDatabase.productDao().addProduct(productEntity)
+                             return
+                         }
+                    }
+                }
+
+            }
+
+        })
+
+            var productEntity = ProductEntity()
+            productEntity.uid = product.id
+            productEntity.name = product.name
+            productEntity.amount = product.count
+            productEntity.amounts = product.amount
+            productEntity.price_out = product.price_out
+
+            MyApplication.appDatabase.productDao().addProduct(productEntity)
+
 
 
 

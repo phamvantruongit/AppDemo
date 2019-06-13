@@ -16,6 +16,12 @@ interface ProductDao {
     fun getListProduct(): LiveData<List<ProductEntity>>
 
 
+    @Query("SELECT * FROM ProductEntity")
+    fun getAllListProduct(): List<ProductEntity>
+
+
+
+
     @Query(" DELETE FROM ProductEntity WHERE uid in(:id)")
     fun deleteProduct(id: Int)
 

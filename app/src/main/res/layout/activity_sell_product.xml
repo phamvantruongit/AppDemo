@@ -34,7 +34,7 @@
             <TextView
                     android:textColor="@color/black"
                     android:id="@+id/tvCustomer"
-                    android:drawableRight="@drawable/iv"
+                    android:drawableRight="@drawable/iv_arrow"
                     android:gravity="center_vertical"
                     android:text="Khach hang"
                     android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                     android:textColor="@color/black"
                     android:layout_below="@id/tvCustomer"
                     android:id="@+id/tvSale"
-                    android:drawableRight="@drawable/iv"
+                    android:drawableRight="@drawable/iv_arrow"
                     android:gravity="center_vertical"
                     android:text="Thêm chiết khấu"
                     android:layout_width="match_parent"

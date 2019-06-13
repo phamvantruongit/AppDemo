@@ -60,7 +60,13 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
 
     }
 
+    override fun iOnClickItemDetail(product: Product) {
 
+    }
+
+    override fun addProuct() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun onClickItem(id_category: Int, selected_position: Int) {
 

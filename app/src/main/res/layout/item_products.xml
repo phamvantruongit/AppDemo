@@ -10,45 +10,70 @@
 
 
     <LinearLayout
+            android:orientation="horizontal"
             android:id="@+id/bottom_wrapper"
-            android:layout_width="160dp"
+            android:layout_width="180dp"
+            android:weightSum="3"
             android:layout_height="match_parent"
-            android:weightSum="2">
+            android:gravity="center_vertical"
+            >
+        <View android:layout_width="1dp"
+              android:background="@color/gray"
+              android:layout_height="90dp"/>
 
         <TextView
-                android:id="@+id/tvEdProduct"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_centerVertical="true"
                 android:background="#0076a5"
+                android:id="@+id/tvAddProduct"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="@string/add"
                 android:gravity="center"
-                android:text="@string/edit"
+                android:textStyle="bold"
                 android:textColor="#fff"/>
 
         <TextView
+                android:layout_centerVertical="true"
+                android:background="#003c54"
+                android:id="@+id/tvEdProduct"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="@string/edit"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#fff"/>
 
+        <TextView
+                android:layout_centerVertical="true"
+                android:background="#E61717"
+                android:layout_toRightOf="@id/tvEdProduct"
+                android:text="@string/delete"
                 android:id="@+id/tvDeProduct"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#003c54"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/delete"
+                android:textStyle="bold"
                 android:textColor="#fff"/>
 
 
     </LinearLayout>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:paddingLeft="@dimen/_10dp"
+                android:paddingTop="@dimen/_5dp"
+                android:paddingBottom="@dimen/_5dp"
                 android:layout_width="match_parent"
-                android:padding="@dimen/_8dp"
-                android:layout_height="105dp">
+                android:layout_height="90dp">
     <ImageView
             android:id="@+id/iv_product"
             android:scaleType="centerInside"
-            android:src="@drawable/iv_user"
-            android:layout_width="80dp"
-            android:layout_height="100dp"/>
+            android:background="@drawable/border_image"
+            android:src="@drawable/ic_edit"
+            android:layout_width="70dp"
+            android:layout_height="80dp"/>
     <TextView
             android:textSize="@dimen/_13sp"
             android:layout_marginTop="2dp"
@@ -94,6 +119,7 @@
             android:layout_height="wrap_content"/>
 
     <TextView
+            android:visibility="gone"
             android:textSize="@dimen/_13sp"
             android:layout_marginLeft="@dimen/_8dp"
             android:layout_below="@id/tvAmount"

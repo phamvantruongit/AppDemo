@@ -2,6 +2,7 @@ package team.android.pv.qlshop.view.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,20 +48,16 @@ class AdapterProductLocal(var context: Context, var iOnClick: IOnClick) :
         viewHolder.itemView.tvAmount.setText(list!!.get(position).amount.toString())
         var sum =list!!.get(position).price_out * list!!.get(position).amount
 
-        var sale=list!!.get(position).sale.toString()
-        var temp:Double?=null
 
-        if(sale.length>=2){
-            temp= sale.toDouble()*0.1 * sum.toDouble()
-            viewHolder.itemView.tvSum.text = totalSum( temp)
-        }
-        else
-        if(sale.length==1){
-            temp= sale.toDouble()*0.01 * sum.toDouble()
-            viewHolder.itemView.tvSum.text = totalSum( temp)
+        if(list!!.get(position).sale>0){
+            var sale=list!!.get(position).sale.toDouble()/100.0
+            var temp:Double = (1.0-sale) * sum.toDouble()
+            viewHolder.itemView.tvSum.text = totalSum(temp)
         }else{
             viewHolder.itemView.tvSum.text = totalSum(sum.toDouble())
         }
+
+
 
 
 

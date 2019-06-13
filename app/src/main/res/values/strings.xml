@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">MS</string>
+    <string name="app_name" translatable="false">My Store</string>
     <string name="title_home" translatable="false">Home</string>
     <string name="title_sell" translatable="false">Sell Product</string>
     <string name="title_products" translatable="false">Products</string>
@@ -43,4 +43,6 @@
     <string name="add">Add</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="error_pass">Password must be at least 7 characters</string>
+    <string name="detail_product">Detail product</string>
 </resources>

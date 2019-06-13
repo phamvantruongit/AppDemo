@@ -125,8 +125,17 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         }
     }
 
+    override fun iOnClickItemDetail(product: Product) {
+        var intent=Intent(this,CustomerActivity::class.java)
+        startActivity(intent)
+    }
+
     override fun iOnCLickItem(product: Product) {
         getProductPresenter.deleteProduct(product.id, product.id_shop)
+    }
+
+    override fun addProuct() {
+       startActivity(Intent(this,AddProductActivity::class.java))
     }
 
     override fun getListNameCategory(category: ArrayList<Category>) {

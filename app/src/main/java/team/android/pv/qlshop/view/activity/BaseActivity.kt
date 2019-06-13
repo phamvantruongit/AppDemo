@@ -15,7 +15,6 @@ import team.android.pv.qlshop.model.data.database.UserEntity
 
 abstract class BaseActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-    var userSave = MyApplication.realmMyApplication.where(team.android.pv.qlshop.model.data.User::class.java).findFirst()
     var userEntity: UserEntity?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

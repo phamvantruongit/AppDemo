@@ -26,8 +26,11 @@ class ProductEntity {
     var amounts:Int=0
 
     @ColumnInfo(name = "sale")
-    var sale:Long=0L
+    var sale:Double=0.0
 
     @ColumnInfo(name = "sale_money")
     var sale_money:Long=0L
+
+
+
 }

@@ -2,10 +2,14 @@ package team.android.pv.qlshop.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.View
 import android.widget.CompoundButton
+import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import team.android.pv.qlshop.MyApplication.Companion.appDatabase
@@ -26,35 +30,79 @@ class LoginActivity : BaseActivitys(), ViewLogin {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
         login = LoginPresenter(this, LoginInteractor())
 
-        val email=intent.getStringExtra("email")
-        if(!TextUtils.isEmpty(email)){
-             edEmail.setText(email)
+        val emails=intent.getStringExtra("email")
+        if(!TextUtils.isEmpty(emails)){
+             edEmail.setText(emails)
         }
 
 
 
-        if( userSave!=null && userSave!!.email!=null){
+        if( userEntity!=null && userEntity!!.email!=null){
 
-            edEmail.setText(userSave!!.email)
+            edEmail.setText(userEntity!!.email)
 
         }
 
 
         ckpass.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-                if(isChecked){
-                    edPass.transformationMethod= HideReturnsTransformationMethod.getInstance()
-                }else{
-                    edPass.transformationMethod= PasswordTransformationMethod.getInstance()
+                if (isChecked) {
+                    ckpass.setBackgroundResource(R.drawable.iv_eye)
+                    edPass.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                } else {
+                    ckpass.setBackgroundResource(R.drawable.iv_eye_un)
+                    edPass.transformationMethod = PasswordTransformationMethod.getInstance()
 
                 }
             }
 
         })
+
+        var email=findViewById<EditText>(R.id.edEmail)
+        var pass=findViewById<EditText>(R.id.edPass)
+        email.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.trim().length>0){
+                    btnLogin.setBackgroundResource(R.drawable.boder_login_select)
+                    btnLogin.setTextColor(resources.getColor(R.color.white))
+                }else{
+                    btnLogin.setBackgroundResource(R.drawable.boder_login_btn)
+                    btnLogin.setTextColor(resources.getColor(R.color.black))
+                }
+            }
+
+        })
+
+        pass.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.trim().length>0){
+                    ckpass.visibility= View.VISIBLE
+                }else{
+                    ckpass.visibility=View.GONE
+                }
+            }
+
+        })
+
+
 
 
 
@@ -75,6 +123,8 @@ class LoginActivity : BaseActivitys(), ViewLogin {
                 edPass.error=getString(R.string.enter_password)
                 return@setOnClickListener
             }
+
+
             var user = User()
             user.email = email
             user.password = password
@@ -102,23 +152,8 @@ class LoginActivity : BaseActivitys(), ViewLogin {
 
         appDatabase.userDao().addUser(userEntity)
 
-        var user= appDatabase.userDao().getUser()
 
 
-
-//        realmMyApplication.executeTransaction {
-//
-//            var users=it.createObject(team.android.pv.qlshop.model.data.User::class.java)
-//            users.id=user.id
-//            users.email=user.email
-//            users.id_shop=user.id_shop
-//            users.name=user.name
-//            users.name_shop=user.name_shop
-//            users.check_admin=user.check_admin
-//
-//
-//
-//        }
         startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
         finish()
     }

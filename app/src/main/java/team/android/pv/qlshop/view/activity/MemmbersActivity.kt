@@ -4,8 +4,11 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_memmbers.*
+import kotlinx.android.synthetic.main.activity_products.*
+import kotlinx.android.synthetic.main.progressbar.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.presenter.user.UsersInteractor
@@ -34,11 +37,11 @@ class MemmbersActivity : BaseActivitys(), ViewUsers, AdapterMemmbers.IOnClickIte
     }
 
     override fun showProgress() {
-        //progress_bar.visibility = View.VISIBLE
+        progress.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        //progress_bar.visibility = View.GONE
+        progress.visibility = View.GONE
     }
 
     override fun showMessage(message: String) {

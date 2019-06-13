@@ -1,22 +1,14 @@
 package team.android.pv.qlshop.view.activity
 
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
 import android.support.v7.widget.LinearLayoutManager
-import android.view.Gravity
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_more.*
 import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.ListMore
-import team.android.pv.qlshop.model.User
 import team.android.pv.qlshop.model.data.SharedPreferencesManager
 import team.android.pv.qlshop.view.DividerItemDecoration
 import team.android.pv.qlshop.view.adapter.AdapterListMore
@@ -120,7 +112,7 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         }
 
         if (position == 5) {
-            if(userSave!!.check_admin.equals("admin")){
+            if(userEntity!!.check_admin.equals("admin")){
                 intent = Intent(this@MoreActivity, RegisterActivity::class.java)
                 intent.putExtra("check_admin", 0)
                 startActivity(intent)
