@@ -52,26 +52,7 @@ class AdapterProduct(var productList: ArrayList<Product>, var iOnClick :IOnClick
         viewHolder.itemView.tvIDProduct.text="Ma SP : ${productList.get(position).id}"
 
 
-
-        viewHolder.itemView.tvEdProduct.setOnClickListener {
-            var intent = Intent(context, AddProductActivity::class.java)
-            intent.putExtra("product", productList.get(position))
-            context!!.startActivity(intent)
-        }
-
-
-        viewHolder.itemView.tvDeProduct.setOnClickListener {
-            iOnClick.iOnCLickItem(productList.get(position))
-            productList.removeAt(position)
-            notifyDataSetChanged()
-        }
-
-        viewHolder.itemView.tvAddProduct.setOnClickListener {
-            iOnClick.addProuct()
-
-        }
-
-        viewHolder.itemView.iv_product.setOnClickListener {
+        viewHolder.itemView.setOnClickListener {
             iOnClick.iOnClickItemDetail(productList.get(position))
         }
 
@@ -81,9 +62,7 @@ class AdapterProduct(var productList: ArrayList<Product>, var iOnClick :IOnClick
     class ViewHolderProduct(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     interface IOnClick{
-        fun iOnCLickItem(product: Product)
         fun iOnClickItemDetail(product: Product)
-        fun addProuct()
     }
 
 }

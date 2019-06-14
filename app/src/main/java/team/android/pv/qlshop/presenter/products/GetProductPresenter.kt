@@ -48,8 +48,4 @@ class GetProductPresenter(var viewProduct: ViewProducts, val productInteractor: 
         productInteractor.getListProducts(this,id_shop ,id_category,page)
     }
 
-    fun deleteProduct(id: Int, id_shop:Int){
-        productInteractor.deleteProduct(this,id,id_shop)
-    }
-
 }

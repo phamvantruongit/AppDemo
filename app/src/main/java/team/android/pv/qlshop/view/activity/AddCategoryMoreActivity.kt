@@ -46,7 +46,7 @@ class AddCategoryMoreActivity : BaseActivitys(), ViewAddCategory,
 
 
 
-        rv_category.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
+        rv_category.layoutManager = LinearLayoutManager(this)
         rv_category.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
 
 
@@ -62,7 +62,7 @@ class AddCategoryMoreActivity : BaseActivitys(), ViewAddCategory,
         imgRight.setOnClickListener {
             category = Category()
 
-            showDialog(this!!.category!!)
+            showDialog(this.category!!)
 
         }
 
@@ -120,7 +120,7 @@ class AddCategoryMoreActivity : BaseActivitys(), ViewAddCategory,
         var btnAddCategory = dialog.findViewById(R.id.btnAddCategory) as Button
         if (category != null) {
             edCategory.setText(category.name)
-            btnAddCategory.setText("Edit")
+            btnAddCategory.text = "Edit"
         }
         btnAddCategory.setOnClickListener {
             var name = edCategory.text.toString()

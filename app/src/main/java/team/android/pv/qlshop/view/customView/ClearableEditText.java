@@ -2,12 +2,12 @@ package team.android.pv.qlshop.view.customView;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 import team.android.pv.qlshop.R;
 
 
@@ -15,7 +15,7 @@ import team.android.pv.qlshop.R;
  * Created by t420 on 11-Dec-17.
  */
 
-public class ClearableEditText extends EditText implements View.OnTouchListener, View.OnFocusChangeListener {
+public class ClearableEditText extends AppCompatEditText implements View.OnTouchListener, View.OnFocusChangeListener {
 
     public interface Listener {
         void didClearText();

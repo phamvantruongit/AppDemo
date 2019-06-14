@@ -3,10 +3,13 @@ package team.android.pv.qlshop.view.activity
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Gravity
 import android.view.View
 import android.view.Window
@@ -47,7 +50,7 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
 
 
-        rv_category.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
+        rv_category.layoutManager = LinearLayoutManager(this)
         rv_category.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
 
 
@@ -64,7 +67,7 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
         imgRight.setOnClickListener {
             category = Category()
 
-            showDialog(this!!.category!!)
+            showDialog(this.category!!)
 
         }
 
@@ -119,19 +122,48 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
         dialog.setContentView(R.layout.dialog_add_category)
         var tvTitle = dialog.findViewById(R.id.tvTitle) as TextView
         var edCategory = dialog.findViewById(R.id.edCategory) as EditText
+        var btnAddCategory = dialog.findViewById(R.id.btnAddCategory) as Button
+
+        edCategory.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!!.trim().length>0){
+                    btnAddCategory.setBackgroundResource(R.drawable.boder_login_select)
+                    btnAddCategory.setTextColor(resources.getColor(R.color.white))
+                }else{
+                    btnAddCategory.setBackgroundResource(R.drawable.boder_login_btn)
+                    btnAddCategory.setTextColor(resources.getColor(R.color.black))
+                }
+            }
+
+        })
+
         dialog.show()
+        if (dialog!!.window != null) {
+            dialog!!.window!!.setGravity(Gravity.CENTER)
+            dialog!!.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+            dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
 
 
         if (!checkCategory) {
             tvTitle.text = getString(R.string.them_brand)
-
         }
 
 
-        var btnAddCategory = dialog.findViewById(R.id.btnAddCategory) as Button
         if (category != null) {
             edCategory.setText(category.name)
-            btnAddCategory.setText("Edit")
+            btnAddCategory.text = "Edit"
         }
         btnAddCategory.setOnClickListener {
             var name = edCategory.text.toString()

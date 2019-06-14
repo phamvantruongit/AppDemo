@@ -42,7 +42,7 @@ class AdapterCategorys(
         } else {
             viewHolder.itemView.ivSelects.visibility = View.GONE
         }
-        viewHolder.itemView.tvNameCategory.setText(listCategory.get(position).name)
+        viewHolder.itemView.tvNameCategory.text = listCategory.get(position).name
         viewHolder.itemView.setOnClickListener {
             if (selected_position == position) {
                 selected_position = -1

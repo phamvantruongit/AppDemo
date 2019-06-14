@@ -1,66 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.daimajia.swipe.SwipeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:swipe="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/swipe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        swipe:leftEdgeSwipeOffset="0dp"
-        swipe:rightEdgeSwipeOffset="0dp">
-
-
-    <LinearLayout
-            android:orientation="horizontal"
-            android:id="@+id/bottom_wrapper"
-            android:layout_width="180dp"
-            android:weightSum="3"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            >
-        <View android:layout_width="1dp"
-              android:background="@color/gray"
-              android:layout_height="90dp"/>
-
-        <TextView
-                android:layout_centerVertical="true"
-                android:background="#0076a5"
-                android:id="@+id/tvAddProduct"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="@string/add"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textColor="#fff"/>
-
-        <TextView
-                android:layout_centerVertical="true"
-                android:background="#003c54"
-                android:id="@+id/tvEdProduct"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="@string/edit"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textColor="#fff"/>
-
-        <TextView
-                android:layout_centerVertical="true"
-                android:background="#E61717"
-                android:layout_toRightOf="@id/tvEdProduct"
-                android:text="@string/delete"
-                android:id="@+id/tvDeProduct"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textColor="#fff"/>
-
-
-    </LinearLayout>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:paddingLeft="@dimen/_10dp"
                 android:paddingTop="@dimen/_5dp"
@@ -130,4 +68,3 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 </RelativeLayout>
-</com.daimajia.swipe.SwipeLayout>

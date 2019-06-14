@@ -42,32 +42,9 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         imgRight?.visibility=View.VISIBLE
         imgRight.setImageResource(R.drawable.ic_add)
 
-
-        imgBarcodes.setOnClickListener{
-            launchBarCodeActivity()
-        }
+        startActivity()
 
 
-        imgCategory.setOnClickListener {
-            var intent = Intent(this, AddCategoryActivity::class.java)
-            intent.putExtra("checkCategory",true)
-            startActivityForResult(intent, 101)
-        }
-
-
-        imgBrand.setOnClickListener {
-            var intent = Intent(this, AddCategoryActivity::class.java)
-            intent.putExtra("checkCategory",false)
-            startActivityForResult(intent, 102)
-        }
-
-
-        imgSupplier.setOnClickListener {
-
-            var intent=Intent(this,ActivitySupplier::class.java)
-            startActivityForResult(intent, 103)
-
-        }
 
         edPrice_in.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -226,6 +203,40 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         return total.toString()
     }
 
+    fun startActivity(){
+        imgBarcodes.setOnClickListener{
+            launchBarCodeActivity()
+        }
+
+
+        imgCategory.setOnClickListener {
+            var intent = Intent(this, AddCategoryActivity::class.java)
+            intent.putExtra("checkCategory",true)
+            startActivityForResult(intent, 101)
+        }
+
+
+        imgBrand.setOnClickListener {
+            var intent = Intent(this, AddCategoryActivity::class.java)
+            intent.putExtra("checkCategory",false)
+            startActivityForResult(intent, 102)
+        }
+
+
+        imgSize.setOnClickListener {
+            var intent = Intent(this, SizeActivity::class.java)
+            startActivityForResult(intent, 104)
+        }
+
+
+        imgSupplier.setOnClickListener {
+
+            var intent=Intent(this,ActivitySupplier::class.java)
+            startActivityForResult(intent, 103)
+
+        }
+    }
+
     private fun getData() {
         products=intent.getParcelableExtra<Product>("product")
         if(products!=null){
@@ -234,15 +245,15 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
             if(!products!!.description.equals("Null")) {
                 edDesciptionProduct.setText(products!!.description)
             }
-            edBarcode.setText(products!!.barcode)
+            edBarcode.text = products!!.barcode
             edPrice_in.setText(totalSum(products!!.price_in))
             edPrice_out.setText(totalSum(products!!.price_out))
             edAmount.setText(products!!.amount.toString())
             if(!products!!.category.equals("Null")) {
-                edCategory.setText(products!!.category)
+                edCategory.text = products!!.category
             }
             if(!products!!.brand.equals("Null")) {
-                edBrand.setText(products!!.brand)
+                edBrand.text = products!!.brand
             }
         }else{
             tvTitle.text="Them san pham"
@@ -261,25 +272,25 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         if (requestCode == 100 && data != null) {
             barcode = data.getParcelableExtra<Barcode>(BarcodeReaderActivity.KEY_CAPTURED_BARCODE).rawValue
             edBarcode.setTextColor(resources.getColor(R.color.black))
-            edBarcode.setText(barcode)
+            edBarcode.text = barcode
         }
 
 
         if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
             var category=data!!.getParcelableExtra<Category>("category")
             id_category=category.id
-            edCategory.setText(category.name)
+            edCategory.text = category.name
         }
 
 
         if ( requestCode==102 && resultCode == Activity.RESULT_OK) {
             var category=data!!.getParcelableExtra<Category>("category")
-            edBrand.setText(category.name)
+            edBrand.text = category.name
         }
 
         if ( requestCode==103 && resultCode == Activity.RESULT_OK) {
             var supplier=data!!.getParcelableExtra<Supplier>("supplier")
-            edSupplier.setText(supplier.name)
+            edSupplier.text = supplier.name
         }
     }
 

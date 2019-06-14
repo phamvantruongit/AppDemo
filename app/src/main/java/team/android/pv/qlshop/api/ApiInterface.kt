@@ -26,6 +26,10 @@ interface ApiInterface {
     @POST("add/category.php")
     fun  addCategory (@FieldMap user:Map<String,String>) :Call<BaseResponse>
 
+    @FormUrlEncoded
+    @POST("add/size.php")
+    fun  addSize(@Query("id_shop") id_shop: Int ,@Query("size") size: String  ) :Call<BaseResponse>
+
 
     @FormUrlEncoded
     @POST("add/brand.php")
@@ -77,6 +81,9 @@ interface ApiInterface {
 
     @GET("get/brands.php")
     fun getBrands(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
+
+    @GET("get/sizes.php")
+    fun getSizes(@Query("id_shop") id_shop:Int) :Call<CategoryResponse>
 
 
     @GET("get/categorys.php")

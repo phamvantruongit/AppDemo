@@ -12,22 +12,25 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.ActivitySupplier"
-                  android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
-                  android:theme="@style/AppThemeNoActionBar"
-        >
+        <activity android:name=".view.activity.DetailProductActivity">
         </activity>
-
+        <activity
+                android:name=".view.activity.SizeActivity"
+                android:theme="@style/AppThemeNoActionBar">
+        </activity>
+        <activity
+                android:name=".view.activity.ActivitySupplier"
+                android:theme="@style/AppThemeNoActionBar"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+        </activity>
         <activity
                 android:name=".view.activity.SplashActivity"
                 android:theme="@style/AppThemeNoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN"/>
-
-
-             <category android:name="android.intent.category.LAUNCHER"/>
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name=".view.activity.RegisterActivity"
@@ -36,7 +39,8 @@
         </activity>
         <activity
                 android:name=".view.activity.LoginActivity"
-                android:theme="@style/AppThemeNoActionBar"/>
+                android:theme="@style/AppThemeNoActionBar"
+                android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
         <activity
                 android:name=".view.activity.ProductActivity"
                 android:theme="@style/AppThemeNoActionBar"/>
@@ -64,7 +68,6 @@
                 android:name=".view.activity.AddCategoryActivity"
                 android:theme="@style/AppThemeNoActionBar">
         </activity>
-
         <activity
                 android:name=".view.activity.AddCategoryMoreActivity"
                 android:theme="@style/AppThemeNoActionBar">

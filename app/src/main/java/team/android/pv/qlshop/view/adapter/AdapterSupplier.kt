@@ -40,7 +40,7 @@ class AdapterSupplier(var list: List<Supplier> , var iOnCLick :IOnCLick) : Recyc
 
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView)
 
-    public interface IOnCLick{
+    interface IOnCLick{
         fun delete(id:Int)
         fun edit(supplier: Supplier)
         fun onClick(supplier: Supplier)

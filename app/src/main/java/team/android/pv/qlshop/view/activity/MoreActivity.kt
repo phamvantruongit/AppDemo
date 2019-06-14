@@ -18,15 +18,17 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
 
 
     val iv_right: IntArray = intArrayOf(
-        R.drawable.icon_right_more,
-        R.drawable.icon_right_more,
-        R.drawable.icon_right_more,
-        R.drawable.icon_right_more,
-        R.drawable.icon_right_more,
-        R.drawable.icon_right_more,
-        R.drawable.icon_right_more
+        R.drawable.iv_arrow,
+        R.drawable.iv_arrow,
+        R.drawable.iv_arrow,
+        R.drawable.iv_arrow,
+        R.drawable.iv_arrow,
+        R.drawable.iv_arrow,
+        R.drawable.iv_arrow,
+        R.drawable.iv_arrow
     )
     val iv_left: IntArray = intArrayOf(
+        R.drawable.icon_home,
         R.drawable.icon_home,
         R.drawable.icon_home,
         R.drawable.icon_home,
@@ -43,7 +45,8 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
 
         var list_title: Array<String> =
             arrayOf(getString(R.string.customer), getString(R.string.supplier) , getString(R.string.product), getString(R.string.category), getString(
-                R.string.brand), getString(R.string.add_em), getString(R.string.ems))
+                R.string.brand),getString(
+                R.string.size), getString(R.string.add_em), getString(R.string.ems))
 
 
         init()
@@ -111,7 +114,12 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
             startActivity(intent)
         }
 
-        if (position == 5) {
+        if(position==5){
+            intent = Intent(this, SizeActivity::class.java)
+            startActivity(intent)
+        }
+
+        if (position == 6) {
             if(userEntity!!.check_admin.equals("admin")){
                 intent = Intent(this@MoreActivity, RegisterActivity::class.java)
                 intent.putExtra("check_admin", 0)
@@ -122,7 +130,7 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
 
         }
 
-        if (position == 6) {
+        if (position == 7) {
             intent= Intent(this@MoreActivity, MemmbersActivity::class.java)
             startActivity(intent)
         }

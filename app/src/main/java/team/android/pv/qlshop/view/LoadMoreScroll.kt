@@ -42,11 +42,6 @@ class LoadMoreScroll(
 
     }
 
-    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-        super.onScrollStateChanged(recyclerView, newState)
-
-    }
-
     interface ILoadMoreScroll {
         fun loadMore(isScroll: Boolean)
     }

@@ -40,6 +40,8 @@ class CategoryInteractor {
         })
     }
 
+
+
     fun editCategoryToAPI(onFinishedListeners: OnFinishedListeners,name:String ,id_shop :Int  ,id :Int,check:Boolean){
 
         var param=HashMap<String,String>()
@@ -100,6 +102,47 @@ class CategoryInteractor {
         })
 
     }
+
+    fun addSize(onFinishedListeners: OnFinishedListeners,name:String ,id_shop :Int){
+
+        apiClient.addSize(id_shop,name).enqueue(object :Callback<BaseResponse>{
+
+
+            override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                if(response.body()!!.code==200){
+                    onFinishedListeners.showMessage(response.body()!!.message)
+                }
+
+            }
+
+            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                onFinishedListeners.onResultFail(t.message.toString())
+            }
+
+        })
+    }
+
+
+    fun getSize(onFinishedListenersCategory: OnFinishedListenersCategory,id_shop: Int){
+
+        apiClient.getSizes(id_shop).enqueue(object : Callback<CategoryResponse>{
+
+            override fun onResponse(call: Call<CategoryResponse>, response: Response<CategoryResponse>) {
+                if(response.body()!!.code==200){
+                    onFinishedListenersCategory.onResultSuccess(response.body()!!.listCategory)
+                }else{
+                    onFinishedListenersCategory.onResulCategorytFail(response.body()!!.message)
+                }
+            }
+
+            override fun onFailure(call: Call<CategoryResponse>, t: Throwable) {
+                onFinishedListenersCategory.onResulCategorytFail(t.message.toString())
+            }
+
+        })
+
+    }
+
 
     interface OnFinishedListenersCategory {
         fun onResulCategorytFail(strError : String)

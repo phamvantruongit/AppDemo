@@ -72,24 +72,6 @@ class GetProductInteractor {
     }
 
 
-    fun deleteProduct(listener: OnFinishedListeners, id: Int, id_shop: Int) {
-        apiClient.deleteProduct(id, id_shop)
-            .enqueue(object : Callback<BaseResponse> {
-                override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-                    if (response.body()!!.code == 200) {
-                        listener.showMessage(response.body()!!.message)
-                    } else {
-                        listener.showMessage(response.body()!!.message)
-                    }
-                }
-
-                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
-
-                }
-            })
-
-    }
-
 
     fun getListSearchProduct(listener  : OnFinishedListenerSearchProduct, id_shop:Int, barcode : String, name: String){
 

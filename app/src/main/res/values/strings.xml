@@ -45,4 +45,6 @@
     <string name="delete">Delete</string>
     <string name="error_pass">Password must be at least 7 characters</string>
     <string name="detail_product">Detail product</string>
+    <string name="size">Size</string>
+    <string name="add_size">Enter size</string>
 </resources>

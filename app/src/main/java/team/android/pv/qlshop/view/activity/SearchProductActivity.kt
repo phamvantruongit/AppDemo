@@ -61,12 +61,12 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
     }
 
     override fun iOnClickItemDetail(product: Product) {
-
+        var intent=Intent(this,DetailProductActivity::class.java)
+        intent.putExtra("product",product)
+        startActivity(intent)
     }
 
-    override fun addProuct() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+
 
     override fun onClickItem(id_category: Int, selected_position: Int) {
 
@@ -82,14 +82,11 @@ class SearchProductActivity : BaseActivitys(), ViewProductSearch, AdapterProduct
         rv_product_search.visibility=View.VISIBLE
         this.listProduct= listProduct as ArrayList<Product>
         rv_product_search.addItemDecoration(DividerItemDecoration(resources.getDrawable(R.drawable.divider)))
-        rv_product_search.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
-        rv_product_search.adapter = AdapterProduct(listProduct as ArrayList<Product>, this)
+        rv_product_search.layoutManager = LinearLayoutManager(this)
+        rv_product_search.adapter = AdapterProduct(listProduct, this)
     }
 
 
-    override fun iOnCLickItem(product: Product) {
-
-    }
 
     override fun showProgress() {
 

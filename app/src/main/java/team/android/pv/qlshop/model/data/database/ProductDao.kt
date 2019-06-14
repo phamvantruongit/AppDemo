@@ -20,14 +20,18 @@ interface ProductDao {
     fun getAllListProduct(): List<ProductEntity>
 
 
+    @Query("SELECT * FROM ProductEntity WHERE uid in (:id) ")
+    fun getProduct(id:Int) : ProductEntity
+
+
 
 
     @Query(" DELETE FROM ProductEntity WHERE uid in(:id)")
     fun deleteProduct(id: Int)
 
 
-    @Query("UPDATE ProductEntity SET amount= :amout WHERE uid in (:id) ")
-    fun updateAmount(amout:Int,id: Int)
+    @Query("UPDATE ProductEntity SET amount= :editamout WHERE uid in (:id) ")
+    fun updateAmount(editamout:Int,id: Int)
 
 
     @Query("UPDATE ProductEntity SET sale= :sale WHERE uid in (:id) ")

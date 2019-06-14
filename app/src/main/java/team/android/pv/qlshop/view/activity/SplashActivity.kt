@@ -12,10 +12,10 @@ class SplashActivity : BaseActivitys() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_splash)
-        var a:Double=15.0
-        var b:Double=100.0
-        var c:Double=a/b
-        Log.d("PPPP",c.toString())
+
+        startActivity(Intent(this, HomeActivity::class.java))
+        return
+
         if( userEntity!=null && userEntity!!.email!=null){
             if(SharedPreferencesManager.checkLogin()){
                 startActivity(Intent(this,LoginActivity::class.java))

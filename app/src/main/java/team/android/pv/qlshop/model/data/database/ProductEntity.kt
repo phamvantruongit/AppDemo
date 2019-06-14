@@ -6,9 +6,6 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 class ProductEntity {
-//    @PrimaryKey(autoGenerate = true)
-//    var id:Int=0
-
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "uid")
     var uid:Int=0

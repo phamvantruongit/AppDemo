@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/view_match_parent"
+        android:background="@color/edSearch"
+        tools:context=".view.activity.DetailProductActivity">
+    <TableLayout
+            style="@style/view_match_parent"
+            tools:context=".view.activity.DetailProductActivity">
+        <LinearLayout
+                android:background="@drawable/border_linear_detail"
+                android:layout_marginTop="@dimen/_10dp"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_5dp"
+        >
+            <TextView android:text="@string/add"
+                      android:textStyle="bold"
+                      android:textColor="#0076a5"
+                      android:gravity="center"
+                      android:layout_weight="1"
+                      android:id="@+id/tvAddProductDetail"
+                      style="@style/tvDetail"
+            />
+            <View android:layout_width="1dp"
+                  android:background="@color/gray"
+                  android:layout_height="match_parent"/>
+            <TextView
+                    android:id="@+id/tvEditProductDetail"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:textColor="#003c54"
+                    android:gravity="center"
+                    android:text="@string/edit"
+                    android:layout_weight="1"
+                    style="@style/tvDetail"
+            />
+            <View android:layout_width="1dp"
+                  android:background="@color/gray"
+                  android:layout_height="match_parent"/>
+            <TextView android:gravity="center"
+                      android:id="@+id/tvDeleteProductDetail"
+                      android:textStyle="bold"
+                      android:layout_marginLeft="@dimen/_5dp"
+                      android:textColor="@color/red"
+                      android:text="@string/delete"
+                      android:layout_weight="1"
+                      style="@style/tvDetail"
+            />
+        </LinearLayout>
+
+        <TableRow
+                style="@style/color_row"
+                android:layout_marginTop="@dimen/_10dp"
+        >
+            <TextView
+                    android:id="@+id/tv_Product"
+                    style="@style/tvTitleDetail"
+                    android:text="Ma san pham: "
+            />
+            <TextView
+                    style="@style/tvDetail"
+                    android:id="@+id/tvMaSP"
+            />
+        </TableRow>
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView style="@style/tvTitleDetail"
+                      android:id="@+id/Name_Product"
+                      android:text="Ten san pham: "
+            />
+
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvNameProduct"
+            />
+        </TableRow>
+
+
+
+
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView
+                    style="@style/tvTitleDetail"
+                    android:text="Mieu ta: "
+            />
+
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvdescription"
+            />
+        </TableRow>
+
+
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView style="@style/tvTitleDetail"
+                      android:id="@+id/Amount_Product"
+
+                      android:text="So luong: "
+            />
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvAmount"
+            />
+        </TableRow>
+
+
+
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView
+                    android:text="Gia ban:"
+                    android:id="@+id/PriceOut"
+                    style="@style/tvTitleDetail"/>
+
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvPriceOut"
+            />
+        </TableRow>
+
+
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView
+                    android:text="Gia nhap:"
+                    style="@style/tvTitleDetail"/>
+
+
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvpriceIn"
+            />
+
+        </TableRow>
+
+
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView
+                    style="@style/tvTitleDetail"
+                    android:text="Barcode:"
+            />
+
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvbarcode"
+            />
+
+        </TableRow>
+
+
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView style="@style/tvTitleDetail"
+                      android:text="Danh muc:"
+            />
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvcategory"
+            />
+
+        </TableRow>
+
+
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView style="@style/tvTitleDetail"
+                      android:text="Nhan hieu:"
+            />
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvbrand"
+            />
+
+        </TableRow>
+
+
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView style="@style/tvTitleDetail"
+                      android:text="Nha cung cap:"
+            />
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvsupplier"
+            />
+
+        </TableRow>
+
+
+
+        <TableRow
+                style="@style/color_row"
+        >
+
+            <TextView style="@style/tvTitleDetail"
+                      android:text="Size"
+            />
+            <TextView style="@style/tvDetail"
+                      android:id="@+id/tvsize"
+            />
+
+        </TableRow>
+
+
+    </TableLayout>
+</android.support.v4.widget.NestedScrollView>

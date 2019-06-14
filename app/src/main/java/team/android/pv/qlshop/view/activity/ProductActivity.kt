@@ -110,7 +110,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
         page = current_page.toInt()
         ln_add.visibility = View.GONE
         rv_product.visibility = View.VISIBLE
-        rv_product.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
+        rv_product.layoutManager = LinearLayoutManager(this)
         rv_product.addItemDecoration(DividerItemDecoration(resources.getDrawable(team.android.pv.qlshop.R.drawable.divider)))
         rv_product.adapter = AdapterProduct(productList, this)
         rv_product.addOnScrollListener(LoadMoreScroll(rv_product.layoutManager as LinearLayoutManager, this))
@@ -126,16 +126,9 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
     }
 
     override fun iOnClickItemDetail(product: Product) {
-        var intent=Intent(this,CustomerActivity::class.java)
+        var intent=Intent(this,DetailProductActivity::class.java)
+        intent.putExtra("product",product)
         startActivity(intent)
-    }
-
-    override fun iOnCLickItem(product: Product) {
-        getProductPresenter.deleteProduct(product.id, product.id_shop)
-    }
-
-    override fun addProuct() {
-       startActivity(Intent(this,AddProductActivity::class.java))
     }
 
     override fun getListNameCategory(category: ArrayList<Category>) {

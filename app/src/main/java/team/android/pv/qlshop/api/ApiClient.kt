@@ -65,7 +65,7 @@ class ApiClient {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             }
-            return this!!.retrofit!!
+            return this.retrofit!!
         }
 
         private fun initOkHttp() {

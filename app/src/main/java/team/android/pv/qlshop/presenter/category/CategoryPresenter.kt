@@ -8,9 +8,18 @@ class CategoryPresenter(val viewAddCategory: ViewAddCategory, val categoryIntera
     OnFinishedListeners, CategoryInteractor.OnFinishedListenersCategory {
 
 
+    fun addSize(name: String, id_shop: Int){
+        categoryInteractor.addSize(this,name,id_shop)
+    }
+
     fun getCategory(id_shop: Int, check: Boolean) {
         viewAddCategory.showProgress()
         categoryInteractor.getCategoryToAPI(this, id_shop, check)
+    }
+
+    fun getSize(id_shop: Int){
+        viewAddCategory.showProgress()
+        categoryInteractor.getSize(this,id_shop)
     }
 
     override fun onResulCategorytFail(strError: String) {

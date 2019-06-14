@@ -78,11 +78,11 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupp
             dialog!!.edEmail.setText(supplier.email)
             dialog!!.edPhone.setText(supplier.phone.toString())
             dialog!!.edDesciption.setText(supplier.description)
-            dialog!!.btnAddSupplier.setText(getString(R.string.edit_info))
+            dialog!!.btnAddSupplier.text = getString(R.string.edit_info)
         }
 
         if (checkCustomer as Boolean) {
-            dialog!!.tvNameCustomer.setText("Ten KH")
+            dialog!!.tvNameCustomer.text = "Ten KH"
         }
 
         dialog!!.btnAddSupplier.setOnClickListener {

@@ -71,7 +71,8 @@
 
         <TextView android:layout_width="40dp"
                   android:textSize="@dimen/_18sp"
-                  android:background="@color/gray"
+                  android:textStyle="bold"
+                  android:background="@color/edSearch"
                   android:gravity="center"
                   android:id="@+id/btnGiam"
                   android:text="-"
@@ -84,8 +85,9 @@
                   android:textSize="@dimen/_18sp"
                   android:layout_height="@dimen/_30dp"/>
         <TextView android:layout_width="40dp"
+                  android:textStyle="bold"
                   android:textSize="@dimen/_18sp"
-                  android:background="@color/gray"
+                  android:background="@color/edSearch"
                   android:id="@+id/btnTang"
                   android:gravity="center"
                   android:text="+"
