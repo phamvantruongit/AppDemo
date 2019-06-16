@@ -12,6 +12,11 @@
         android:title="" />
 
     <item
+            android:id="@+id/navigation_thongke"
+            android:icon="@drawable/iv_product"
+            android:title="" />
+
+    <item
         android:id="@+id/navigation_products"
         android:icon="@drawable/iv_product"
         android:title="" />

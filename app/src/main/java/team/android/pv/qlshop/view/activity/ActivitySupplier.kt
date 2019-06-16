@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -60,11 +61,9 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupp
 
     private fun showDialogApp(supplier: Supplier?) {
 
-
-        dialog!!.imgRight.visibility = View.GONE
-
         dialog!!.show()
         if (dialog!!.window != null) {
+            dialog!!.window!!.setGravity(Gravity.CENTER)
             dialog!!.window!!.setLayout(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT
@@ -82,7 +81,7 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupp
         }
 
         if (checkCustomer as Boolean) {
-            dialog!!.tvNameCustomer.text = "Ten KH"
+           // dialog!!.tvNameCustomer.text = "Ten KH"
         }
 
         dialog!!.btnAddSupplier.setOnClickListener {
@@ -126,6 +125,7 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupp
 
         dialog!!.btnCancel.setOnClickListener {
 
+            dialog!!.cancel()
 
         }
 

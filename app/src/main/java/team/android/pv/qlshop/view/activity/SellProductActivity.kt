@@ -12,6 +12,7 @@ import android.os.Handler
 import android.support.design.widget.TextInputEditText
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -168,21 +169,25 @@ class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLoc
 
 
         var liveData: LiveData<List<ProductEntity>> =   MyApplication.appDatabase.productDao().getListProduct()
-        liveData.observe(this,object :Observer<List<ProductEntity>>{
-            override fun onChanged(list: List<ProductEntity>?) {
-                if (list != null) {
-                    getSum(list)
-                    rl_sell_product.visibility = View.VISIBLE
-                    adapterProductLocal!!.setData(list)
-                    rv_product_local!!.adapter=adapterProductLocal
-                    adapterProductLocal!!.notifyDataSetChanged()
-                }else{
-                    rl_sell_product.visibility = View.GONE
+
+            liveData.observe(this, object : Observer<List<ProductEntity>> {
+                override fun onChanged(list: List<ProductEntity>?) {
+                    if (list!!.size>0) {
+                        getSum(list)
+                        rl_sell_product.visibility = View.VISIBLE
+                        adapterProductLocal!!.setData(list)
+                        rv_product_local!!.adapter = adapterProductLocal
+                        adapterProductLocal!!.notifyDataSetChanged()
+                    }else{
+                        rl_sell_product.visibility = View.GONE
+                    }
+
                 }
 
-            }
+            })
 
-        })
+
+
 
 
     }
@@ -193,6 +198,7 @@ class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLoc
 
     override fun delete(id: Int) {
         MyApplication.appDatabase.productDao().deleteProduct(id)
+        adapterProductLocal!!.notifyDataSetChanged()
 
 
     }
@@ -227,6 +233,11 @@ class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLoc
 
 
     override fun getListSearchProduct(listProduct: List<Product>) {
+
+
+        for(i in 0..listProduct.size-1){
+           Log.d("PPPP",listProduct.get(i).size)
+        }
 
 
     }

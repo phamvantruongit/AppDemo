@@ -13,8 +13,6 @@ class SplashActivity : BaseActivitys() {
 
         setContentView(R.layout.activity_splash)
 
-        startActivity(Intent(this, HomeActivity::class.java))
-        return
 
         if( userEntity!=null && userEntity!!.email!=null){
             if(SharedPreferencesManager.checkLogin()){

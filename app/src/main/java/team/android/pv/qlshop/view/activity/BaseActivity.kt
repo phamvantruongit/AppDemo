@@ -64,6 +64,11 @@ abstract class BaseActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
             startActivity(Intent(this, SellProductActivity::class.java))
 
         }
+
+        if (itemId == R.id.navigation_thongke) {
+            startActivity(Intent(this, ActivityThongKe::class.java))
+
+        }
         if (itemId == R.id.navigation_products) {
             startActivity(Intent(this, ProductActivity::class.java))
 
@@ -84,10 +89,10 @@ abstract class BaseActivity : AppCompatActivity(), BottomNavigationView.OnNaviga
         val builder = AlertDialog.Builder(this)
         builder.setMessage("Do you want to exit ?")
         builder.setPositiveButton("Yes") { dialog, which ->
-            overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
+//            overridePendingTransition(
+//                R.anim.anim_slide_in_left,
+//                R.anim.anim_slide_out_left
+//            )
             finish()
             finish()
         }

@@ -16,6 +16,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_add_category.*
+import kotlinx.android.synthetic.main.dialog_add_category.*
 import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
@@ -38,11 +39,15 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
     private var category: Category? = null
 
+    private var dialog:Dialog ? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_category)
+
+
+
 
         imgRight.visibility = View.VISIBLE
 
@@ -61,6 +66,10 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
 
         categoryPresenter!!.getCategory(userEntity!!.id_shop, checkCategory)
+
+        dialog = Dialog(this)
+        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog!!.setContentView(R.layout.dialog_add_category)
 
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
 
@@ -117,35 +126,10 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
     }
 
     private fun showDialog(category: Category) {
-        var dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_add_category)
-        var tvTitle = dialog.findViewById(R.id.tvTitle) as TextView
-        var edCategory = dialog.findViewById(R.id.edCategory) as EditText
-        var btnAddCategory = dialog.findViewById(R.id.btnAddCategory) as Button
 
-        edCategory.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
 
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.trim().length>0){
-                    btnAddCategory.setBackgroundResource(R.drawable.boder_login_select)
-                    btnAddCategory.setTextColor(resources.getColor(R.color.white))
-                }else{
-                    btnAddCategory.setBackgroundResource(R.drawable.boder_login_btn)
-                    btnAddCategory.setTextColor(resources.getColor(R.color.black))
-                }
-            }
-
-        })
-
-        dialog.show()
+        dialog!!.show()
+        dialog!!.setCancelable(false)
         if (dialog!!.window != null) {
             dialog!!.window!!.setGravity(Gravity.CENTER)
             dialog!!.window!!.setLayout(
@@ -154,6 +138,11 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
             )
             dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
+
+        var tvTitle = dialog!!.findViewById(R.id.tvTitle) as TextView
+        var edCategory = dialog!!.findViewById(R.id.edCategory) as EditText
+        var btnAddCategory = dialog!!.findViewById(R.id.btnAddCategory) as TextView
+
 
 
         if (!checkCategory) {
@@ -168,7 +157,7 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
         btnAddCategory.setOnClickListener {
             var name = edCategory.text.toString()
             if (name.length == 0) {
-                dialog.dismiss()
+                edCategory.error=getString(R.string.enter_info)
                 return@setOnClickListener
             }
             if (category.name != "") {
@@ -176,7 +165,11 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
             } else {
                 categoryPresenter!!.addCategory(name, userEntity!!.id_shop, checkCategory)
             }
-            dialog.dismiss()
+            dialog!!.dismiss()
+        }
+
+        dialog!!.btnExit.setOnClickListener {
+            dialog!!.dismiss()
         }
     }
 

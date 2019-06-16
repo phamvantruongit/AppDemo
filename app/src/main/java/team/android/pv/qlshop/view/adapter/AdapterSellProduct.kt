@@ -3,6 +3,7 @@ package team.android.pv.qlshop.view.adapter
 import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.*
 import android.widget.RadioButton
 import kotlinx.android.synthetic.main.item_product_sell.view.*
@@ -70,7 +71,7 @@ class AdapterSellProduct(var context: Context, var productList: ArrayList<Produc
         var product = productList.get(position)
 
         viewHolder.itemView.setOnClickListener {
-            iOnClick.iOnCLickItem(product ,viewHolder.itemView.cb_selected)
+            iOnClick.iOnCLickItem(product, viewHolder.itemView.cb_selected)
 
         }
 

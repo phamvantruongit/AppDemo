@@ -1,160 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ln"
-        android:orientation="vertical"
-        android:background="@color/white"
+         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginRight="@dimen/_20dp"
+        android:background="@drawable/border_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <include layout="@layout/toolbar"/>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_marginLeft="@dimen/_10dp"
-                  android:layout_marginRight="@dimen/_10dp"
-                  android:layout_marginTop="@dimen/_50dp"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:id="@+id/tvNameCustomer"
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="Nha cung cap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        android:layout_height="450dp">
+    <TextView android:layout_width="match_parent"
+              android:textStyle="bold"
+              android:textColor="@color/black"
+              android:padding="@dimen/_15dp"
+              android:gravity="center"
+              android:id="@+id/tv_title"
+              android:text="@string/add_info"
+              android:layout_height="wrap_content"/>
+    <View android:layout_width="match_parent"
+          android:background="@color/gray"
+          android:layout_below="@id/tv_title"
+          android:layout_height="1dp"/>
         <EditText
+                android:layout_below="@id/tv_title"
+                android:background="@drawable/border_layout"
+                android:padding="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_50dp"
+                android:hint="@string/name"
                 android:singleLine="true"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
-                android:layout_weight="3"
                 android:textSize="13sp"
                 android:id="@+id/edName"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
         />
-    </LinearLayout>
-
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_marginLeft="@dimen/_10dp"
-                  android:layout_marginRight="@dimen/_10dp"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="Dia chi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
         <EditText
+                android:layout_marginTop="@dimen/_10dp"
+                android:layout_below="@id/edName"
+                android:background="@drawable/border_layout"
+                android:padding="@dimen/_10dp"
+                android:hint="@string/address"
                 android:singleLine="true"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
-                android:layout_weight="3"
                 android:textSize="@dimen/_13sp"
                 android:id="@+id/edAddress"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-        />
-    </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_marginLeft="@dimen/_10dp"
-                  android:layout_marginRight="@dimen/_10dp"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="Dien thoai"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
         <EditText
+                android:layout_marginTop="@dimen/_10dp"
+                android:layout_below="@id/edAddress"
+                android:background="@drawable/border_layout"
+                android:padding="@dimen/_10dp"
+                android:hint="@string/phone"
                 android:singleLine="true"
                 android:maxLength="11"
                 android:inputType="phone"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
-                android:layout_weight="3"
                 android:textSize="13sp"
                 android:id="@+id/edPhone"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
         />
-    </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_marginLeft="@dimen/_10dp"
-                  android:layout_marginRight="@dimen/_10dp"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="Email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
 
         <EditText
+                android:layout_marginTop="@dimen/_10dp"
+                android:layout_below="@id/edPhone"
+                android:background="@drawable/border_layout"
+                android:padding="@dimen/_10dp"
+                android:hint="@string/email"
                 android:singleLine="true"
                 android:inputType="textEmailAddress"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
-                android:layout_weight="3"
                 android:textSize="@dimen/_13sp"
                 android:id="@+id/edEmail"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
         />
-    </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_marginLeft="@dimen/_10dp"
-                  android:layout_marginRight="@dimen/_10dp"
-                  android:orientation="horizontal"
-                  android:weightSum="10"
-                  android:layout_height="wrap_content">
-        <TextView
-                android:textColor="@color/black"
-                android:layout_weight="7"
-                android:text="Mo ta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
 
         <EditText
+                android:layout_below="@id/edEmail"
+                android:layout_marginTop="@dimen/_10dp"
+                android:background="@drawable/border_layout"
+                android:padding="@dimen/_10dp"
+                android:hint="@string/description"
                 android:maxLines="3"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:backgroundTint="@color/gray"
-                android:layout_weight="3"
                 android:textSize="@dimen/_13sp"
                 android:id="@+id/edDesciption"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
         />
-    </LinearLayout>
-    <LinearLayout
-            android:layout_marginLeft="@dimen/_10dp"
-            android:layout_marginRight="@dimen/_10dp"
-            android:layout_marginTop="@dimen/_30dp"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-        <Button
-                android:textAllCaps="false"
-                android:id="@+id/btnAddSupplier"
-                android:textColor="@color/black"
-                android:layout_weight="1"
-                android:text="Them"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
 
-        <Button
-                android:textAllCaps="false"
-                android:id="@+id/btnCancel"
-                android:textColor="@color/black"
-                android:layout_weight="1"
-                android:text="Huy bo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+    <LinearLayout android:layout_width="match_parent"
+
+                  android:orientation="vertical"
+                  android:layout_alignParentBottom="true"
+                  android:layout_height="wrap_content">
+        <View android:layout_width="match_parent"
+              android:background="@color/gray"
+              android:layout_height="1dp"/>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+            <TextView
+                    android:textColor="@color/black"
+                    android:layout_below="@id/edSize"
+                    android:textAllCaps="false"
+                    android:id="@+id/btnCancel"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="Exit"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"/>
+            <View android:layout_width="1dp"
+                  android:background="@color/gray"
+                  android:layout_height="match_parent"/>
+            <TextView
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/black"
+                    android:layout_below="@id/edSize"
+                    android:textAllCaps="false"
+                    android:id="@+id/btnAddSupplier"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/add"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

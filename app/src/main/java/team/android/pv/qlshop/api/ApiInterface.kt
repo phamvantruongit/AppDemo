@@ -28,7 +28,7 @@ interface ApiInterface {
 
     @FormUrlEncoded
     @POST("add/size.php")
-    fun  addSize(@Query("id_shop") id_shop: Int ,@Query("size") size: String  ) :Call<BaseResponse>
+    fun  addSize(@Field("id_shop") id_shop: Int, @Field("name") size: String  ) :Call<BaseResponse>
 
 
     @FormUrlEncoded
@@ -122,7 +122,7 @@ interface ApiInterface {
 
 
     @GET("get/search.php")
-    fun searchProduct(@Query("id_shop") id_shop:Int ,@Query("barcode") barcode : String ,@Query("name") name: String) :Call<ProductResponse>
+    fun searchProduct(@Query("id_shop") id_shop:Int ,@Query("barcode") barcode : String ,@Query("name")  name: String ,@Query("id") id: Int) :Call<ProductResponse>
 
 
 }

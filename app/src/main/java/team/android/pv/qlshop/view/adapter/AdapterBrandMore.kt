@@ -10,10 +10,6 @@ import team.android.pv.qlshop.model.Category
 
 class AdapterBrandMore(var listCategory: List<Category>, var iOnClickItem: IOnClickItem) :
     RecyclerView.Adapter<AdapterBrandMore.ViewHolder>() {
-    companion object {
-        var selected_position = -1
-
-    }
 
     override fun onCreateViewHolder(viewgroup: ViewGroup, position: Int): AdapterBrandMore.ViewHolder {
         val view = LayoutInflater.from(viewgroup.context).inflate(R.layout.item_category, viewgroup, false)
@@ -28,7 +24,7 @@ class AdapterBrandMore(var listCategory: List<Category>, var iOnClickItem: IOnCl
 
         viewHolder.itemView.ivSelect.visibility = View.GONE
 
-        viewHolder.itemView.tvEditProduct.setOnClickListener {
+        viewHolder.itemView.setOnClickListener {
 
             iOnClickItem.onClickEditCategory(listCategory.get(position))
 

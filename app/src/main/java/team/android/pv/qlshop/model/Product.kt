@@ -4,6 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class Product() : Parcelable {
+
+
     var id:Int=0
     var id_category:Int=0
     var name:String=""
@@ -19,16 +21,10 @@ class Product() : Parcelable {
     var note=""
     var unit=""
     var count=0
+    var id_size=0
+    var id_brand=0
+    var size=""
      private var isSelected:Boolean=false
-
-
-    fun isSelected():Boolean{
-          return isSelected
-    }
-
-    fun setSelected(selected: Boolean) {
-        isSelected = selected
-    }
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readInt()
@@ -45,6 +41,20 @@ class Product() : Parcelable {
         brand = parcel.readString()
         note = parcel.readString()
         unit = parcel.readString()
+        count = parcel.readInt()
+        id_size = parcel.readInt()
+        id_brand = parcel.readInt()
+        size = parcel.readString()
+        isSelected = parcel.readByte() != 0.toByte()
+    }
+
+
+    fun isSelected():Boolean{
+          return isSelected
+    }
+
+    fun setSelected(selected: Boolean) {
+        isSelected = selected
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -62,6 +72,11 @@ class Product() : Parcelable {
         parcel.writeString(brand)
         parcel.writeString(note)
         parcel.writeString(unit)
+        parcel.writeInt(count)
+        parcel.writeInt(id_size)
+        parcel.writeInt(id_brand)
+        parcel.writeString(size)
+        parcel.writeByte(if (isSelected) 1 else 0)
     }
 
     override fun describeContents(): Int {
@@ -77,5 +92,6 @@ class Product() : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
 
 }

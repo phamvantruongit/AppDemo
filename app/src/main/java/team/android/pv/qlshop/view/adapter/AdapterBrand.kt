@@ -34,6 +34,8 @@ class AdapterBrand(var listCategory: List<Category>, var iOnClickItem: IOnClickI
             viewHolder.itemView.ivSelect.visibility=View.GONE
         }
 
+        viewHolder.itemView.bottom_wrapper.visibility=View.GONE
+
 
 
         viewHolder.itemView.setOnClickListener {

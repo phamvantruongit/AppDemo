@@ -8,20 +8,20 @@ import kotlinx.android.synthetic.main.item_category.view.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
 
-class AdapterCategory(var listCategory: List<Category>,var iOnClickItem: IOnClickItem) :RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
+class AdapterSize(var listCategory: List<Category>, var iOnClickItem: IOnClickItem) :RecyclerView.Adapter<AdapterSize.ViewHolder>() {
     companion object {
         var selected_position = -1
 
     }
 
-    override fun onCreateViewHolder(viewgroup: ViewGroup, position: Int): AdapterCategory.ViewHolder {
+    override fun onCreateViewHolder(viewgroup: ViewGroup, position: Int): AdapterSize.ViewHolder {
         val view=LayoutInflater.from(viewgroup.context).inflate(R.layout.item_category,viewgroup,false)
         return ViewHolder(view)
     }
 
     override fun getItemCount() = listCategory.size
 
-    override fun onBindViewHolder(viewHolder: AdapterCategory.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: AdapterSize.ViewHolder, position: Int) {
         viewHolder.bindData(listCategory.get(position))
         var check_visible:Boolean
 

@@ -77,6 +77,10 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
     private fun init() {
         tvNameUser.text = ""
         tvEmailUser.text = ""
+
+        rl_user.setOnClickListener {
+            startActivity(Intent(this,CustomerActivity::class.java))
+        }
     }
 
     override fun onClickItem(position: Int) {
@@ -90,21 +94,25 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
             var intent=Intent(this,ActivitySupplier::class.java)
             intent.putExtra("checkCustomer",true)
             startActivity(intent)
+            overridePendingTransition(R.anim.left_in, R.anim.right_out);
         }
 
         if(position==1){
             var intent=Intent(this,ActivitySupplier::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.left_in, R.anim.right_out);
         }
 
         if (position == 2) {
             intent= Intent(this@MoreActivity, AddProductActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.left_in, R.anim.right_out);
         }
 
         if (position == 3) {
             intent = Intent(this@MoreActivity, AddCategoryMoreActivity::class.java)
             intent.putExtra("checkCategory", true)
+            overridePendingTransition(R.anim.left_in, R.anim.right_out)
             startActivity(intent)
         }
 
@@ -112,11 +120,14 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
             intent = Intent(this@MoreActivity, AddCategoryMoreActivity::class.java)
             intent.putExtra("checkCategory", false)
             startActivity(intent)
+            overridePendingTransition(R.anim.left_in, R.anim.right_out);
         }
 
         if(position==5){
             intent = Intent(this, SizeActivity::class.java)
+            intent.putExtra("checkSize", true)
             startActivity(intent)
+            overridePendingTransition(R.anim.left_in, R.anim.right_out);
         }
 
         if (position == 6) {
@@ -124,6 +135,7 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
                 intent = Intent(this@MoreActivity, RegisterActivity::class.java)
                 intent.putExtra("check_admin", 0)
                 startActivity(intent)
+                overridePendingTransition(R.anim.left_in, R.anim.right_out);
             }else{
                 Toast.makeText(this,"Ban khong co quyen truy cap",Toast.LENGTH_SHORT).show()
             }
@@ -133,6 +145,7 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
         if (position == 7) {
             intent= Intent(this@MoreActivity, MemmbersActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.left_in, R.anim.right_out);
         }
 
 

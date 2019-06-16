@@ -111,6 +111,8 @@ class CategoryInteractor {
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                 if(response.body()!!.code==200){
                     onFinishedListeners.showMessage(response.body()!!.message)
+                }else{
+                    onFinishedListeners.onResultFail(response.body()!!.message)
                 }
 
             }

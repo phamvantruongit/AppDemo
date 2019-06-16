@@ -22,8 +22,9 @@ class AddProductInteractor {
         param.put("brand", product.brand)
         param.put("unit",product.unit)
         param.put("id_shop",product.id_shop.toString())
-
-
+        param.put("id_brand",product.id_brand.toString())
+        param.put("id_size",product.id_size.toString())
+        param.put("size",product.size)
 
 
         apiClient.addProduct(param).enqueue(object :Callback<BaseResponse>{

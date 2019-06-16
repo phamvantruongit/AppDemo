@@ -24,7 +24,7 @@
     <string name="amout" translatable="false"><![CDATA[Amount product>0]]></string>
     <string name="price" translatable="false"><![CDATA[Price product >0]]></string>
     <string name="prices" translatable="false"><![CDATA[Price product >0]]></string>
-    <string name="name" translatable="false">Tên KH</string>
+    <string name="name" translatable="false">Tên</string>
     <string name="edit_info" translatable="false">Sửa thông tin</string>
     <string name="customer">Khách hàng</string>
     <string name="supplier">Nhà cung cấp</string>
@@ -45,6 +45,21 @@
     <string name="delete">Xóa</string>
     <string name="error_pass">Mật khẩu quá ngắn</string>
     <string name="detail_product">Chi tiết</string>
-    <string name="size">Size</string>
     <string name="add_size">Add size</string>
+    <string name="title_category">Danh mục</string>
+    <string name="title_brand">Nhãn hiệu</string>
+    <string name="name_brand">Tên nhãn hiệu</string>
+    <string name="name_category">Tên danh mục</string>
+    <string name="update_categoty">Cập nhật danh mục</string>
+    <string name="update_brand">Cập nhật nhãn hiệu</string>
+    <string name="exit">Thoát</string>
+    <string name="name_size">Tên size</string>
+    <string name="title_size">Thêm Size</string>
+    <string name="add_info">Thêm thông tin</string>
+    <string name="address">Address</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="title_login">Đăng nhập với My Shop</string>
+    <string name="title_register">Đăng kí với My Shop</string>
+    <string name="update_size">Cập nhật size</string>
+    <string name="size">Size</string>
 </resources>

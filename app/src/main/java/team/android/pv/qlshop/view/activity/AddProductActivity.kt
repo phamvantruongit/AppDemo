@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.android.gms.vision.barcode.Barcode
 import com.notbytes.barcode_reader.BarcodeReaderActivity
+import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.layout_product.*
 import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
@@ -28,25 +29,27 @@ import java.util.*
 
 class AddProductActivity : BaseActivitys(), ViewProduct {
     private var barcode: String = ""
-    private var id_category=0
-   private  var products:Product?=null
+    private var id_category = 0
+    private var id_size = 0
+    private var id_brand = 0
+    private var products: Product? = null
 
     private var productPresenter: AddProductPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_product)
-        productPresenter = AddProductPresenter(this,AddProductInteractor())
+        productPresenter = AddProductPresenter(this, AddProductInteractor())
 
         getData()
 
-        imgRight?.visibility=View.VISIBLE
+        imgRight?.visibility = View.VISIBLE
         imgRight.setImageResource(R.drawable.ic_add)
 
         startActivity()
 
 
 
-        edPrice_in.addTextChangedListener(object :TextWatcher{
+        edPrice_in.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -82,7 +85,7 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         })
 
 
-        edPrice_out.addTextChangedListener(object :TextWatcher{
+        edPrice_out.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -118,76 +121,80 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         })
 
 
-        imgRight.setOnClickListener{
+        imgRight.setOnClickListener {
 
             var product = Product()
 
-            var name=edNameProduct.text.toString()
-            var barcode=edBarcode.text.toString()
-            var amount=edAmount.text.toString()
-            var price_in=edPrice_in.text.toString().replace(",","")
-            var price_out=edPrice_out.text.toString().replace(",","")
+            var name = edNameProduct.text.toString()
+            var barcode = edBarcode.text.toString()
+            var amount = edAmount.text.toString()
+            var price_in = edPrice_in.text.toString().replace(",", "")
+            var price_out = edPrice_out.text.toString().replace(",", "")
 
-            if(TextUtils.isEmpty(name)){
-                edNameProduct.error=getString(R.string.enter_info)
+            if (TextUtils.isEmpty(name)) {
+                edNameProduct.error = getString(R.string.enter_info)
                 return@setOnClickListener
             }
 
-           if(TextUtils.isEmpty(edAmount.text.toString())){
-               edAmount.error=getString(R.string.enter_info)
-               return@setOnClickListener
-           }
+            if (TextUtils.isEmpty(edAmount.text.toString())) {
+                edAmount.error = getString(R.string.enter_info)
+                return@setOnClickListener
+            }
 
-           if(amount.toInt()<=0 ){
-               edAmount.error=getString(R.string.amout)
-               return@setOnClickListener
+            if (amount.toInt() <= 0) {
+                edAmount.error = getString(R.string.amout)
+                return@setOnClickListener
 
-           }
+            }
 
-           if(TextUtils.isEmpty(edPrice_in.text.toString())){
-               edPrice_in.error=getString(R.string.enter_info)
-               return@setOnClickListener
-           }
+            if (TextUtils.isEmpty(edPrice_in.text.toString())) {
+                edPrice_in.error = getString(R.string.enter_info)
+                return@setOnClickListener
+            }
 
-           if(price_in.toLong()<=0L){
-               edPrice_in.error=getString(R.string.price)
-               return@setOnClickListener
-           }
+            if (price_in.toLong() <= 0L) {
+                edPrice_in.error = getString(R.string.price)
+                return@setOnClickListener
+            }
 
-           if(TextUtils.isEmpty(edPrice_out.text.toString())){
-               edPrice_out.error=getString(R.string.enter_info)
-               return@setOnClickListener
-           }
-
-
-
-           if(price_out.toLong()<=0L ){
-             edPrice_out.error=getString(R.string.prices)
-             return@setOnClickListener
-           }
-
-
-            product.name=name
-            if(barcode!=""){
-                product.barcode=barcode
+            if (TextUtils.isEmpty(edPrice_out.text.toString())) {
+                edPrice_out.error = getString(R.string.enter_info)
+                return@setOnClickListener
             }
 
 
-            product.barcode=edBarcode.text.toString()
-            product.description=edDesciptionProduct.text.toString()
-            product.category=edCategory.text.toString()
-            product.brand=edBrand.text.toString()
-            product.amount=amount.toInt()
-            product.price_in= price_in.toLong()
-            product.price_out=price_out.toLong()
-            product.id_shop=userEntity!!.id_shop
-            product.id_category=id_category
 
-            if(products!=null){
-                 product.id=products!!.id
-                 productPresenter!!.editProduct(product)
+            if (price_out.toLong() <= 0L) {
+                edPrice_out.error = getString(R.string.prices)
+                return@setOnClickListener
+            }
 
-            }else {
+
+            product.name = name
+            if (barcode != "") {
+                product.barcode = barcode
+            }
+
+
+            product.barcode = edBarcode.text.toString()
+            product.description = edDesciptionProduct.text.toString()
+            product.category = edCategory.text.toString()
+            product.brand = edBrand.text.toString()
+            product.amount = amount.toInt()
+            product.price_in = price_in.toLong()
+            product.price_out = price_out.toLong()
+            product.id_shop = userEntity!!.id_shop
+            product.id_category = id_category
+            product.id_size=id_size
+            product.id_brand=id_brand
+            product.size=edSize.text.toString()
+
+
+            if (products != null) {
+                product.id = products!!.id
+                productPresenter!!.editProduct(product)
+
+            } else {
 
                 productPresenter!!.addProduct(product)
             }
@@ -196,29 +203,29 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
         }
     }
 
-    fun totalSum(sum:Long):String{
+    fun totalSum(sum: Long): String {
         val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
         formatter.applyPattern("#,###,###,###")
         val total = formatter.format(sum)
         return total.toString()
     }
 
-    fun startActivity(){
-        imgBarcodes.setOnClickListener{
+    fun startActivity() {
+        imgBarcodes.setOnClickListener {
             launchBarCodeActivity()
         }
 
 
         imgCategory.setOnClickListener {
             var intent = Intent(this, AddCategoryActivity::class.java)
-            intent.putExtra("checkCategory",true)
+            intent.putExtra("checkCategory", true)
             startActivityForResult(intent, 101)
         }
 
 
         imgBrand.setOnClickListener {
             var intent = Intent(this, AddCategoryActivity::class.java)
-            intent.putExtra("checkCategory",false)
+            intent.putExtra("checkCategory", false)
             startActivityForResult(intent, 102)
         }
 
@@ -231,32 +238,32 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
         imgSupplier.setOnClickListener {
 
-            var intent=Intent(this,ActivitySupplier::class.java)
+            var intent = Intent(this, ActivitySupplier::class.java)
             startActivityForResult(intent, 103)
 
         }
     }
 
     private fun getData() {
-        products=intent.getParcelableExtra<Product>("product")
-        if(products!=null){
-            tvTitle.text="Sua san pham"
+        products = intent.getParcelableExtra<Product>("product")
+        if (products != null) {
+            tvTitle.text = "Sua san pham"
             edNameProduct.setText(products!!.name)
-            if(!products!!.description.equals("Null")) {
+            if (!products!!.description.equals("Null")) {
                 edDesciptionProduct.setText(products!!.description)
             }
             edBarcode.text = products!!.barcode
             edPrice_in.setText(totalSum(products!!.price_in))
             edPrice_out.setText(totalSum(products!!.price_out))
             edAmount.setText(products!!.amount.toString())
-            if(!products!!.category.equals("Null")) {
+            if (!products!!.category.equals("Null")) {
                 edCategory.text = products!!.category
             }
-            if(!products!!.brand.equals("Null")) {
+            if (!products!!.brand.equals("Null")) {
                 edBrand.text = products!!.brand
             }
-        }else{
-            tvTitle.text="Them san pham"
+        } else {
+            tvTitle.text = "Them san pham"
         }
     }
 
@@ -277,20 +284,27 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
 
         if (requestCode == 101 && resultCode == Activity.RESULT_OK) {
-            var category=data!!.getParcelableExtra<Category>("category")
-            id_category=category.id
+            var category = data!!.getParcelableExtra<Category>("category")
+            id_category = category.id
             edCategory.text = category.name
         }
 
 
-        if ( requestCode==102 && resultCode == Activity.RESULT_OK) {
-            var category=data!!.getParcelableExtra<Category>("category")
+        if (requestCode == 102 && resultCode == Activity.RESULT_OK) {
+            var category = data!!.getParcelableExtra<Category>("category")
+            id_brand=category.id
             edBrand.text = category.name
         }
 
-        if ( requestCode==103 && resultCode == Activity.RESULT_OK) {
-            var supplier=data!!.getParcelableExtra<Supplier>("supplier")
+        if (requestCode == 103 && resultCode == Activity.RESULT_OK) {
+            var supplier = data!!.getParcelableExtra<Supplier>("supplier")
             edSupplier.text = supplier.name
+        }
+
+        if (requestCode == 104 && resultCode == Activity.RESULT_OK) {
+            var size = data!!.getParcelableExtra<Category>("size")
+            id_size=size.id
+            edSize.text = size.name
         }
     }
 
@@ -313,12 +327,7 @@ class AddProductActivity : BaseActivitys(), ViewProduct {
 
     override fun onDestroy() {
         super.onDestroy()
-        if( AdapterBrand.selected_position>0){
-            AdapterBrand.selected_position=-1
-        }
-        if( AdapterCategory.selected_position>0) {
-            AdapterCategory.selected_position = -1
-        }
+
     }
 
 }

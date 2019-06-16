@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.RadioButton
@@ -112,7 +113,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     }
 
     private fun searchProduct(name: String) {
-        getProductPresenter.getListSearch(userEntity!!.id_shop, "", name)
+        getProductPresenter.getListSearch(userEntity!!.id_shop, "", name,name.toInt())
     }
 
 
@@ -171,7 +172,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
 
         var entity = MyApplication.appDatabase.productDao().getProduct(product.id)
         if  (entity!=null) {
-            if( entity.uid==product.id) {
+            if( entity.uid==product.id ) {
                 var amount=entity.amount + 1
                 MyApplication.appDatabase.productDao().updateAmount(amount, product.id)
             }

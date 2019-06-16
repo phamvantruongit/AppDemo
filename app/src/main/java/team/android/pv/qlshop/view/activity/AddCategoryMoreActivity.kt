@@ -3,6 +3,7 @@ package team.android.pv.qlshop.view.activity
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_add_category.*
+import kotlinx.android.synthetic.main.dialog_add_category.*
 import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Category
@@ -32,7 +34,7 @@ class AddCategoryMoreActivity : BaseActivitys(), ViewAddCategory,
     private var categoryPresenter: CategoryPresenter? = null
 
     private var checkCategory: Boolean = false
-    private var category: Category? = null
+    private var category: Category? = Category()
 
 
 
@@ -41,6 +43,10 @@ class AddCategoryMoreActivity : BaseActivitys(), ViewAddCategory,
         setContentView(R.layout.activity_add_category)
 
         imgRight.visibility = View.VISIBLE
+        var tvTitle=findViewById<TextView>(R.id.tvTitle)
+
+
+
 
         categoryPresenter = CategoryPresenter(this, CategoryInteractor())
 
@@ -52,6 +58,11 @@ class AddCategoryMoreActivity : BaseActivitys(), ViewAddCategory,
 
 
         checkCategory = intent.getBooleanExtra("checkCategory", false)
+        if(checkCategory) {
+            tvTitle.setText(getString(R.string.title_category))
+        }else{
+            tvTitle.setText(getString(R.string.title_brand))
+        }
 
 
 
@@ -60,9 +71,8 @@ class AddCategoryMoreActivity : BaseActivitys(), ViewAddCategory,
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
 
         imgRight.setOnClickListener {
-            category = Category()
 
-            showDialog(this.category!!)
+            showDialog(null,false)
 
         }
 
@@ -99,10 +109,10 @@ class AddCategoryMoreActivity : BaseActivitys(), ViewAddCategory,
 
     override fun onClickEditCategory(category: Category) {
         this.category = category
-        showDialog(this.category!!)
+        showDialog(this.category!!,true)
     }
 
-    private fun showDialog(category: Category) {
+    private fun showDialog(category: Category ? ,check:Boolean) {
         var dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_add_category)
@@ -110,30 +120,57 @@ class AddCategoryMoreActivity : BaseActivitys(), ViewAddCategory,
         var edCategory = dialog.findViewById(R.id.edCategory) as EditText
         dialog.show()
 
-
-        if (!checkCategory) {
-            tvTitle.text = getString(R.string.them_brand)
-
+        dialog!!.setCancelable(false)
+        if (dialog!!.window != null) {
+            dialog!!.window!!.setGravity(Gravity.CENTER)
+            dialog!!.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+            dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
 
-        var btnAddCategory = dialog.findViewById(R.id.btnAddCategory) as Button
-        if (category != null) {
-            edCategory.setText(category.name)
-            btnAddCategory.text = "Edit"
+        if (!checkCategory) {
+            edCategory.hint=getString(R.string.name_brand)
+            tvTitle.text = getString(R.string.them_brand)
+
+        }else{
+
+            edCategory.hint=getString(R.string.name_category)
+            tvTitle.text = getString(R.string.them_category)
+        }
+
+
+        var btnAddCategory = dialog.findViewById(R.id.btnAddCategory) as TextView
+        if (check) {
+            if(checkCategory){
+                tvTitle.text = getString(R.string.update_categoty)
+            }else{
+                tvTitle.text = getString(R.string.update_brand)
+            }
+            edCategory.setText(category!!.name)
+            btnAddCategory.text = getString(R.string.edit)
+        }else{
+            btnAddCategory.text = getString(R.string.add)
         }
         btnAddCategory.setOnClickListener {
             var name = edCategory.text.toString()
             if(name.length==0){
-                dialog.dismiss()
+                edCategory.error=getString(R.string.enter_info)
                 return@setOnClickListener
             }
-            if (category.name != "") {
-                categoryPresenter!!.editCategory(name, userEntity!!.id_shop, category.id, checkCategory)
+            if (check) {
+                categoryPresenter!!.editCategory(name, userEntity!!.id_shop, category!!.id, checkCategory)
             } else {
                 categoryPresenter!!.addCategory(name, userEntity!!.id_shop, checkCategory)
             }
             dialog.dismiss()
+        }
+
+        dialog!!.btnExit.setOnClickListener {
+            dialog!!.cancel()
+            dialog!!.dismiss()
         }
     }
 
