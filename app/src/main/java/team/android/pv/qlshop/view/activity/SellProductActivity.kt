@@ -22,6 +22,7 @@ import android.widget.Toast
 import com.google.android.gms.vision.barcode.Barcode
 import com.notbytes.barcode_reader.BarcodeReaderActivity
 import kotlinx.android.synthetic.main.activity_sell_product.*
+import kotlinx.android.synthetic.main.show_dialog_list_product.*
 import kotlinx.android.synthetic.main.toolbar.*
 import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
@@ -31,6 +32,7 @@ import team.android.pv.qlshop.model.data.database.ProductEntity
 import team.android.pv.qlshop.presenter.searchproduct.SearchProductInteractor
 import team.android.pv.qlshop.presenter.searchproduct.SearchProductPresenter
 import team.android.pv.qlshop.view.DividerItemDecoration
+import team.android.pv.qlshop.view.adapter.AdapterProduct
 import team.android.pv.qlshop.view.adapter.AdapterProductLocal
 import team.android.pv.qlshop.view.view.ViewSearchBarcode
 import java.text.DecimalFormat
@@ -38,7 +40,10 @@ import java.text.NumberFormat
 import java.util.*
 
 
-class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLocal.IOnClick {
+class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLocal.IOnClick, AdapterProduct.IOnClick {
+    override fun iOnClickItemDetail(product: Product) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     val BARCODE_READER_ACTIVITY_REQUEST: Int = 101
@@ -233,11 +238,13 @@ class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLoc
 
 
     override fun getListSearchProduct(listProduct: List<Product>) {
+        var dialog=Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.show_dialog_list_product)
+        dialog.show()
+        dialog.rv_products.layoutManager = LinearLayoutManager(this)
+        dialog.rv_products.adapter=AdapterProduct(listProduct as ArrayList<Product>,this)
 
-
-        for(i in 0..listProduct.size-1){
-           Log.d("PPPP",listProduct.get(i).size)
-        }
 
 
     }

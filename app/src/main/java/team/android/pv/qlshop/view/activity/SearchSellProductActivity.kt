@@ -183,6 +183,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
                 productEntity.amount = 1
                 productEntity.amounts = product.amount
                 productEntity.price_out = product.price_out
+                productEntity.size=product.size
                 MyApplication.appDatabase.productDao().addProduct(productEntity)
             }
         } else {
@@ -192,7 +193,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
             productEntity.amount = 1
             productEntity.amounts = product.amount
             productEntity.price_out = product.price_out
-
+            productEntity.size=product.size
             MyApplication.appDatabase.productDao().addProduct(productEntity)
         }
 

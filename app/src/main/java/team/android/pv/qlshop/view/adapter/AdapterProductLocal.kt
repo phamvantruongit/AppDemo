@@ -47,6 +47,7 @@ class AdapterProductLocal(var context: Context, var iOnClick: IOnClick) :
         viewHolder.itemView.tvPrice.text = "Giá: " +  price
         var amount:Int = list!!.get(position).amount
         viewHolder.itemView.tvAmount.setText(amount.toString())
+        viewHolder.itemView.tvsize.text="Size :" + list!!.get(position).size
         var sum =list!!.get(position).price_out * amount
 
         if(list!!.get(position).sale>0){

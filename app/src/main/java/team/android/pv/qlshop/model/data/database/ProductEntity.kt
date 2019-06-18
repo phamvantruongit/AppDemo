@@ -28,6 +28,9 @@ class ProductEntity {
     @ColumnInfo(name = "sale_money")
     var sale_money:Long=0L
 
+    @ColumnInfo(name = "size")
+    var size=""
+
 
 
 }

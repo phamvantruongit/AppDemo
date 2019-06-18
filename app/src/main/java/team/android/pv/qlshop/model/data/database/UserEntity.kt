@@ -26,4 +26,8 @@ class UserEntity {
 
     @ColumnInfo(name ="check_admin")
     var check_admin=""
+
+
+//    @ColumnInfo(name ="test")
+//    var test=""
 }
