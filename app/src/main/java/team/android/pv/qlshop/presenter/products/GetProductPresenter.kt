@@ -16,7 +16,7 @@ class GetProductPresenter(var viewProduct: ViewProducts, val productInteractor: 
     }
 
 
-    fun getListSearch(id_shop:Int, barcode : String, name: String ,id:Int){
+    fun getListSearch(id_shop:Int, barcode : String, name: String ,id:String){
         productInteractor.getListSearchProduct(this,id_shop,barcode,name,id)
     }
 

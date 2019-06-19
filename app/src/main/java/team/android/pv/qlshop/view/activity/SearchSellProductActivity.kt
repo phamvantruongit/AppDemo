@@ -119,7 +119,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     }
 
     private fun searchProduct(name: String) {
-        getProductPresenter.getListSearch(userEntity!!.id_shop, "", name,name.toInt())
+        getProductPresenter.getListSearch(userEntity!!.id_shop, "", name,name)
     }
 
 

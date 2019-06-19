@@ -15,7 +15,7 @@ import team.android.pv.qlshop.presenter.category.CategoryInteractor
 
 class SearchProductInteractor {
 
-    fun getListSearchProduct( listener  :OnFinishedListenerProduct , id_shop:Int, barcode : String,  name: String ,id:Int){
+    fun getListSearchProduct( listener  :OnFinishedListenerProduct , id_shop:Int, barcode : String,  name: String ,id:String){
 
        apiClient.searchProduct(id_shop,barcode,name,id).enqueue(object :Callback<ProductResponse>{
            override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
@@ -34,7 +34,7 @@ class SearchProductInteractor {
     }
 
 
-    fun getListSearchProductBarocde( listener  :OnFinishedListenerProductBarcode , id_shop:Int, barcode : String,  name: String,id:Int){
+    fun getListSearchProductBarocde( listener  :OnFinishedListenerProductBarcode , id_shop:Int, barcode : String,  name: String,id:String){
 
         apiClient.searchProduct(id_shop,barcode,name,id).enqueue(object :Callback<ProductResponse>{
             override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {

@@ -74,7 +74,7 @@ class GetProductInteractor {
         id_shop: Int,
         barcode: String,
         name: String,
-        id: Int
+        id: String
     ){
 
         apiClient.searchProduct(id_shop,barcode,name,id).enqueue(object :Callback<ProductResponse>{

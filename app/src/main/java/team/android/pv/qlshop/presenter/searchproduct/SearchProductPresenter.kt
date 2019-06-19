@@ -35,11 +35,11 @@ class SearchProductPresenter :
 
 
     fun searchProduct(id_shop:Int, barcode : String,  name: String){
-         searchProductInteractor!!.getListSearchProduct(this,id_shop,barcode,name,name.toInt())
+         searchProductInteractor!!.getListSearchProduct(this,id_shop,barcode,name,name)
     }
 
     fun searchProductBarocde(id_shop:Int, barcode : String,  name: String){
-        searchProductInteractor!!.getListSearchProductBarocde(this,id_shop,barcode,name,name.toInt())
+        searchProductInteractor!!.getListSearchProductBarocde(this,id_shop,barcode,name,name)
     }
 
 

@@ -122,7 +122,7 @@ interface ApiInterface {
 
 
     @GET("get/search.php")
-    fun searchProduct(@Query("id_shop") id_shop:Int ,@Query("barcode") barcode : String ,@Query("name")  name: String ,@Query("id") id: Int) :Call<ProductResponse>
+    fun searchProduct(@Query("id_shop") id_shop:Int ,@Query("barcode") barcode : String ,@Query("name")  name: String ,@Query("id") id: String) :Call<ProductResponse>
 
 
 }
