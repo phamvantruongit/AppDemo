@@ -28,6 +28,6 @@ class UserEntity {
     var check_admin=""
 
 
-//    @ColumnInfo(name ="test")
-//    var test=""
+    @ColumnInfo(name ="login")
+    var login:Boolean=false
 }

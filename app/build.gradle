@@ -34,8 +34,8 @@ android {
     productFlavors {
         develop {
             applicationId "team.android.pv.qlshop"
-            versionCode 2
-            versionName "2.0"
+            versionCode 1
+            versionName "1.0"
             buildConfigField "String", "BASE_URL", "\"http://192.168.64.2/android_login_api/\""
         }
         product {

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_more.*
 import kotlinx.android.synthetic.main.toolbar.*
+import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.ListMore
 import team.android.pv.qlshop.model.data.SharedPreferencesManager
@@ -57,8 +58,9 @@ class MoreActivity : BaseActivity(), AdapterListMore.IOnClick {
 
 
         imgRight.setOnClickListener {
-            SharedPreferencesManager.logOut(true)
+            MyApplication.appDatabase.userDao().updateLogin(false)
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
 
         rvListMore.layoutManager = LinearLayoutManager(this)

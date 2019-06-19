@@ -13,5 +13,8 @@ interface UserDao {
     fun getUser() : UserEntity
 
 
+    @Query("UPDATE UserEntity set login = :login")
+    fun updateLogin(login : Boolean)
+
 
 }

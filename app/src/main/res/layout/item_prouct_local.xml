@@ -38,66 +38,69 @@
 
 
     </LinearLayout>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:padding="@dimen/_5dp"
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="90dp">
-    <TextView android:layout_width="wrap_content"
-              android:textColor="@color/black"
-              android:id="@+id/tvNameProduct"
-              android:text="San pham chat luong cao San pham chat luong cao "
-              android:layout_height="wrap_content"/>
-    <TextView android:layout_width="wrap_content"
-              android:id="@+id/tvsize"
-              android:text="Size : S"
-              android:textColor="@color/black"
-              android:layout_below="@id/tvNameProduct"
-              android:layout_height="wrap_content"/>
-    <TextView android:layout_width="wrap_content"
-              android:textColor="@color/black"
-              android:text="Giá 10.000.000"
-              android:id="@+id/tvPrice"
-              android:layout_below="@id/tvsize"
-              android:layout_height="wrap_content"/>
-    <TextView android:layout_width="wrap_content"
-              android:textColor="@color/red"
-              android:text="Tong :10.000.000"
-              android:id="@+id/tvSum"
-              android:layout_below="@id/tvPrice"
-              android:layout_height="wrap_content"/>
+    <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:padding="@dimen/_5dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/black"
+                  android:id="@+id/tvNameProduct"
+                  android:text="San pham chat luong cao San pham chat luong cao "
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:id="@+id/tvsize"
+                  android:text="Size : S"
+                  android:textSize="@dimen/_13sp"
+                  android:textColor="@color/black"
+                  android:layout_below="@id/tvNameProduct"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/black"
+                  android:text="Giá 10.000.000"
+                  android:id="@+id/tvPrice"
+                  android:textSize="@dimen/_13sp"
+                  android:layout_below="@id/tvsize"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/red"
+                  android:text="Tong :10.000.000"
+                  android:id="@+id/tvSum"
+                  android:textSize="@dimen/_13sp"
+                  android:layout_below="@id/tvPrice"
+                  android:layout_height="wrap_content"/>
 
 
-    <LinearLayout android:layout_width="wrap_content"
-                  android:orientation="horizontal"
-                  android:layout_alignParentRight="true"
-                  android:layout_alignParentBottom="true"
-                  android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_alignParentRight="true"
+                      android:layout_alignParentBottom="true"
+                      android:layout_height="wrap_content">
 
-        <TextView android:layout_width="40dp"
-                  android:textSize="@dimen/_18sp"
-                  android:textStyle="bold"
-                  android:background="@color/edSearch"
-                  android:gravity="center"
-                  android:id="@+id/btnGiam"
-                  android:text="-"
-                  android:layout_height="@dimen/_30dp"/>
-        <TextView android:layout_width="45dp"
-                  android:gravity="center"
-                  android:background="@drawable/bod_tv_amount"
-                  android:id="@+id/tvAmount"
-                  android:text="1"
-                  android:textSize="@dimen/_18sp"
-                  android:layout_height="@dimen/_30dp"/>
-        <TextView android:layout_width="40dp"
-                  android:textStyle="bold"
-                  android:textSize="@dimen/_18sp"
-                  android:background="@color/edSearch"
-                  android:id="@+id/btnTang"
-                  android:gravity="center"
-                  android:text="+"
-                  android:layout_height="@dimen/_30dp"/>
-    </LinearLayout>
-</RelativeLayout>
+            <TextView android:layout_width="40dp"
+                      android:textSize="@dimen/_13sp"
+                      android:textStyle="bold"
+                      android:background="@color/edSearch"
+                      android:gravity="center"
+                      android:id="@+id/btnGiam"
+                      android:text="-"
+                      android:layout_height="@dimen/_30dp"/>
+            <TextView android:layout_width="45dp"
+                      android:gravity="center"
+                      android:background="@drawable/bod_tv_amount"
+                      android:id="@+id/tvAmount"
+                      android:text="1"
+                      android:textSize="@dimen/_13sp"
+                      android:layout_height="@dimen/_30dp"/>
+            <TextView android:layout_width="40dp"
+                      android:textStyle="bold"
+                      android:textSize="@dimen/_13sp"
+                      android:background="@color/edSearch"
+                      android:id="@+id/btnTang"
+                      android:gravity="center"
+                      android:text="+"
+                      android:layout_height="@dimen/_30dp"/>
+        </LinearLayout>
+    </RelativeLayout>
 </com.daimajia.swipe.SwipeLayout>

@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -12,7 +13,6 @@ import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.RadioButton
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_search_sell_product.*
 import kotlinx.android.synthetic.main.show_dialog_category.*
 import team.android.pv.qlshop.MyApplication
@@ -27,6 +27,12 @@ import team.android.pv.qlshop.view.LoadMoreScroll
 import team.android.pv.qlshop.view.adapter.AdapterCategorys
 import team.android.pv.qlshop.view.adapter.AdapterSellProduct
 import team.android.pv.qlshop.view.view.ViewProducts
+
+
+
+
+
+
 
 class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProduct.IOnClick,
     AdapterCategorys.IOnClickItem, LoadMoreScroll.ILoadMoreScroll {
@@ -152,8 +158,8 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     }
 
     override fun iOnCLickItem(product: Product, cb_selected: RadioButton) {
-        saveProduct(product)
-        update(cb_selected)
+        saveProduct(product,cb_selected)
+        //update(cb_selected)
     }
 
     fun update(cb_selected: RadioButton) {
@@ -167,16 +173,26 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     }
 
 
-    private fun saveProduct(product: Product) {
+    private fun saveProduct(product: Product, cb_selected: RadioButton) {
+        var entity:ProductEntity  =   MyApplication.appDatabase.productDao().getProduct(product.id)
 
+        if(entity!=null){
+            if(entity!!.uid==product.id){
+                Log.d("PPPP" ,entity!!.amount.toString() + product.amount.toString())
+                if(entity!!.amount<=product.amount) {
+                    var amount = entity!!.amount + 1
+                    MyApplication.appDatabase.productDao().updateAmount(amount, product.id)
+                    var data:ProductEntity  =   MyApplication.appDatabase.productDao().getProduct(entity.uid)
+                    var amounts=data.amount -1
+                    cb_selected.setText("$amounts")
 
-        var entity = MyApplication.appDatabase.productDao().getProduct(product.id)
-        if  (entity!=null) {
-            if( entity.uid==product.id ) {
-                var amount=entity.amount + 1
-                MyApplication.appDatabase.productDao().updateAmount(amount, product.id)
-            }
-            else {
+                }else{
+                    return
+                }
+
+            }else{
+                return
+                cb_selected.setText("1")
                 var productEntity = ProductEntity()
                 productEntity.uid = product.id
                 productEntity.name = product.name
@@ -186,7 +202,8 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
                 productEntity.size=product.size
                 MyApplication.appDatabase.productDao().addProduct(productEntity)
             }
-        } else {
+        }else{
+            cb_selected.setText("1")
             var productEntity = ProductEntity()
             productEntity.uid = product.id
             productEntity.name = product.name

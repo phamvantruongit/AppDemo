@@ -132,6 +132,10 @@ class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLoc
             if (edSale.text.toString().length > 0) {
                 val sale = edSale.text.toString().toLong()
                 if (radLeft.isChecked) {
+                    if(sale>=100){
+                        Toast.makeText(this@SellProductActivity,"sale < 100%",Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
                     updateSale(sale,id)
                 }
                 if (radRight.isChecked) {
@@ -157,11 +161,22 @@ class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLoc
     }
 
     fun updateMoney(sale: Long, id: Int) {
+        var product=MyApplication.appDatabase.productDao().getProduct(id)
+
+
+        if(sale>product.price_out){
+            Toast.makeText(this,"Sale <= price out" ,Toast.LENGTH_SHORT).show()
+            return
+        }
+
         if(id>0){
             MyApplication.appDatabase.productDao().updateSaleMoney(sale = sale,id = id)
-        }else {
-            // MyApplication.appDatabase.productDao().updateSale(sale)
+        }else{
+            //MyApplication.appDatabase.productDao().updateSaleMoney(sale = sale,id = id)
         }
+
+
+
     }
 
     override fun onResume() {
@@ -178,13 +193,16 @@ class SellProductActivity : BaseActivity(), ViewSearchBarcode, AdapterProductLoc
             liveData.observe(this, object : Observer<List<ProductEntity>> {
                 override fun onChanged(list: List<ProductEntity>?) {
                     if (list!!.size>0) {
+
                         getSum(list)
+                        rv_product_local!!.visibility = View.VISIBLE
                         rl_sell_product.visibility = View.VISIBLE
                         adapterProductLocal!!.setData(list)
                         rv_product_local!!.adapter = adapterProductLocal
                         adapterProductLocal!!.notifyDataSetChanged()
                     }else{
                         rl_sell_product.visibility = View.GONE
+                        rv_product_local!!.visibility=View.GONE
                     }
 
                 }

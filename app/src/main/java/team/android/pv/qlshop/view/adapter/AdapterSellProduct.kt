@@ -2,6 +2,7 @@ package team.android.pv.qlshop.view.adapter
 
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.item_products.view.tvPrice_In
 import team.android.pv.qlshop.MyApplication
 import team.android.pv.qlshop.R
 import team.android.pv.qlshop.model.Product
+import team.android.pv.qlshop.model.data.database.ProductEntity
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
@@ -54,11 +56,13 @@ class AdapterSellProduct(var context: Context, var productList: ArrayList<Produc
             viewHolder.itemView.tvCategory.text = ""
         }
 
+
         var listData = MyApplication.appDatabase.productDao().getAllListProduct()
         for (i in 0..listData.size - 1) {
             if (productList.get(position).id == listData.get(i).uid) {
                 viewHolder.itemView.cb_selected.visibility = View.VISIBLE
-                viewHolder.itemView.cb_selected.setText(listData.get(i).amount.toString())
+                var amount= listData.get(i).amount-1
+                viewHolder.itemView.cb_selected.setText(amount.toString())
             }
         }
 
@@ -71,16 +75,17 @@ class AdapterSellProduct(var context: Context, var productList: ArrayList<Produc
         var product = productList.get(position)
 
         viewHolder.itemView.setOnClickListener {
+            viewHolder.itemView.cb_selected.visibility = View.VISIBLE
             iOnClick.iOnCLickItem(product, viewHolder.itemView.cb_selected)
+
 
         }
 
 
     }
 
-    class ViewHolderProduct(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolderProduct(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    }
 
     interface IOnClick {
         fun iOnCLickItem(product: Product, cb_selected: RadioButton)

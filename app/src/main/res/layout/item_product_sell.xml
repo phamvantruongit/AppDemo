@@ -67,9 +67,15 @@
             android:layout_height="wrap_content"/>
 
     <RadioButton
+            android:textSize="10sp"
+            android:visibility="gone"
+            android:gravity="center"
+            android:text="1"
+            android:background="@drawable/border_radio"
             android:id="@+id/cb_selected"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:button="@null"

@@ -45,7 +45,7 @@ class AdapterProductLocal(var context: Context, var iOnClick: IOnClick) :
         formatter.applyPattern("#,###,###,###")
         var price= formatter.format(list!!.get(position).price_out)
         viewHolder.itemView.tvPrice.text = "Giá: " +  price
-        var amount:Int = list!!.get(position).amount
+        var amount:Int = list!!.get(position).amount-1
         viewHolder.itemView.tvAmount.setText(amount.toString())
         viewHolder.itemView.tvsize.text="Size :" + list!!.get(position).size
         var sum =list!!.get(position).price_out * amount

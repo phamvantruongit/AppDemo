@@ -22,8 +22,6 @@ class LoginInteractor {
 
            override fun onResponse(call: Call<LoginBaseResponse>, response: Response<LoginBaseResponse>) {
 
-
-
                if(response.body()!!.code==200){
                    onFinishedListener.onResultSuccess(response.body()!!.user)
                }

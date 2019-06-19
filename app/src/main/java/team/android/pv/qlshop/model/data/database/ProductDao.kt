@@ -30,6 +30,10 @@ interface ProductDao {
     fun deleteProduct(id: Int)
 
 
+    @Query(" DELETE FROM ProductEntity")
+    fun deleteAllProduct()
+
+
     @Query("UPDATE ProductEntity SET amount= :editamout WHERE uid in (:id) ")
     fun updateAmount(editamout:Int,id: Int)
 
