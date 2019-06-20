@@ -129,7 +129,9 @@ class LoginActivity : BaseActivitys(), ViewLogin {
             var user = User()
             user.email = email
             user.password = password
-            login.login(user)
+            if(hasNetwork()) {
+                login.login(user)
+            }
 
         }
     }

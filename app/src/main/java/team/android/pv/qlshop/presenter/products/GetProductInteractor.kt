@@ -14,7 +14,7 @@ class GetProductInteractor {
 
     fun getListProducts(onFinishedListener: OnFinishedListenerProduct, id_shop: Int, id_category: Int, page: Int) {
 
-        apiClient.getProducts(id_shop, id_category, page)
+        apiClient!!.getProducts(id_shop, id_category, page)
             .enqueue(object : Callback<ProductResponse> {
                 override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
                     if (response.body()!!.code == 200) {
@@ -48,7 +48,7 @@ class GetProductInteractor {
     fun getListNameCategory(onFinishedListener: OnFinishedListenerProduct, id_shop: Int) {
 
 
-        apiClient.getCategorys(id_shop).enqueue(object : Callback<CategoryResponse> {
+        apiClient!!.getCategorys(id_shop).enqueue(object : Callback<CategoryResponse> {
 
             override fun onResponse(call: Call<CategoryResponse>, response: Response<CategoryResponse>) {
                 if (response.body()!!.code == 200) {
@@ -77,7 +77,7 @@ class GetProductInteractor {
         id: String
     ){
 
-        apiClient.searchProduct(id_shop,barcode,name,id).enqueue(object :Callback<ProductResponse>{
+        apiClient!!.searchProduct(id_shop,barcode,name,id).enqueue(object :Callback<ProductResponse>{
             override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
                 if(response.body()!!.code==200){
                     listener.onResultListProducts(response.body()!!.listProduct)

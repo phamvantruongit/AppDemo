@@ -17,7 +17,7 @@ class LoginInteractor {
         param.put("email", user.email)
         param.put("password",user.password)
 
-       var call:Call<LoginBaseResponse> = apiClient.loginUser(param)
+       var call:Call<LoginBaseResponse> = apiClient!!.loginUser(param)
        call.enqueue(object :Callback<LoginBaseResponse>{
 
            override fun onResponse(call: Call<LoginBaseResponse>, response: Response<LoginBaseResponse>) {

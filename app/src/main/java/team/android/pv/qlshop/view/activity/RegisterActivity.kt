@@ -157,7 +157,9 @@ class RegisterActivity : BaseActivitys() ,ViewRegister {
             if(check_admin==0){
                 user.id_shop= userEntity!!.id_shop
             }
-            register.registerUsers(user,check_admin)
+            if(hasNetwork()) {
+                register.registerUsers(user, check_admin)
+            }
         }
 
         toolbar.setOnClickListener{

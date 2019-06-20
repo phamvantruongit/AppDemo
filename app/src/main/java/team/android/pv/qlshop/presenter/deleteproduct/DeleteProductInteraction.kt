@@ -10,7 +10,7 @@ import team.android.pv.qlshop.presenter.Inteface.OnFinishedListeners
 
 class DeleteProductInteraction {
     fun deleteProduct(listenner: OnFinishedListeners, id: Int, id_shop: Int) {
-        MyApplication.apiClient.deleteProduct(id_shop, id).enqueue(object : Callback<BaseResponse> {
+        MyApplication.apiClient!!.deleteProduct(id_shop, id).enqueue(object : Callback<BaseResponse> {
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                 if(response.body()!!.code==200) {
                     listenner.showMessage(response.body()!!.message)

@@ -14,7 +14,7 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 
-class DetailProductActivity : AppCompatActivity(), ViewDeleteProduct {
+class DetailProductActivity : BaseActivitys(), ViewDeleteProduct {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +56,9 @@ class DetailProductActivity : AppCompatActivity(), ViewDeleteProduct {
 
 
         tvDeleteProductDetail.setOnClickListener {
-            DeleteProductPresenter(this, DeleteProductInteraction()).deleteProduct(product.id, product.id_shop)
+            if(hasNetwork()) {
+                DeleteProductPresenter(this, DeleteProductInteraction()).deleteProduct(product.id, product.id_shop)
+            }
         }
 
 

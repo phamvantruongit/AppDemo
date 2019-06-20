@@ -39,14 +39,12 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
     private var category: Category? = null
 
-    private var dialog:Dialog ? = null
+    private var dialog: Dialog? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_category)
-
-
 
 
         imgRight.visibility = View.VISIBLE
@@ -64,8 +62,9 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
 
 
-
-        categoryPresenter!!.getCategory(userEntity!!.id_shop, checkCategory)
+        if (hasNetwork()) {
+            categoryPresenter!!.getCategory(userEntity!!.id_shop, checkCategory)
+        }
 
         dialog = Dialog(this)
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -92,7 +91,9 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
     }
 
     override fun setSuccess(success: String) {
-        categoryPresenter!!.getCategory(1, checkCategory)
+        if (hasNetwork()) {
+            categoryPresenter!!.getCategory(1, checkCategory)
+        }
     }
 
     override fun showMessage(message: String) {
@@ -102,7 +103,7 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
 
     override fun getListCategory(listCategory: ArrayList<Category>) {
 
-        if ( checkCategory) {
+        if (checkCategory) {
             rv_category!!.adapter = AdapterCategory(listCategory, this)
         } else {
             rv_category!!.adapter = AdapterBrand(listCategory, this)
@@ -157,13 +158,15 @@ class AddCategoryActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IO
         btnAddCategory.setOnClickListener {
             var name = edCategory.text.toString()
             if (name.length == 0) {
-                edCategory.error=getString(R.string.enter_info)
+                edCategory.error = getString(R.string.enter_info)
                 return@setOnClickListener
             }
             if (category.name != "") {
-                categoryPresenter!!.editCategory(name, userEntity!!.id_shop, category.id, checkCategory)
+                if (hasNetwork())
+                    categoryPresenter!!.editCategory(name, userEntity!!.id_shop, category.id, checkCategory)
             } else {
-                categoryPresenter!!.addCategory(name, userEntity!!.id_shop, checkCategory)
+                if (hasNetwork())
+                    categoryPresenter!!.addCategory(name, userEntity!!.id_shop, checkCategory)
             }
             dialog!!.dismiss()
         }

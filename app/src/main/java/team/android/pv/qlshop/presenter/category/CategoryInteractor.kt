@@ -19,9 +19,9 @@ class CategoryInteractor {
 
         var call:Call<BaseResponse>?
         if(check){
-           call =apiClient.addCategory(param)
+           call =apiClient!!.addCategory(param)
         }else{
-            call =apiClient.addBrand(param)
+            call =apiClient!!.addBrand(param)
         }
         call.enqueue(object :Callback<BaseResponse>{
 
@@ -51,9 +51,9 @@ class CategoryInteractor {
 
         var call:Call<BaseResponse>?
         if(check){
-            call =apiClient.editCategory(param)
+            call =apiClient!!.editCategory(param)
         }else{
-            call =apiClient.editBrand(param)
+            call =apiClient!!.editBrand(param)
         }
         call.enqueue(object :Callback<BaseResponse>{
 
@@ -79,10 +79,10 @@ class CategoryInteractor {
         var call:Call<CategoryResponse>?
 
         if(check){
-            call= apiClient.getCategorys(id_shop)
+            call= apiClient!!.getCategorys(id_shop)
         }
         else{
-            call= apiClient.getBrands(id_shop)
+            call= apiClient!!.getBrands(id_shop)
         }
 
         call.enqueue(object : Callback<CategoryResponse>{
@@ -105,7 +105,7 @@ class CategoryInteractor {
 
     fun addSize(onFinishedListeners: OnFinishedListeners,name:String ,id_shop :Int){
 
-        apiClient.addSize(id_shop,name).enqueue(object :Callback<BaseResponse>{
+        apiClient!!.addSize(id_shop,name).enqueue(object :Callback<BaseResponse>{
 
 
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
@@ -127,7 +127,7 @@ class CategoryInteractor {
 
     fun getSize(onFinishedListenersCategory: OnFinishedListenersCategory,id_shop: Int){
 
-        apiClient.getSizes(id_shop).enqueue(object : Callback<CategoryResponse>{
+        apiClient!!.getSizes(id_shop).enqueue(object : Callback<CategoryResponse>{
 
             override fun onResponse(call: Call<CategoryResponse>, response: Response<CategoryResponse>) {
                 if(response.body()!!.code==200){

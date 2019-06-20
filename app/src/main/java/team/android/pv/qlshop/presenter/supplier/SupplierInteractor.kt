@@ -25,7 +25,7 @@ class SupplierInteractor {
         param.put("email", supplier.email)
         param.put("description", supplier.description)
         if(checkCustomer){
-            MyApplication.apiClient.addCustomer(param)
+            MyApplication.apiClient!!.addCustomer(param)
                 .enqueue(object : Callback<BaseResponse> {
                     override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                         if(response.body()!!.code==200){
@@ -40,7 +40,7 @@ class SupplierInteractor {
                     }
                 })
         }else{
-            MyApplication.apiClient.addSupplier(param)
+            MyApplication.apiClient!!.addSupplier(param)
                 .enqueue(object : Callback<BaseResponse> {
                     override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                         if(response.body()!!.code==200){
@@ -73,7 +73,7 @@ class SupplierInteractor {
         param.put("description", supplier.description)
         param.put("id_shop",supplier.id_shop.toString())
         if(checkCustomer){
-            MyApplication.apiClient.editCustomer(param)
+            MyApplication.apiClient!!.editCustomer(param)
                 .enqueue(object : Callback<BaseResponse> {
                     override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                         if(response.body()!!.code==200){
@@ -88,7 +88,7 @@ class SupplierInteractor {
                     }
                 })
         }else{
-            MyApplication.apiClient.editSupplier(param)
+            MyApplication.apiClient!!.editSupplier(param)
                 .enqueue(object : Callback<BaseResponse> {
                     override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                         if(response.body()!!.code==200){
@@ -113,7 +113,7 @@ class SupplierInteractor {
         checkCustomer: Boolean
     ){
         if(checkCustomer){
-            MyApplication.apiClient.getCustomer(id_shop).enqueue(object :Callback<SupplierResponse>{
+            MyApplication.apiClient!!.getCustomer(id_shop).enqueue(object :Callback<SupplierResponse>{
                 override fun onResponse(call: Call<SupplierResponse>, response: Response<SupplierResponse>) {
                     if(response.body()!!.code==200){
                         listeners.onResultListSupplier(response.body()!!.listSupplier)
@@ -127,7 +127,7 @@ class SupplierInteractor {
                 }
             })
         }else{
-            MyApplication.apiClient.getSupplier(id_shop).enqueue(object :Callback<SupplierResponse>{
+            MyApplication.apiClient!!.getSupplier(id_shop).enqueue(object :Callback<SupplierResponse>{
                 override fun onResponse(call: Call<SupplierResponse>, response: Response<SupplierResponse>) {
                     if(response.body()!!.code==200){
                         listeners.onResultListSupplier(response.body()!!.listSupplier)
@@ -146,7 +146,7 @@ class SupplierInteractor {
 
     fun deleteInfor(id_shop: Int,id:Int,listeners: OnFinishedListenerFail, checkCustomer: Boolean){
         if(checkCustomer) {
-            MyApplication.apiClient.deleteCustomer(id_shop, id).enqueue(object : Callback<BaseResponse> {
+            MyApplication.apiClient!!.deleteCustomer(id_shop, id).enqueue(object : Callback<BaseResponse> {
                 override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                     listeners.onResultFail(response.body()!!.message)
                 }
@@ -156,7 +156,7 @@ class SupplierInteractor {
                 }
             })
         }else{
-            MyApplication.apiClient.deleteSupplier(id_shop, id).enqueue(object : Callback<BaseResponse> {
+            MyApplication.apiClient!!.deleteSupplier(id_shop, id).enqueue(object : Callback<BaseResponse> {
                 override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                     listeners.onResultFail(response.body()!!.message)
                 }

@@ -61,7 +61,9 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
         getProductPresenter = GetProductPresenter(this, GetProductInteractor())
 
         page = 1
-        getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
+        if(hasNetwork()) {
+            getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
+        }
 
 
         edSearch.addTextChangedListener(object : TextWatcher {

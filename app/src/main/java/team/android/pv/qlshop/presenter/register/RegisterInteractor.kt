@@ -21,11 +21,11 @@ class RegisterInteractor {
           param.put("id_shop", user.id_shop.toString())
           param.put("name_type","NV")
           param.put("check_admin","memmber")
-          call  = apiClient.registerMemmber(param)
+          call  = apiClient!!.registerMemmber(param)
         }else{
             param.put("name_type","QL")
             param.put("check_admin","admin")
-            call  = apiClient.registerAdmin(param)
+            call  = apiClient!!.registerAdmin(param)
         }
 
 

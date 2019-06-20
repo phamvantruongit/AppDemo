@@ -41,7 +41,9 @@ class ActivitySupplier : BaseActivitys(), ViewParents, ViewSupplier, AdapterSupp
 
         checkCustomer = intent.getBooleanExtra("checkCustomer", false)
         supplierPresenter = SupplierPresenter(this, SupplierInteractor())
-        supplierPresenter.getListSupplier(userEntity!!.id_shop, checkCustomer!!)
+        if(hasNetwork()) {
+            supplierPresenter.getListSupplier(userEntity!!.id_shop, checkCustomer!!)
+        }
 
         imgRight.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
 

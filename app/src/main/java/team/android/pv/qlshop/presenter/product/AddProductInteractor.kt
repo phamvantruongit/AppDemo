@@ -27,7 +27,7 @@ class AddProductInteractor {
         param.put("size",product.size)
 
 
-        apiClient.addProduct(param).enqueue(object :Callback<BaseResponse>{
+        apiClient!!.addProduct(param).enqueue(object :Callback<BaseResponse>{
 
 
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
@@ -64,7 +64,7 @@ class AddProductInteractor {
         param.put("unit",product.unit)
         param.put("id_shop",product.id_shop.toString())
 
-        apiClient.editProduct(param).enqueue(object :Callback<BaseResponse>{
+        apiClient!!.editProduct(param).enqueue(object :Callback<BaseResponse>{
 
 
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {

@@ -46,7 +46,9 @@ class SizeActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IOnClickI
         rv_size.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
 
         categoryPresenter = CategoryPresenter(this, CategoryInteractor())
-        categoryPresenter!!.getSize(userEntity!!.id_shop)
+        if(hasNetwork()) {
+            categoryPresenter!!.getSize(userEntity!!.id_shop)
+        }
 
 
         imgRight.setOnClickListener {
@@ -84,7 +86,7 @@ class SizeActivity : BaseActivitys(), ViewAddCategory, AdapterCategory.IOnClickI
 
         dialog!!.btnAddSize.setOnClickListener {
             if (edSize.text.trim().length > 0) {
-
+                if(hasNetwork())
                 categoryPresenter!!.addSize(edSize.text.toString(), userEntity!!.id_shop)
 
             } else {

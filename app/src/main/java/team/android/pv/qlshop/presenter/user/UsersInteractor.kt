@@ -14,7 +14,7 @@ class UsersInteractor {
 
     fun getListUser(id_shop: Int, onFinishedListener: OnFinishedListener) {
 
-        var call: Call<UsersResponse> = apiClient.getUsers(id_shop)
+        var call: Call<UsersResponse> = apiClient!!.getUsers(id_shop)
 
         call.enqueue(object : Callback<UsersResponse> {
 
@@ -35,7 +35,7 @@ class UsersInteractor {
 
     fun deleteUser(id_shop: Int, id: Int, onFinishedListeners: OnFinishedListeners) {
 
-        var call: Call<BaseResponse> = apiClient.deleteUser(id_shop, id)
+        var call: Call<BaseResponse> = apiClient!!.deleteUser(id_shop, id)
 
         call.enqueue(object : Callback<BaseResponse> {
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
