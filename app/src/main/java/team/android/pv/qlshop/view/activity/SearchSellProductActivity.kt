@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -62,7 +61,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
 
         page = 1
         if(hasNetwork()) {
-            getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
+            getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page, false)
         }
 
 
@@ -105,7 +104,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
             dialog!!.tvLoadAll.setOnClickListener {
                 isLoadAll = true
                 iv_check!!.visibility = View.VISIBLE
-                getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
+                getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page, false)
                 dialog!!.dismiss()
             }
         }
@@ -153,7 +152,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     override fun loadMore(isScroll: Boolean) {
         if (isScroll && isLoad) {
             page++
-            getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
+            getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page, true)
 
         }
 
@@ -228,7 +227,7 @@ class SearchSellProductActivity : BaseActivitys(), ViewProducts, AdapterSellProd
     override fun onClickItem(id_category: Int, selected_position: Int) {
         dialog!!.dismiss()
         iv_check!!.visibility = View.GONE
-        getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
+        getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page, true)
     }
 
     override fun showError(error: String) {

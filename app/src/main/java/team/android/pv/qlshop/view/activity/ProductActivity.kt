@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
@@ -72,7 +71,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
             dialog!!.tvLoadAll.setOnClickListener {
                 isLoadAll=true
                 iv_check!!.visibility=View.VISIBLE
-                getProductPresenter.getListProducts(userEntity!!.id_shop, 0, this.page)
+                getProductPresenter.getListProducts(userEntity!!.id_shop, 0, this.page, true)
                 dialog!!.dismiss()
             }
 
@@ -87,7 +86,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
 
         }
         page = 1
-        getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page)
+        getProductPresenter.getListProducts(userEntity!!.id_shop, id_category, page, false)
 
     }
 
@@ -121,7 +120,7 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
     override fun loadMore(isScroll: Boolean) {
         if (isScroll && isLoad) {
             page++
-            getProductPresenter.getListProducts(userEntity!!.id_shop, this.id_category, page)
+            getProductPresenter.getListProducts(userEntity!!.id_shop, this.id_category, page,true)
         }
     }
 
@@ -144,8 +143,10 @@ class ProductActivity : BaseActivity(), ViewProducts, AdapterCategorys.IOnClickI
             iv_check!!.visibility=View.GONE
         }
         this.id_category = id_category
-        getProductPresenter.getListProducts(userEntity
-        !!.id_shop, this.id_category, page)
+        getProductPresenter.getListProducts(
+            userEntity
+            !!.id_shop, this.id_category, page, true
+        )
 
     }
 

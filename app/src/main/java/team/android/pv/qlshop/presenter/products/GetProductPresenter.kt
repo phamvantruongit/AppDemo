@@ -43,8 +43,10 @@ class GetProductPresenter(var viewProduct: ViewProducts, val productInteractor: 
     }
 
 
-    fun getListProducts(id_shop:Int ,id_category:Int,page:Int){
-        viewProduct.showProgress()
+    fun getListProducts(id_shop: Int, id_category: Int, page: Int, isLoad: Boolean){
+        if(!isLoad){
+            viewProduct.showProgress()
+        }
         productInteractor.getListProducts(this,id_shop ,id_category,page)
     }
 
